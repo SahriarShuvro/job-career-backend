@@ -1,0 +1,1143 @@
+<!-- Job Add Modal  -->
+<input type="checkbox" id="job-add-modal" class="modal-toggle" />
+<div class="modal modal-bottom sm:modal-middle">
+    <div
+        class="alert alert-error shadow-lg fixed top-16 w-auto z-10 opacity-0 duration-500 overflow-hidden errAlartSection">
+        <div>
+            <span>Sorry! Please fill in all the form inputs.</span>
+        </div>
+    </div>
+    <div
+        class="alert alert-success shadow-lg fixed top-16 w-auto z-10 opacity-0 duration-500 overflow-hidden successAlartSection">
+        <div>
+            <span>Congratulations! Successfully added to job post.</span>
+        </div>
+    </div>
+    <div class="modal-box h-full flex flex-col justify-between scrollbar-hide">
+        <div>
+            <h3 class="font-bold text-lg mb-4">Add New Job!</h3>
+            <div>
+                <div class="flex justify-between space-x-1">
+                    <form action="/api/admin/jobpost" method="POST" id="jobAddForm" class="space-y-4 w-full">
+                        <div class="jobTitle">
+                            <label for="job_title"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Job Title</label>
+                            <input type="text" name="job_title" id="add_job_title"
+                                class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                                placeholder="example" required />
+                        </div>
+
+                        <div class="date flex justify-between mt-4">
+                            <div class="start_date flex  w-[48%] flex-col items-start">
+                                <label for="date"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Apply Star
+                                    Date</label>
+                                <div class="relative w-full">
+                                    <input type="date" value="" id="add_start_date" name="start_date"
+                                        class="formInput cursor-pointer bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                                        placeholder="15000.00" required="">
+
+                                </div>
+                            </div>
+
+                            <div class="date flex  w-[48%] flex-col items-start">
+                                <label for="end_date"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Expired
+                                    Date</label>
+                                <div class="relative w-full">
+                                    <input type="date" value="" id="add_end_date" name="end_date"
+                                        class="formInput cursor-pointer bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                                        placeholder="15000.00" required="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="company-jobLocation flex justify-between">
+                            <div class="company w-[48%]">
+                                <label for="company"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Company</label>
+                                <select name="company" id="add_company"
+                                    class="formInput w-full text-sm rounded-lg dark:bg-gray-700 text-gray-700 dark:text-gray-200 outline-none cursor-pointer focus:ring-green-500 bg-gray-50 border-gray-200">
+                                    <option value="">--Select Company--</option>
+                                    <option value="FoodShahiBD">FoodShahiBD</option>
+                                    <option value="Foodpada">Foodpada</option>
+                                </select>
+                            </div>
+
+                            <div class="job-location w-[48%]">
+                                <label for="job_location"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Job
+                                    Location</label>
+                                <input type="text" id="add_job_location" name="job_location"
+                                    class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                                    placeholder="Job Location" required="">
+                            </div>
+                        </div>
+
+                        <div class="qualification-employ-statu flex justify-between">
+                            <div class="category w-[48%]">
+                                <label for="qualification"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Qualification</label>
+                                <input type="text" id="add_qualification" name="qualification"
+                                    class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                                    placeholder="Bachelor Degree" required="" />
+                            </div>
+
+                            <div class="employment-status w-[48%]">
+                                <label for="employment_status-status"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Employment
+                                    Status</label>
+                                <select name="employment_status" id="add_employment_status"
+                                    class="formInput w-full text-sm rounded-lg dark:bg-gray-700 text-gray-700 dark:text-gray-200 outline-none cursor-pointer focus:ring-green-500 bg-gray-50 border-gray-200">
+                                    <option value="">--Select Employment Status--</option>
+                                    <option value="Full Time">Full Time</option>
+                                    <option value="Part Time">Part Time</option>
+                                    <option value="Freelance">Freelance</option>
+                                    <option value="Internship">Internship</option>
+                                    <option value="Volunteer">Volunteer</option>
+                                    <option value="Temporary">Temporary</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="salary flex justify-between">
+                            <div class="offeredSalary w-[48%]">
+                                <label for="offerd_salary"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Offered
+                                    Salary</label>
+                                <input type="number" id="add_offeredSalary" name="offerd_salary"
+                                    class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                                    placeholder="15000.00" required />
+                            </div>
+
+                            <div class="negotiable w-[48%]">
+                                <label for="salary_negotiable"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Salary
+                                    Negotiable</label>
+                                <div class="flex justify-start align-middle p-2.5 pl-0">
+                                    <div class="mr-4">
+                                        <label for="inputRadio">Yes</label>
+                                        <input type="radio" name="salary_negotiable" id="add_salary_negotiable_yes"
+                                            value="yes" />
+                                    </div>
+                                    <div>
+                                        <label for="inputRadio">No</label>
+                                        <input type="radio" name="salary_negotiable" id="add_salary_negotiable_no"
+                                            value="no" checked />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="category-vacancy flex justify-between">
+                            <div class="category w-[48%]">
+                                <label for="category"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
+                                <select name="category" id="add_category"
+                                    class="formInput w-full text-sm rounded-lg dark:bg-gray-700 text-gray-700 dark:text-gray-200 outline-none cursor-pointer focus:ring-green-500 bg-gray-50 border-gray-200">
+                                    <option value="">--Select Category--</option>
+                                    <option value="Maneger">Maneger</option>
+                                    <option value="Junior Maneger">Junior Maneger</option>
+                                </select>
+                            </div>
+
+                            <div class="vacancyType w-[48%]">
+                                <label for="vacancy"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vacancy</label>
+                                <input type="number" id="add_vacany" name="vacancy"
+                                    class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                                    placeholder="04" required="">
+                            </div>
+                        </div>
+
+                        <div class="industries-experience flex justify-between">
+                            <div class="industry w-[48%]">
+                                <label for="industry"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Industry</label>
+                                <select name="industry" id="add_industry"
+                                    class="formInput w-full text-sm rounded-lg dark:bg-gray-700 text-gray-700 dark:text-gray-200 outline-none cursor-pointer focus:ring-green-500 bg-gray-50 border-gray-200">
+                                    <option value="SelectCategory">--Select Industry--</option>
+                                    <option value="Agriculture">Agriculture</option>
+                                    <option value="Information & Technology">Information & Technology</option>
+                                    <option value="Government">Government</option>
+                                    <option value="NGO">NGO</option>
+                                    <option value="Helth">Helth</option>
+                                    <option value="Designing">Designing</option>
+                                </select>
+                            </div>
+
+                            <div class="experience w-[48%]">
+                                <label for="first_name"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Experience</label>
+                                <input type="text" id="add_experience" name="experience"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                                    placeholder="Experience" required="" />
+                            </div>
+                        </div>
+
+                        <div class="gender">
+                            <label for="gender"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gender</label>
+                            <select name="gender" id="add_gender"
+                                class="formInput w-full text-sm rounded-lg dark:bg-gray-700 text-gray-700 dark:text-gray-200 outline-none cursor-pointer focus:ring-green-500 bg-gray-50 border-gray-200">
+                                <option value="SelectCategory">--Select Gender--</option>
+                                <option value="All">All</option>
+                                <option value="Only Male">Only Male</option>
+                                <option value="Only Female">Only Female</option>
+                            </select>
+                        </div>
+
+                        <div class="jobDetails">
+                            <label for="job_details"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Job Details</label>
+                            <textarea type="text" name="job_details" id="add_job_details" rows="10"
+                                class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500 scrollbar-hide"
+                                placeholder="Put your job details here.." required></textarea>
+                        </div>
+
+                        <div class="skillsRequired">
+                            <label for="skills_required"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Skills
+                                Required</label>
+                            <textarea type="text" name="skills_required" id="add_skills_required" rows="5"
+                                class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500 scrollbar-hide"
+                                placeholder="Put skills Required here.." required></textarea>
+                        </div>
+
+                        <div class="modal-action">
+                            <label for="job-add-modal" class="btn btn-error">Cancel</label>
+                            <button id="submitBTN" type="submit" class="btn btn-success focus:outline-none">
+                                Add
+                            </button>
+                        </div>
+                    </form>
+                    <p id="response"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Job Edit Modal  -->
+<input type="checkbox" id="job-edit-modal" class="modal-toggle" />
+<div class="modal modal-bottom sm:modal-middle">
+    <div
+        class="alert alert-success shadow-lg fixed top-16 w-auto z-10 opacity-0 duration-500 overflow-hidden editSuccessAlartSection">
+        <div>
+            <span>Post Updated Successfully!</span>
+        </div>
+    </div>
+    <div class="modal-box h-full flex flex-col justify-between scrollbar-hide">
+        <div>
+            <h3 class="font-bold text-lg">Edit Job Post!</h3>
+            <div>
+                <div class="job-edit-sec  flex justify-between space-x-1">
+                    <form method="PATCH" action="/admin/job" id="edit-job-form" class="space-y-4 w-full">
+
+                        <div class="jobTitle">
+                            <label for="job_title"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Job Title</label>
+                            <input type="text" name="job_title" id="edit_job_title"
+                                class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                                placeholder="example" required />
+                        </div>
+
+                        <div class="date flex justify-between mt-4">
+                            <div class="start_date flex  w-[48%] flex-col items-start">
+                                <label for="date"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Apply Star
+                                    Date</label>
+                                <div class="relative w-full">
+                                    <input type="date" value="" id="edit_start_date" name="start_date"
+                                        class="formInput cursor-pointer bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                                        placeholder="15000.00" required="">
+
+                                </div>
+                            </div>
+
+                            <div class="date flex  w-[48%] flex-col items-start">
+                                <label for="end_date"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Expired
+                                    Date</label>
+                                <div class="relative w-full">
+                                    <input type="date" value="" id="edit_end_date" name="end_date"
+                                        class="formInput cursor-pointer bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                                        placeholder="15000.00" required="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="company-jobLocation flex justify-between">
+                            <div class="company w-[48%]">
+                                <label for="company"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Company</label>
+                                <select name="company" id="edit_company"
+                                    class="formInput w-full text-sm rounded-lg dark:bg-gray-700 text-gray-700 dark:text-gray-200 outline-none cursor-pointer focus:ring-green-500 bg-gray-50 border-gray-200">
+                                    <option value="">--Select Company--</option>
+                                    <option value="FoodShahiBD">FoodShahiBD</option>
+                                    <option value="Foodpada">Foodpada</option>
+                                </select>
+                            </div>
+
+                            <div class="job-location w-[48%]">
+                                <label for="job_location"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Job
+                                    Location</label>
+                                <input type="text" id="edit_job_location" name="job_location"
+                                    class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                                    placeholder="Job Location" required="">
+                            </div>
+                        </div>
+
+                        <div class="qualification-employ-statu flex justify-between">
+                            <div class="category w-[48%]">
+                                <label for="qualification"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Qualification</label>
+                                <input type="text" id="edit_qualification" name="qualification"
+                                    class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                                    placeholder="Bachelor Degree" required="" />
+                            </div>
+
+                            <div class="employment-status w-[48%]">
+                                <label for="employment_status-status"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Employment
+                                    Status</label>
+                                <select name="employment_status" id="edit_employment_status"
+                                    class="formInput w-full text-sm rounded-lg dark:bg-gray-700 text-gray-700 dark:text-gray-200 outline-none cursor-pointer focus:ring-green-500 bg-gray-50 border-gray-200">
+                                    <option value="">--Select Employment Status--</option>
+                                    <option value="Full Time">Full Time</option>
+                                    <option value="Part Time">Part Time</option>
+                                    <option value="Freelance">Freelance</option>
+                                    <option value="Internship">Internship</option>
+                                    <option value="Volunteer">Volunteer</option>
+                                    <option value="Temporary">Temporary</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="salary flex justify-between">
+                            <div class="offeredSalary w-[48%]">
+                                <label for="offerd_salary"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Offered
+                                    Salary</label>
+                                <input type="number" id="edit_offerd_salary" name="offerd_salary"
+                                    class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                                    placeholder="15000.00" required />
+                            </div>
+
+                            <div class="negotiable w-[48%]">
+                                <label for="salary_negotiable"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Salary
+                                    Negotiable</label>
+                                <div class="flex justify-start align-middle p-2.5 pl-0">
+                                    <div class="mr-4">
+                                        <label for="inputRadio">Yes</label>
+                                        <input type="radio" name="salary_negotiable" id="edit_salary_negotiable_yes"
+                                            value="yes" />
+                                    </div>
+                                    <div>
+                                        <label for="inputRadio">No</label>
+                                        <input type="radio" name="salary_negotiable" id="edit_salary_negotiable_no"
+                                            value="no" checked />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="category-vacancy flex justify-between">
+                            <div class="category w-[48%]">
+                                <label for="category"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
+                                <select name="category" id="edit_category"
+                                    class="formInput w-full text-sm rounded-lg dark:bg-gray-700 text-gray-700 dark:text-gray-200 outline-none cursor-pointer focus:ring-green-500 bg-gray-50 border-gray-200">
+                                    <option value="">--Select Category--</option>
+                                    <option value="Maneger">Maneger</option>
+                                    <option value="Junior Maneger">Junior Maneger</option>
+                                </select>
+                            </div>
+
+                            <div class="vacancyType w-[48%]">
+                                <label for="vacancy"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vacancy</label>
+                                <input type="number" id="edit_vacancy" name="vacancy"
+                                    class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                                    placeholder="04" required="">
+                            </div>
+                        </div>
+
+                        <div class="industries-experience flex justify-between">
+                            <div class="industry w-[48%]">
+                                <label for="industry"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Industry</label>
+                                <select name="industry" id="edit_industry"
+                                    class="formInput w-full text-sm rounded-lg dark:bg-gray-700 text-gray-700 dark:text-gray-200 outline-none cursor-pointer focus:ring-green-500 bg-gray-50 border-gray-200">
+                                    <option value="SelectCategory">--Select Industry--</option>
+                                    <option value="Agriculture">Agriculture</option>
+                                    <option value="Information & Technology">Information & Technology</option>
+                                    <option value="Government">Government</option>
+                                    <option value="NGO">NGO</option>
+                                    <option value="Helth">Helth</option>
+                                    <option value="Designing">Designing</option>
+                                </select>
+                            </div>
+
+                            <div class="experience w-[48%]">
+                                <label for="first_name"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Experience</label>
+                                <input type="text" id="edit_experience" name="experience"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                                    placeholder="Experience" required="" />
+                            </div>
+                        </div>
+
+                        <div class="gender">
+                            <label for="gender"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gender</label>
+                            <select name="gender" id="edit_gender"
+                                class="formInput w-full text-sm rounded-lg dark:bg-gray-700 text-gray-700 dark:text-gray-200 outline-none cursor-pointer focus:ring-green-500 bg-gray-50 border-gray-200">
+                                <option value="SelectCategory">--Select Gender--</option>
+                                <option value="All">All</option>
+                                <option value="Only Male">Only Male</option>
+                                <option value="Only Female">Only Female</option>
+                            </select>
+                        </div>
+
+                        <div class="jobDetails">
+                            <label for="job_details"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Job Details</label>
+                            <textarea type="text" name="job_details" id="edit_job_details" rows="10"
+                                class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500 scrollbar-hide"
+                                placeholder="Put your job details here.." required></textarea>
+                        </div>
+
+                        <div class="skillsRequired">
+                            <label for="skills_required"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Skills
+                                Required</label>
+                            <textarea type="text" name="skills_required" id="edit_skills_required" rows="5"
+                                class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500 scrollbar-hide"
+                                placeholder="Put skills Required here.." required></textarea>
+                        </div>
+
+                        <div class="modal-action">
+                            <label for="job-edit-modal" class="btn btn-error">Cancel</label>
+                            <button type="submit" for="job-edit-modal"
+                                class="btn btn-success outline-none focus:border-none">
+                                Save
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Job Preview Modal  -->
+<input type="checkbox" id="job-preview-modal" class="modal-toggle" />
+<div class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box h-full flex flex-col justify-between scrollbar-hide">
+        <div>
+            <h3 class="font-bold text-lg">Job Preview!</h3>
+            <div>
+                <div class="flex justify-between space-x-1">
+                    <form action="form" class="space-y-4 w-full">
+                        <!-- Logo  -->
+                        <div class="logoPreview">
+                            <img src="https://foodshahibd.com/foodshahi_ci/assets/media/restaurants/logo/1552416111_logo.png"
+                                alt="" srcset=""
+                                class="w-24 h-24 rounded-lg shadow-none transition-shadow duration-300 ease-in-out hover:shadow-lg hover:shadow-black/30" />
+                        </div>
+
+                        <div class="companyName">
+                            <label for="first_name"
+                                class="block mb-2 text-sm text-gray-400 font-semibold dark:text-gray-500">Company
+                                Name</label>
+                            <p id="p_company">FoodShahiBD - Home delivery service in Rajshahi</p>
+                        </div>
+
+                        <div class="jobTitle">
+                            <label for="job_title"
+                                class="block mb-2 text-sm text-gray-400 font-semibold dark:text-gray-500">Job
+                                Title</label>
+                            <p id="p_job_title">Job Title</p>
+                        </div>
+
+                        <div class="date flex my-6 w-full flex-col items-start">
+                            <label for="first_name"
+                                class="block mb-2 text-sm text-gray-400 font-semibold dark:text-gray-500">Apply
+                                Star to End Date</label>
+                            <p>
+                                <span>Apply Start:
+                                    <span id="p_start_date"> 21 Sep, 2023</span>
+                                </span> |
+                                <span>Apply End:
+                                    <span id="p_end_date"> 21 Sep, 2023</span>
+                                </span>
+                            </p>
+                        </div>
+
+                        <div class="flex justify-between">
+                            <div class="job-location w-[48%]">
+                                <label for="p_job_location"
+                                    class="block mb-2 text-sm text-gray-400 font-semibold dark:text-gray-500">Job
+                                    Location</label>
+                                <p id="p_job_location">Rajshahi</p>
+                            </div>
+
+                            <div class="vacancyType w-[48%]">
+                                <label for="p_qualification"
+                                    class="block mb-2 text-sm text-gray-400 font-semibold dark:text-gray-500">Qualification</label>
+                                <p id="p_qualification">Qualification</p>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between">
+                            <div class="employment-status w-[48%]">
+                                <label for="p_employment_status"
+                                    class="block mb-2 text-sm text-gray-400 font-semibold dark:text-gray-500">Employment
+                                    Status</label>
+                                <p id="p_employment_status">es</p>
+                            </div>
+
+                            <div class="p-offeredSalary w-[48%]">
+                                <label for="offerd_salary"
+                                    class="block mb-2 text-sm text-gray-400 font-semibold dark:text-gray-500">Offered
+                                    Salary</label>
+                                <p id="p_offerd_salary">Offer s</p>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between">
+                            <div class="industry w-[48%]">
+                                <label for="first_name"
+                                    class="block mb-2 text-sm text-gray-400 font-semibold dark:text-gray-500">Industry</label>
+                                <p>Mangemant</p>
+                            </div>
+
+                            <div class="qualification w-[48%]">
+                                <label for="p_salary_negotiable"
+                                    class="block mb-2 text-sm text-gray-400 font-semibold dark:text-gray-500">Salary
+                                    Negotiable</label>
+                                <p id="p_salary_negotiable">Salary Negotiable</p>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between">
+                            <div class="category w-[48%]">
+                                <label for="category"
+                                    class="block mb-2 text-sm text-gray-400 font-semibold dark:text-gray-500">Category</label>
+                                <p id="p_category">Category</p>
+                            </div>
+
+                            <div class="vacancy w-[48%]">
+                                <label for="p_vacancy"
+                                    class="block mb-2 text-sm text-gray-400 font-semibold dark:text-gray-500">Vacancy</label>
+                                <p id="p_vacancy">p_vacancy</p>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between">
+                            <div class="industry w-[48%]">
+                                <label for="industry"
+                                    class="block mb-2 text-sm text-gray-400 font-semibold dark:text-gray-500">Industry</label>
+                                <p id="p_industry">Industry</p>
+                            </div>
+
+                            <div class="experience w-[48%]">
+                                <label for="p_experience"
+                                    class="block mb-2 text-sm text-gray-400 font-semibold dark:text-gray-500">Experience</label>
+                                <p id="p_experience">p_experience</p>
+                            </div>
+                        </div>
+
+                        <div class="gender">
+                            <label for="p_gender"
+                                class="block mb-2 text-sm text-gray-400 font-semibold dark:text-gray-500">Gender</label>
+                            <div>
+                                <p id="p_gender">Gender</p>
+                            </div>
+                        </div>
+
+                        <div class="jobDetails">
+                            <label for="p_job_details"
+                                class="block mb-2 text-sm text-gray-400 font-semibold dark:text-gray-500">Job
+                                Details</label>
+                            <div>
+                                <p id="p_job_details">
+                                    Far much that one rank beheld greenbird after outside
+                                    ignobly allegedly more when oh arrogantly vehement
+                                    irresistibly fussy penguin insect additionally wow
+                                    absolutely crud meretriciously hastily dalmatian a
+                                    glowered inset one echidna cassowary some parrot and much
+                                    as goodness some froze the sullen much connected bat
+                                    wonderfully on instantaneously eel valiantly petted this
+                                    along across highhandedly much dog out the much alas
+                                    evasively neutral lazy reset. Repeatedly dreamed alas
+                                    opossum but dramatically despite expeditiously that
+                                    jeepers loosely yikes that as or eel underneath kept and
+                                    slept compactly far purred sure abidingly up above fitting
+                                    to strident wiped set waywardly far the and pangolin horse
+                                    approving paid chuckled cassowary oh above a much opposite
+                                    far much hypnotically more therefore wasp less that hey
+                                    apart well like while superbly orca and far hence one.Far
+                                    much that one rank beheld greenbird after outside ignobly
+                                    allegedly more when oh arrogantly vehement irresistibly
+                                    fussy penguin insect additionally wow absolutely crud
+                                    meretriciously hastily dalmatian a glowered inset one
+                                    echidna cassowary some parrot and much as goodness some
+                                    froze the sullen much connected bat wonderfully on
+                                    instantaneously eel valiantly petted this along across
+                                    highhandedly much dog out the much alas evasively neutral
+                                    lazy reset. Repeatedly dreamed alas opossum but
+                                    dramatically despite expeditiously that jeepers loosely
+                                    yikes that as or eel underneath kept and slept compactly
+                                    far purred sure abidingly up above fitting to strident
+                                    wiped set waywardly far the and.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="skillsRequired">
+                            <label for="skills_required"
+                                class="block mb-2 text-sm text-gray-400 font-semibold dark:text-gray-500">Skills
+                                Required</label>
+                            <div>
+                                <p id="p_skills_required">
+                                    Far much that one rank beheld greenbird after outside
+                                    ignobly allegedly more when oh arrogantly vehement
+                                    irresistibly fussy penguin insect additionally wow
+                                    absolutely crud meretriciously hastily dalmatian a
+                                    glowered inset one echidna cassowary some parrot and much
+                                    as goodness some froze the sullen much connected bat
+                                    wonderfully on instantaneously. Far much that one rank
+                                    beheld greenbird after outside ignobly allegedly more when
+                                    oh arrogantly vehement irresistibly fussy penguin insect
+                                    additionally. Strong Market connections for business
+                                    development of the bank. Strong knowledge of Corporate
+                                    products and regulatory requirements. Proficiency in
+                                    spoken and written English. Analytical skills Knowledge of
+                                    Corporate Banking, Risk Management, Compliance and Central
+                                    Bank regulations.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="modal-action">
+                            <label for="job-preview-modal" class="btn btn-success">Okay</label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Categories Add Modal  -->
+<input type="checkbox" id="addCategories" class="modal-toggle" />
+<div class="modal modal-bottom sm:modal-middle categoriesAddModal">
+    <div
+        class="alert alert-error shadow-lg fixed top-16 w-auto z-10 opacity-0 duration-500 overflow-hidden errAlartSection">
+        <div>
+            <span>Sorry! Please fill in all the form inputs.</span>
+        </div>
+    </div>
+    <div
+        class="alert alert-success shadow-lg fixed top-16 w-auto z-10 opacity-0 duration-500 overflow-hidden successAlartSection">
+        <div>
+            <span>Congratulations! Successfully added a new category.</span>
+        </div>
+    </div>
+    <div class="modal-box h-auto flex flex-col justify-between scrollbar-hide">
+        <div>
+            <h3 class="font-bold text-lg mb-4">Add New Categories!</h3>
+            <div>
+                <div class="flex justify-between space-x-1">
+                    <form method="POST" action="/admin/jobpost" id="categoryformID" class="space-y-4 w-full">
+                        <div class="categoriesTitle">
+                            <label for="categoriesTitle"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category
+                                Title</label>
+                            <input type="text" id="categoriesTitle" name="category_title"
+                                class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                                placeholder="example" required />
+                        </div>
+                        <div class="colorCode">
+                            <label for="colorCode" class="block text-sm font-medium text-gray-900 dark:text-white">Color
+                                Code</label>
+                            <span class="text-xs text-red-500 font-semibold">Click the input filled and choose your
+                                color.</span>
+                            <input type="color" id="colorCode" name="category_color_code"
+                                class="formInput cursor-pointer h-12 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                                placeholder="example: #fffff, #000000, #ff0055" value="#" required />
+                        </div>
+                        <div class="modal-action">
+                            <label for="addCategories" class="btn btn-error">Cancel</label>
+                            <button id="categorySubmitBTN" type="submit" class="btn btn-success focus:outline-none">
+                                Add
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Categories Edit Modal  -->
+<input type="checkbox" id="editCategories" class="modal-toggle" />
+<div class="modal modal-bottom sm:modal-middle categoriesAddModal">
+    <div
+        class="alert alert-error shadow-lg fixed top-16 w-auto z-10 opacity-0 duration-500 overflow-hidden errAlartSection">
+        <div>
+            <span>Sorry! Please fill in all the form inputs.</span>
+        </div>
+    </div>
+    <div
+        class="alert alert-success shadow-lg fixed top-16 w-auto z-10 opacity-0 duration-500 overflow-hidden successAlartSection">
+        <div>
+            <span>Congratulations! Successfully added a new category.</span>
+        </div>
+    </div>
+    <div class="modal-box h-auto flex flex-col justify-between scrollbar-hide">
+        <div>
+            <h3 class="font-bold text-lg mb-4">Edit Categories!</h3>
+            <div>
+                <div class="flex justify-between space-x-1">
+                    <form action="form" id="categoryformID" class="space-y-4 w-full">
+                        <div class="categoriesTitle">
+                            <label for="categoriesTitle"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category
+                                Title</label>
+                            <input type="text" id="edit_category_title" name="category_title"
+                                class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                                placeholder="example" required />
+                        </div>
+                        <div class="colorCode">
+                            <label for="colorCode" class="block text-sm font-medium text-gray-900 dark:text-white">Color
+                                Code</label>
+                            <span class="text-xs text-red-500 font-semibold">Click the input filled and choose your
+                                color.</span>
+                            <input type="color" id="edit_color_code" name="category_color_code"
+                                class="formInput cursor-pointer h-12 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                                placeholder="example: #fffff, #000000, #ff0055" value="#" required />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal-action">
+            <label for="editCategories" class="btn btn-error">Cancel</label>
+            <button id="categorySubmitBTN" type="submit" class="btn btn-success focus:outline-none">
+                Add
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Qualification Add Modal  -->
+<input type="checkbox" id="addQualification" class="modal-toggle" />
+<div class="modal modal-bottom sm:modal-middle qualificationAddModal">
+    <div
+        class="alert alert-error shadow-lg fixed top-16 w-auto z-10 opacity-0 duration-500 overflow-hidden errAlartSection">
+        <div>
+            <span>Sorry! Please fill in all the form inputs.</span>
+        </div>
+    </div>
+    <div
+        class="alert alert-success shadow-lg fixed top-16 w-auto z-10 opacity-0 duration-500 overflow-hidden successAlartSection">
+        <div>
+            <span>Congratulations! Successfully added a new category.</span>
+        </div>
+    </div>
+    <div class="modal-box h-auto flex flex-col justify-between scrollbar-hide">
+        <div>
+            <h3 class="font-bold text-lg mb-4">Add New Qualification!</h3>
+            <div>
+                <div class="flex justify-between space-x-1">
+                    <form method="POST" action="/admin/jobpost" id="categoryformID" class="space-y-4 w-full">
+                        <div class="qualificationTitle">
+                            <label for="qualificationTitle"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category
+                                Title</label>
+                            <input type="text" id="qualification_title" name="qualification_title"
+                                class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                                placeholder="example" required />
+                        </div>
+                        <div class="colorCode">
+                            <label for="colorCode" class="block text-sm font-medium text-gray-900 dark:text-white">Color
+                                Code</label>
+                            <span class="text-xs text-red-500 font-semibold">Click the input filled and choose your
+                                color.</span>
+                            <input type="color" id="qualification_color_code" name="qualification_color_code"
+                                class="formInput cursor-pointer h-12 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                                placeholder="example: #fffff, #000000, #ff0055" value="#" required />
+                        </div>
+                        <div class="modal-action">
+                            <label for="addQualification" class="btn btn-error">Cancel</label>
+                            <button id="categorySubmitBTN" type="submit" class="btn btn-success focus:outline-none">
+                                Add
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Qualification Edit Modal  -->
+<input type="checkbox" id="editQualification" class="modal-toggle" />
+<div class="modal modal-bottom sm:modal-middle qualificationEditModal">
+    <div
+        class="alert alert-error shadow-lg fixed top-16 w-auto z-10 opacity-0 duration-500 overflow-hidden errAlartSection">
+        <div>
+            <span>Sorry! Please fill in all the form inputs.</span>
+        </div>
+    </div>
+    <div
+        class="alert alert-success shadow-lg fixed top-16 w-auto z-10 opacity-0 duration-500 overflow-hidden successAlartSection">
+        <div>
+            <span>Congratulations! Successfully added a new category.</span>
+        </div>
+    </div>
+    <div class="modal-box h-auto flex flex-col justify-between scrollbar-hide">
+        <div>
+            <h3 class="font-bold text-lg mb-4">Edit Qualification!</h3>
+            <div>
+                <div class="flex justify-between space-x-1">
+                    <form action="form" id="categoryformID" class="space-y-4 w-full">
+                        <div class="qualification-title">
+                            <label for="qualification_title"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category
+                                Title</label>
+                            <input type="text" id="edit_qualification_title" name="qualification_title"
+                                class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                                placeholder="example" required />
+                        </div>
+                        <div class="colorCode">
+                            <label for="colorCode" class="block text-sm font-medium text-gray-900 dark:text-white">Color
+                                Code</label>
+                            <span class="text-xs text-red-500 font-semibold">Click the input filled and choose your
+                                color.</span>
+                            <input type="color" id="edit_qualification_color_code" name="qualification_color_code"
+                                class="formInput cursor-pointer h-12 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                                placeholder="example: #fffff, #000000, #ff0055" value="#" required />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal-action">
+            <label for="editQualification" class="btn btn-error">Cancel</label>
+            <button id="categorySubmitBTN" type="submit" class="btn btn-success focus:outline-none">
+                Add
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Employment Status Add Modal  -->
+<input type="checkbox" id="employmentStatusModal" class="modal-toggle" />
+<div class="modal modal-bottom sm:modal-middle employmentStatusAddModal">
+    <div
+        class="alert alert-error shadow-lg fixed top-16 w-auto z-10 opacity-0 duration-500 overflow-hidden errAlartSection">
+        <div>
+            <span>Sorry! Please fill in all the form inputs.</span>
+        </div>
+    </div>
+    <div
+        class="alert alert-success shadow-lg fixed top-16 w-auto z-10 opacity-0 duration-500 overflow-hidden successAlartSection">
+        <div>
+            <span>Congratulations! Successfully added a new category.</span>
+        </div>
+    </div>
+    <div class="modal-box h-auto flex flex-col justify-between scrollbar-hide">
+        <div>
+            <h3 class="font-bold text-lg mb-4">Add New Employment Status!</h3>
+            <div>
+                <div class="flex justify-between space-x-1">
+                    <form method="POST" action="/admin/jobpost" id="categoryformID" class="space-y-4 w-full">
+                        <div class="employmentStatusTitle">
+                            <label for="employment_status"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category
+                                Title</label>
+                            <input type="text" id="employment_status_title" name="employment_status_title"
+                                class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                                placeholder="example" required />
+                        </div>
+                        <div class="colorCode">
+                            <label for="colorCode" class="block text-sm font-medium text-gray-900 dark:text-white">Color
+                                Code</label>
+                            <span class="text-xs text-red-500 font-semibold">Click the input filled and choose your
+                                color.</span>
+                            <input type="color" id="employment_status_color_code" name="employment_status_color_code"
+                                class="formInput cursor-pointer h-12 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                                placeholder="example: #fffff, #000000, #ff0055" value="#" required />
+                        </div>
+                        <div class="modal-action">
+                            <label for="employmentStatusModal" class="btn btn-error">Cancel</label>
+                            <button id="categorySubmitBTN" type="submit" class="btn btn-success focus:outline-none">
+                                Add
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Employment Status Edit Modal  -->
+<input type="checkbox" id="editEmploymentStatus" class="modal-toggle" />
+<div class="modal modal-bottom sm:modal-middle employmentStatusEditModal">
+    <div
+        class="alert alert-error shadow-lg fixed top-16 w-auto z-10 opacity-0 duration-500 overflow-hidden errAlartSection">
+        <div>
+            <span>Sorry! Please fill in all the form inputs.</span>
+        </div>
+    </div>
+    <div
+        class="alert alert-success shadow-lg fixed top-16 w-auto z-10 opacity-0 duration-500 overflow-hidden successAlartSection">
+        <div>
+            <span>Congratulations! Successfully added a new category.</span>
+        </div>
+    </div>
+    <div class="modal-box h-auto flex flex-col justify-between scrollbar-hide">
+        <div>
+            <h3 class="font-bold text-lg mb-4">Edit Employment Status!</h3>
+            <div>
+                <div class="flex justify-between space-x-1">
+                    <form action="form" id="categoryformID" class="space-y-4 w-full">
+                        <div class="qualification-title">
+                            <label for="qualification_title"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category
+                                Title</label>
+                            <input type="text" id="edit_qualification_title" name="qualification_title"
+                                class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                                placeholder="example" required />
+                        </div>
+                        <div class="colorCode">
+                            <label for="colorCode" class="block text-sm font-medium text-gray-900 dark:text-white">Color
+                                Code</label>
+                            <span class="text-xs text-red-500 font-semibold">Click the input filled and choose your
+                                color.</span>
+                            <input type="color" id="edit_qualification_color_code" name="qualification_color_code"
+                                class="formInput cursor-pointer h-12 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                                placeholder="example: #fffff, #000000, #ff0055" value="#" required />
+                        </div>
+                        <div class="modal-action">
+                            <label for="editEmploymentStatus" class="btn btn-error">Cancel</label>
+                            <button id="categorySubmitBTN" type="submit" class="btn btn-success focus:outline-none">
+                                Add
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Industry Add Modal  -->
+<input type="checkbox" id="addIndustry" class="modal-toggle" />
+<div class="modal modal-bottom sm:modal-middle employmentStatusAddModal">
+    <div
+        class="alert alert-error shadow-lg fixed top-16 w-auto z-10 opacity-0 duration-500 overflow-hidden errAlartSection">
+        <div>
+            <span>Sorry! Please fill in all the form inputs.</span>
+        </div>
+    </div>
+    <div
+        class="alert alert-success shadow-lg fixed top-16 w-auto z-10 opacity-0 duration-500 overflow-hidden successAlartSection">
+        <div>
+            <span>Congratulations! Successfully added a new category.</span>
+        </div>
+    </div>
+    <div class="modal-box h-auto flex flex-col justify-between scrollbar-hide">
+        <div>
+            <h3 class="font-bold text-lg mb-4">Add New Industry!</h3>
+            <div>
+                <div class="flex justify-between space-x-1">
+                    <form method="POST" action="/admin/jobpost" id="categoryformID" class="space-y-4 w-full">
+                        <div class="employmentStatusTitle">
+                            <label for="employment_status"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category
+                                Title</label>
+                            <input type="text" id="industry_title" name="industry_title"
+                                class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                                placeholder="example" required />
+                        </div>
+                        <div class="colorCode">
+                            <label for="colorCode" class="block text-sm font-medium text-gray-900 dark:text-white">Color
+                                Code</label>
+                            <span class="text-xs text-red-500 font-semibold">Click the input filled and choose your
+                                color.</span>
+                            <input type="color" id="industry_color_code" name="industry_color_code"
+                                class="formInput cursor-pointer h-12 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                                placeholder="example: #fffff, #000000, #ff0055" value="#" required />
+                        </div>
+                        <div class="modal-action">
+                            <label for="addIndustry" class="btn btn-error">Cancel</label>
+                            <button id="categorySubmitBTN" type="submit" class="btn btn-success focus:outline-none">
+                                Add
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Industry Edit Modal  -->
+<input type="checkbox" id="editIndustry" class="modal-toggle" />
+<div class="modal modal-bottom sm:modal-middle employmentStatusEditModal">
+    <div
+        class="alert alert-error shadow-lg fixed top-16 w-auto z-10 opacity-0 duration-500 overflow-hidden errAlartSection">
+        <div>
+            <span>Sorry! Please fill in all the form inputs.</span>
+        </div>
+    </div>
+    <div
+        class="alert alert-success shadow-lg fixed top-16 w-auto z-10 opacity-0 duration-500 overflow-hidden successAlartSection">
+        <div>
+            <span>Congratulations! Successfully added a new category.</span>
+        </div>
+    </div>
+    <div class="modal-box h-auto flex flex-col justify-between scrollbar-hide">
+        <div>
+            <h3 class="font-bold text-lg mb-4">Edit Industry!</h3>
+            <div>
+                <div class="flex justify-between space-x-1">
+                    <form action="form" id="categoryformID" class="space-y-4 w-full">
+                        <div class="qualification-title">
+                            <label for="qualification_title"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category
+                                Title</label>
+                            <input type="text" id="edit_industry_title" name="industry_title"
+                                class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                                placeholder="example" required />
+                        </div>
+                        <div class="colorCode">
+                            <label for="colorCode" class="block text-sm font-medium text-gray-900 dark:text-white">Color
+                                Code</label>
+                            <span class="text-xs text-red-500 font-semibold">Click the input filled and choose your
+                                color.</span>
+                            <input type="color" id="edit_industry_color_code" name="industry_color_code"
+                                class="formInput cursor-pointer h-12 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                                placeholder="example: #fffff, #000000, #ff0055" value="#" required />
+                        </div>
+                        <div class="modal-action">
+                            <label for="editIndustry" class="btn btn-error">Cancel</label>
+                            <button id="categorySubmitBTN" type="submit" class="btn btn-success focus:outline-none">
+                                Add
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Gender Add Modal  -->
+<input type="checkbox" id="addGender" class="modal-toggle" />
+<div class="modal modal-bottom sm:modal-middle employmentStatusAddModal">
+    <div
+        class="alert alert-error shadow-lg fixed top-16 w-auto z-10 opacity-0 duration-500 overflow-hidden errAlartSection">
+        <div>
+            <span>Sorry! Please fill in all the form inputs.</span>
+        </div>
+    </div>
+    <div
+        class="alert alert-success shadow-lg fixed top-16 w-auto z-10 opacity-0 duration-500 overflow-hidden successAlartSection">
+        <div>
+            <span>Congratulations! Successfully added a new category.</span>
+        </div>
+    </div>
+    <div class="modal-box h-auto flex flex-col justify-between scrollbar-hide">
+        <div>
+            <h3 class="font-bold text-lg mb-4">Add New Gender!</h3>
+            <div>
+                <div class="flex justify-between space-x-1">
+                    <form method="POST" action="/admin/jobpost" id="categoryformID" class="space-y-4 w-full">
+                        <div class="employmentStatusTitle">
+                            <label for="employment_status"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category
+                                Title</label>
+                            <input type="text" id="gender_title" name="gender_title"
+                                class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                                placeholder="example" required />
+                        </div>
+                        <div class="colorCode">
+                            <label for="colorCode" class="block text-sm font-medium text-gray-900 dark:text-white">Color
+                                Code</label>
+                            <span class="text-xs text-red-500 font-semibold">Click the input filled and choose your
+                                color.</span>
+                            <input type="color" id="gender_color_code" name="gender_color_code"
+                                class="formInput cursor-pointer h-12 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                                placeholder="example: #fffff, #000000, #ff0055" value="#" required />
+                        </div>
+                        <div class="modal-action">
+                            <label for="addGender" class="btn btn-error">Cancel</label>
+                            <button id="categorySubmitBTN" type="submit" class="btn btn-success focus:outline-none">
+                                Add
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Gender Edit Modal  -->
+<input type="checkbox" id="editGender" class="modal-toggle" />
+<div class="modal modal-bottom sm:modal-middle employmentStatusEditModal">
+    <div
+        class="alert alert-error shadow-lg fixed top-16 w-auto z-10 opacity-0 duration-500 overflow-hidden errAlartSection">
+        <div>
+            <span>Sorry! Please fill in all the form inputs.</span>
+        </div>
+    </div>
+    <div
+        class="alert alert-success shadow-lg fixed top-16 w-auto z-10 opacity-0 duration-500 overflow-hidden successAlartSection">
+        <div>
+            <span>Congratulations! Successfully added a new category.</span>
+        </div>
+    </div>
+    <div class="modal-box h-auto flex flex-col justify-between scrollbar-hide">
+        <div>
+            <h3 class="font-bold text-lg mb-4">Edit Gender!</h3>
+            <div>
+                <div class="flex justify-between space-x-1">
+                    <form action="form" id="categoryformID" class="space-y-4 w-full">
+                        <div class="qualification-title">
+                            <label for="qualification_title"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category
+                                Title</label>
+                            <input type="text" id="edit_gender_title" name="gender_title"
+                                class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                                placeholder="example" required />
+                        </div>
+                        <div class="colorCode">
+                            <label for="colorCode" class="block text-sm font-medium text-gray-900 dark:text-white">Color
+                                Code</label>
+                            <span class="text-xs text-red-500 font-semibold">Click the input filled and choose your
+                                color.</span>
+                            <input type="color" id="edit_gender_color_code" name="gender_color_code"
+                                class="formInput cursor-pointer h-12 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                                placeholder="example: #fffff, #000000, #ff0055" value="#" required />
+                        </div>
+                        <div class="modal-action">
+                            <label for="editGender" class="btn btn-error">Cancel</label>
+                            <button id="categorySubmitBTN" type="submit" class="btn btn-success focus:outline-none">
+                                Add
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

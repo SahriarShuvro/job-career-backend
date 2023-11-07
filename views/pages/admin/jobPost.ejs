@@ -1,0 +1,1081 @@
+<%- include('./partials/header.ejs') %>
+<div class="flex justify-between w-full">
+  <!-- Aside Section  -->
+  <%- include('./partials/asidebar.ejs') %>
+  <script>
+    document.getElementById("jobPost").classList.add("hover");
+  </script>
+  <!-- Right or maain section  -->
+  <section class="relative w-full lg:w-[80%]">
+    <!-- Nav bar section  -->
+    <%- include('./partials/navbar.ejs') %>
+
+    <!-- DashBbord Section  -->
+    <div class="m-8 mt-28 relative">
+      <!-- tab buttons  -->
+      <div class="tabs">
+        <a
+          class="tab tab-lifted tabButton border-none duration-200 tab-active"
+          data-target="jobs"
+          >Jobs</a
+        >
+        <a
+          class="tab tab-lifted tabButton border-none duration-200"
+          data-target="categoriesTab"
+          >Categories</a
+        >
+        <a
+          class="tab tab-lifted tabButton border-none duration-200"
+          data-target="qualificationTab"
+          >Qualification</a
+        >
+        <a
+          class="tab tab-lifted tabButton border-none duration-200"
+          data-target="employmentStatusTab"
+          >Employment Status</a
+        >
+        <a
+          class="tab tab-lifted tabButton border-none duration-200"
+          data-target="industryTab"
+          >Industry</a
+        >
+        <a
+          class="tab tab-lifted tabButton border-none duration-200"
+          data-target="genderTab"
+          >Gender</a
+        >
+      </div>
+
+      <!-- Jobs Section  -->
+      <div class="jobsSection tabSection tab-section-active" id="jobs">
+        <div
+          class="overViewCardSection flex flex-wrap justify-between items-center space-y-8 md:space-y-4 xl:space-x-1 m-4 my-7"
+        >
+          <div
+            class="cardOne relative cardBackground bg-white dark:bg-slate-700 w-full md:w-[48%] xl:w-[24%] min-h-[6rem] mt-4"
+          >
+            <ion-icon
+              name="bag-outline"
+              class="absolute -top-4 h-8 w-8 hadow-md p-4 backdrop-blur-md shadow-lg shadow-green-300 rounded-lg bg-gradient-to-tr from-green-500 to-green-400 text-white text-sm md hydrated"
+              role="img"
+              aria-label="bag outline"
+            ></ion-icon>
+            <div class="topSection">
+              <div class="flex flex-col justify-end items-end">
+                <p class="text-sm">
+                  Total <span class="text-green-400"> Job</span>
+                </p>
+                <p id="total_job" class="font-semibold text-xl">1.8k</p>
+              </div>
+            </div>
+            <hr class="my-3" />
+            <div>
+              <span
+                ><span class="text-green-500">+55%</span> than last week</span
+              >
+            </div>
+          </div>
+          <div
+            class="cardOne relative cardBackground bg-white dark:bg-slate-700 w-full md:w-[48%] xl:w-[24%] min-h-[6rem]"
+          >
+            <ion-icon
+              name="ban-outline"
+              class="absolute -top-4 h-8 w-8 hadow-md p-4 backdrop-blur-md shadow-lg shadow-red-300 rounded-lg bg-gradient-to-tr from-red-500 to-red-400 text-white text-sm md hydrated"
+              role="img"
+              aria-label="people outline"
+            ></ion-icon>
+            <div class="topSection">
+              <div class="flex flex-col justify-end items-end">
+                <p class="text-sm">
+                  Inactive <span class="text-green-400">Job</span>
+                </p>
+                <p class="font-semibold text-xl">1.5k</p>
+              </div>
+            </div>
+            <hr class="my-3" />
+            <div>
+              <span
+                ><span class="text-green-500">+55%</span> than last week</span
+              >
+            </div>
+          </div>
+          <div
+            class="cardOne relative cardBackground bg-white dark:bg-slate-700 w-full md:w-[48%] xl:w-[24%] min-h-[6rem]"
+          >
+            <ion-icon
+              name="checkmark-done-circle-outline"
+              class="absolute -top-4 h-8 w-8 hadow-md p-4 backdrop-blur-md shadow-lg shadow-blue-400 rounded-lg bg-gradient-to-tr from-blue-600 to-blue-500 text-white text-sm md hydrated"
+              role="img"
+              aria-label="checkmark-done-circle-outline"
+            ></ion-icon>
+            <div class="topSection">
+              <div class="flex flex-col justify-end items-end">
+                <p class="text-sm">
+                  Active <span class="text-green-400"> Job</span>
+                </p>
+                <p class="font-semibold text-xl">1.1k</p>
+              </div>
+            </div>
+            <hr class="my-3" />
+            <div>
+              <span
+                ><span class="text-green-500">+55%</span> than last week</span
+              >
+            </div>
+          </div>
+          <div
+            class="cardOne relative cardBackground bg-white dark:bg-slate-700 w-full md:w-[48%] xl:w-[24%] min-h-[6rem]"
+          >
+            <ion-icon
+              name="earth-outline"
+              class="absolute -top-4 h-8 w-8 hadow-md p-4 backdrop-blur-md shadow-lg shadow-purple-400 rounded-lg bg-gradient-to-tr from-purple-600 to-purple-500 text-white text-sm md hydrated"
+              role="img"
+              aria-label="earth outline"
+            ></ion-icon>
+            <div class="topSection">
+              <div class="flex flex-col justify-end items-end">
+                <p class="text-sm">
+                  Total <span class="text-green-400"> Visit</span>
+                </p>
+                <p class="font-semibold text-xl">0.9k</p>
+              </div>
+            </div>
+            <hr class="my-3" />
+            <div>
+              <span
+                ><span class="text-green-500">+55%</span> than last week</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="relative overflow-x-auto shadow-md sm:rounded-lg scrollbar-hide m-4"
+        >
+          <div class="flex items-center justify-between pb-4">
+            <div class="flex justify-center items-center m-2">
+              <label
+                for="job-add-Tab"
+                class="btn text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 border-none"
+                >Add Job</label
+              >
+              <button
+                id="dropdownRadioButton"
+                data-dropdown-toggle="dropdownRadio"
+                class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 w-48 mr-2"
+                type="button"
+              >
+                <svg
+                  class="w-4 h-4 mr-2 text-gray-400"
+                  aria-hidden="true"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Last 30 days
+                <svg
+                  class="w-3 h-3 ml-2"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </button>
+              <!-- Dropdown menu -->
+              <div
+                id="dropdownRadio"
+                class="z-10 hidden w-48 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
+                data-popper-reference-hidden=""
+                data-popper-escaped=""
+                data-popper-placement="top"
+                style="
+                  position: absolute;
+                  inset: auto auto 0px 0px;
+                  margin: 0px;
+                  transform: translate3d(522.5px, 3847.5px, 0px);
+                "
+              >
+                <ul
+                  class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200"
+                  aria-labelledby="dropdownRadioButton"
+                >
+                  <li>
+                    <div
+                      class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600"
+                    >
+                      <input
+                        id="filter-radio-example-1"
+                        type="radio"
+                        value=""
+                        name="filter-radio"
+                        class="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                      <label
+                        for="filter-radio-example-1"
+                        class="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300"
+                        >Last day</label
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <div
+                      class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600"
+                    >
+                      <input
+                        checked=""
+                        id="filter-radio-example-2"
+                        type="radio"
+                        value=""
+                        name="filter-radio"
+                        class="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                      <label
+                        for="filter-radio-example-2"
+                        class="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300"
+                        >Last 7 days</label
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <div
+                      class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600"
+                    >
+                      <input
+                        id="filter-radio-example-3"
+                        type="radio"
+                        value=""
+                        name="filter-radio"
+                        class="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                      <label
+                        for="filter-radio-example-3"
+                        class="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300"
+                        >Last 30 days</label
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <div
+                      class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600"
+                    >
+                      <input
+                        id="filter-radio-example-4"
+                        type="radio"
+                        value=""
+                        name="filter-radio"
+                        class="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                      <label
+                        for="filter-radio-example-4"
+                        class="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300"
+                        >Last month</label
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <div
+                      class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600"
+                    >
+                      <input
+                        id="filter-radio-example-5"
+                        type="radio"
+                        value=""
+                        name="filter-radio"
+                        class="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                      <label
+                        for="filter-radio-example-5"
+                        class="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300"
+                        >Last year</label
+                      >
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <label for="table-search" class="sr-only">Search</label>
+            <div class="relative">
+              <div
+                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+              >
+                <svg
+                  class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                  aria-hidden="true"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </div>
+              <input
+                type="text"
+                id="table-search"
+                class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                placeholder="Search for items"
+              />
+            </div>
+          </div>
+          <table
+            class="w-full text-sm text-left text-gray-500 dark:text-gray-400"
+          >
+            <thead
+              class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+            >
+              <tr>
+                <th scope="col" class="p-4">Logo</th>
+                <th scope="col" class="px-6 py-3">Company Name</th>
+                <th scope="col" class="px-6 py-3">Job Title</th>
+                <th scope="col" class="px-6 py-3">Industries</th>
+                <th scope="col" class="px-6 py-3">Qualification</th>
+                <th scope="col" class="px-6 py-3">Action</th>
+              </tr>
+            </thead>
+            <tbody class="tableBody" id="all-job-list">
+              
+            </tbody>
+          </table>
+        </div>
+
+        <div
+          aria-label="Page navigation example "
+          class="flex justify-end items-center mr-4 mb-4"
+        >
+          <ul class="inline-flex items-center -space-x-px">
+            <li>
+              <a
+                href="#"
+                class="block px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              >
+                <span class="sr-only">Previous</span>
+                <svg
+                  aria-hidden="true"
+                  class="w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                >1</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                >2</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                aria-current="page"
+                class="z-10 px-3 py-2 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
+                >3</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                >4</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                >5</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              >
+                <span class="sr-only">Next</span>
+                <svg
+                  aria-hidden="true"
+                  class="w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Categories Section  -->
+      <div class="categoriesSection tabSection rounded-md" id="categoriesTab">
+        <div
+          class="relative overflow-x-auto shadow-md sm:rounded-lg scrollbar-hide m-4"
+        >
+          <!-- Top Section "Add Button", "Search Input" -->
+          <div class="flex items-center justify-between pb-4">
+            <div class="flex justify-center items-center m-2">
+              <label
+                for="addCategories"
+                class="btn text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 border-none"
+                >Add Categories</label
+              >
+            </div>
+            <label for="table-search" class="sr-only">Search</label>
+            <div class="relative">
+              <div
+                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+              >
+                <svg
+                  class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                  aria-hidden="true"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </div>
+              <input
+                type="text"
+                id="table-search"
+                class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                placeholder="Search for items"
+              />
+            </div>
+          </div>
+
+          <!-- Card Section  -->
+          <div
+            class="cardSection flex flex-wrap justify-center items-center"
+            id="categoryCardBody"
+          >
+           
+            <div
+            style="border-color:"
+              class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative m-2 cardsAll"
+            >
+              <!-- Acive/Inactive BAGED -->
+              <div class="absolute top-3 left-3">
+                <p
+                  class="cardStatusActive rounded-full bg-green-500 px-2 py-1 text-center text-xs hidden activeCard"
+                >
+                  Active
+                </p>
+                <p
+                  class="cardStatusInactive rounded-full bg-red-500 px-2 py-1 text-center text-xs hidden"
+                >
+                  Inactive
+                </p>
+              </div>
+
+              <!-- Delete Edit Buttons -->
+              <div class="absolute top-3 right-3">
+                <label
+                  for="editCategories"
+                  class="editButton btn btn-success rounded-full w-12 focus:outline-none border-none bg-green-500 px-2 py-1 text-center text-xs"
+                >
+                  <ion-icon
+                    class="text-[18px] text-white font-semibold"
+                    name="create-outline"
+                  ></ion-icon>
+                </label>
+                <label
+                  id="categoiresDelete"
+                  class="deleteButton btn btn-error rounded-full w-12 focus:outline-none border-none bg-red-500 px-2 py-1 text-center text-xs"
+                  for=""
+                >
+                  <ion-icon
+                    class="text-[18px] text-white font-semibold"
+                    name="trash-outline"
+                  ></ion-icon>
+                </label>
+              </div>
+
+              <div class="flex justify-end px-4 pt-4"></div>
+              <div class="flex flex-col items-center pb-10">
+                <ion-icon
+                  name="bag-handle-outline"
+                  class="w-24 h-24 mb-3 rounded-md dark:ring-gray-400 shadow-lg"
+                ></ion-icon>
+                <h5
+                  class="mb-1 text-xl font-medium text-gray-900 dark:text-white"
+                >
+                  
+                </h5>
+                <span class="text-xs text-gray-500 dark:text-gray-400"
+                  >Total Job (198)</span
+                >
+                <div class="flex mt-4 space-x-3 md:mt-6">
+                  <a
+                    href="#"
+                    class="activeButton inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                    >Active</a
+                  >
+                  <a
+                    href="#"
+                    class="inactiveButton inline-flex items-center px-4 py-2 text-sm font-medium text-center bg-red-600 border border-red-300 rounded-lg focus:ring-4 focus:outline-none focus:ring-red-200 text-white dark:border-red-600 hover:bg-red-800 dark:hover:border-red-700 dark:focus:ring-red-500"
+                    >Inactive</a
+                  >
+                </div>
+              </div>
+            </div>
+              
+          </div>
+        </div>
+      </div>
+
+      <!-- Qualification Section  -->
+      <div class="categoriesSection tabSection rounded-md" id="qualificationTab">
+        <div
+          class="relative overflow-x-auto shadow-md sm:rounded-lg scrollbar-hide m-4"
+        >
+          <!-- Top Section "Add Button", "Search Input" -->
+          <div class="flex items-center justify-between pb-4">
+            <div class="flex justify-center items-center m-2">
+              <label
+                for="addQualification"
+                class="btn text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 border-none"
+                >Add Qualification</label
+              >
+            </div>
+            <label for="table-search" class="sr-only">Search</label>
+            <div class="relative">
+              <div
+                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+              >
+                <svg
+                  class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                  aria-hidden="true"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </div>
+              <input
+                type="text"
+                id="table-search"
+                class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                placeholder="Search for items"
+              />
+            </div>
+          </div>
+
+          <!-- Card Section  -->
+          <div
+            class="cardSection flex flex-wrap justify-center items-center"
+            id="categoryCardBody"
+          >
+           
+            <div
+            style="border-color:"
+              class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative m-2 cardsAll"
+            >
+              <!-- Acive/Inactive BAGED -->
+              <div class="absolute top-3 left-3">
+                <p
+                  class="cardStatusActive rounded-full bg-green-500 px-2 py-1 text-center text-xs hidden activeCard"
+                >
+                  Active
+                </p>
+                <p
+                  class="cardStatusInactive rounded-full bg-red-500 px-2 py-1 text-center text-xs hidden"
+                >
+                  Inactive
+                </p>
+              </div>
+
+              <!-- Delete Edit Buttons -->
+              <div class="absolute top-3 right-3">
+                <label
+                  for="editQualification"
+                  class="editButton btn btn-success rounded-full w-12 focus:outline-none border-none bg-green-500 px-2 py-1 text-center text-xs"
+                >
+                  <ion-icon
+                    class="text-[18px] text-white font-semibold"
+                    name="create-outline"
+                  ></ion-icon>
+                </label>
+                <label
+                  id="qualificationDelete"
+                  class="deleteButton btn btn-error rounded-full w-12 focus:outline-none border-none bg-red-500 px-2 py-1 text-center text-xs"
+                  for=""
+                >
+                  <ion-icon
+                    class="text-[18px] text-white font-semibold"
+                    name="trash-outline"
+                  ></ion-icon>
+                </label>
+              </div>
+
+              <div class="flex justify-end px-4 pt-4"></div>
+              <div class="flex flex-col items-center pb-10">
+                <ion-icon
+                  name="bag-handle-outline"
+                  class="w-24 h-24 mb-3 rounded-md dark:ring-gray-400 shadow-lg"
+                ></ion-icon>
+                <h5
+                  class="mb-1 text-xl font-medium text-gray-900 dark:text-white"
+                >
+                  
+                </h5>
+                <span class="text-xs text-gray-500 dark:text-gray-400"
+                  >Total Job (198)</span
+                >
+                <div class="flex mt-4 space-x-3 md:mt-6">
+                  <a
+                    href="#"
+                    class="activeButton inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                    >Active</a
+                  >
+                  <a
+                    href="#"
+                    class="inactiveButton inline-flex items-center px-4 py-2 text-sm font-medium text-center bg-red-600 border border-red-300 rounded-lg focus:ring-4 focus:outline-none focus:ring-red-200 text-white dark:border-red-600 hover:bg-red-800 dark:hover:border-red-700 dark:focus:ring-red-500"
+                    >Inactive</a
+                  >
+                </div>
+              </div>
+            </div>
+              
+          </div>
+        </div>
+      </div>
+
+      <!-- Employment Satus  -->
+      <div class="categoriesSection tabSection rounded-md" id="employmentStatusTab">
+        <div
+          class="relative overflow-x-auto shadow-md sm:rounded-lg scrollbar-hide m-4"
+        >
+          <!-- Top Section "Add Button", "Search Input" -->
+          <div class="flex items-center justify-between pb-4">
+            <div class="flex justify-center items-center m-2">
+              <label
+                for="employmentStatusModal"
+                class="btn text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 border-none"
+                >Add Employment Satus</label
+              >
+            </div>
+            <label for="table-search" class="sr-only">Search</label>
+            <div class="relative">
+              <div
+                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+              >
+                <svg
+                  class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                  aria-hidden="true"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </div>
+              <input
+                type="text"
+                id="table-search"
+                class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                placeholder="Search for items"
+              />
+            </div>
+          </div>
+
+          <!-- Card Section  -->
+          <div
+            class="cardSection flex flex-wrap justify-center items-center"
+            id="categoryCardBody"
+          >
+           
+            <div
+            style="border-color:"
+              class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative m-2 cardsAll"
+            >
+              <!-- Acive/Inactive BAGED -->
+              <div class="absolute top-3 left-3">
+                <p
+                  class="cardStatusActive rounded-full bg-green-500 px-2 py-1 text-center text-xs hidden activeCard"
+                >
+                  Active
+                </p>
+                <p
+                  class="cardStatusInactive rounded-full bg-red-500 px-2 py-1 text-center text-xs hidden"
+                >
+                  Inactive
+                </p>
+              </div>
+
+              <!-- Delete Edit Buttons -->
+              <div class="absolute top-3 right-3">
+                <label
+                  for="editEmploymentStatus"
+                  class="editButton btn btn-success rounded-full w-12 focus:outline-none border-none bg-green-500 px-2 py-1 text-center text-xs"
+                >
+                  <ion-icon
+                    class="text-[18px] text-white font-semibold"
+                    name="create-outline"
+                  ></ion-icon>
+                </label>
+                <label
+                  id="deleteEmploymentStatus"
+                  class="deleteButton btn btn-error rounded-full w-12 focus:outline-none border-none bg-red-500 px-2 py-1 text-center text-xs"
+                  for=""
+                >
+                  <ion-icon
+                    class="text-[18px] text-white font-semibold"
+                    name="trash-outline"
+                  ></ion-icon>
+                </label>
+              </div>
+
+              <div class="flex justify-end px-4 pt-4"></div>
+              <div class="flex flex-col items-center pb-10">
+                <ion-icon
+                  name="bag-handle-outline"
+                  class="w-24 h-24 mb-3 rounded-md dark:ring-gray-400 shadow-lg"
+                ></ion-icon>
+                <h5
+                  class="mb-1 text-xl font-medium text-gray-900 dark:text-white"
+                >
+                  
+                </h5>
+                <span class="text-xs text-gray-500 dark:text-gray-400"
+                  >Total Job (198)</span
+                >
+                <div class="flex mt-4 space-x-3 md:mt-6">
+                  <a
+                    href="#"
+                    class="activeButton inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                    >Active</a
+                  >
+                  <a
+                    href="#"
+                    class="inactiveButton inline-flex items-center px-4 py-2 text-sm font-medium text-center bg-red-600 border border-red-300 rounded-lg focus:ring-4 focus:outline-none focus:ring-red-200 text-white dark:border-red-600 hover:bg-red-800 dark:hover:border-red-700 dark:focus:ring-red-500"
+                    >Inactive</a
+                  >
+                </div>
+              </div>
+            </div>
+              
+          </div>
+        </div>
+      </div>
+
+      <!-- Industry  -->
+      <div class="categoriesSection tabSection rounded-md" id="industryTab">
+        <div
+          class="relative overflow-x-auto shadow-md sm:rounded-lg scrollbar-hide m-4"
+        >
+          <!-- Top Section "Add Button", "Search Input" -->
+          <div class="flex items-center justify-between pb-4">
+            <div class="flex justify-center items-center m-2">
+              <label
+                for="addIndustry"
+                class="btn text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 border-none"
+                >Add Industry</label
+              >
+            </div>
+            <label for="table-search" class="sr-only">Search</label>
+            <div class="relative">
+              <div
+                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+              >
+                <svg
+                  class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                  aria-hidden="true"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </div>
+              <input
+                type="text"
+                id="table-search"
+                class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                placeholder="Search for items"
+              />
+            </div>
+          </div>
+
+          <!-- Card Section  -->
+          <div
+            class="cardSection flex flex-wrap justify-center items-center"
+            id="categoryCardBody"
+          >
+           
+            <div
+            style="border-color:"
+              class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative m-2 cardsAll"
+            >
+              <!-- Acive/Inactive BAGED -->
+              <div class="absolute top-3 left-3">
+                <p
+                  class="cardStatusActive rounded-full bg-green-500 px-2 py-1 text-center text-xs hidden activeCard"
+                >
+                  Active
+                </p>
+                <p
+                  class="cardStatusInactive rounded-full bg-red-500 px-2 py-1 text-center text-xs hidden"
+                >
+                  Inactive
+                </p>
+              </div>
+
+              <!-- Delete Edit Buttons -->
+              <div class="absolute top-3 right-3">
+                <label
+                  for="editIndustry"
+                  class="editButton btn btn-success rounded-full w-12 focus:outline-none border-none bg-green-500 px-2 py-1 text-center text-xs"
+                >
+                  <ion-icon
+                    class="text-[18px] text-white font-semibold"
+                    name="create-outline"
+                  ></ion-icon>
+                </label>
+                <label
+                  id="deleteIndustry"
+                  class="deleteButton btn btn-error rounded-full w-12 focus:outline-none border-none bg-red-500 px-2 py-1 text-center text-xs"
+                  for=""
+                >
+                  <ion-icon
+                    class="text-[18px] text-white font-semibold"
+                    name="trash-outline"
+                  ></ion-icon>
+                </label>
+              </div>
+
+              <div class="flex justify-end px-4 pt-4"></div>
+              <div class="flex flex-col items-center pb-10">
+                <ion-icon
+                  name="bag-handle-outline"
+                  class="w-24 h-24 mb-3 rounded-md dark:ring-gray-400 shadow-lg"
+                ></ion-icon>
+                <h5
+                  class="mb-1 text-xl font-medium text-gray-900 dark:text-white"
+                >
+                  
+                </h5>
+                <span class="text-xs text-gray-500 dark:text-gray-400"
+                  >Total Job (198)</span
+                >
+                <div class="flex mt-4 space-x-3 md:mt-6">
+                  <a
+                    href="#"
+                    class="activeButton inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                    >Active</a
+                  >
+                  <a
+                    href="#"
+                    class="inactiveButton inline-flex items-center px-4 py-2 text-sm font-medium text-center bg-red-600 border border-red-300 rounded-lg focus:ring-4 focus:outline-none focus:ring-red-200 text-white dark:border-red-600 hover:bg-red-800 dark:hover:border-red-700 dark:focus:ring-red-500"
+                    >Inactive</a
+                  >
+                </div>
+              </div>
+            </div>
+              
+          </div>
+        </div>
+      </div>
+
+      <!-- Gender  -->
+      <div class="categoriesSection tabSection rounded-md" id="genderTab">
+        <div
+          class="relative overflow-x-auto shadow-md sm:rounded-lg scrollbar-hide m-4"
+        >
+          <!-- Top Section "Add Button", "Search Input" -->
+          <div class="flex items-center justify-between pb-4">
+            <div class="flex justify-center items-center m-2">
+              <label
+                for="addGender"
+                class="btn text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 border-none"
+                >Add Gender</label
+              >
+            </div>
+            <label for="table-search" class="sr-only">Search</label>
+            <div class="relative">
+              <div
+                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+              >
+                <svg
+                  class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                  aria-hidden="true"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </div>
+              <input
+                type="text"
+                id="table-search"
+                class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                placeholder="Search for items"
+              />
+            </div>
+          </div>
+
+          <!-- Card Section  -->
+          <div
+            class="cardSection flex flex-wrap justify-center items-center"
+            id="categoryCardBody"
+          >
+           
+            <div
+            style="border-color:"
+              class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative m-2 cardsAll"
+            >
+              <!-- Acive/Inactive BAGED -->
+              <div class="absolute top-3 left-3">
+                <p
+                  class="cardStatusActive rounded-full bg-green-500 px-2 py-1 text-center text-xs hidden activeCard"
+                >
+                  Active
+                </p>
+                <p
+                  class="cardStatusInactive rounded-full bg-red-500 px-2 py-1 text-center text-xs hidden"
+                >
+                  Inactive
+                </p>
+              </div>
+
+              <!-- Delete Edit Buttons -->
+              <div class="absolute top-3 right-3">
+                <label
+                  for="editGender"
+                  class="editButton btn btn-success rounded-full w-12 focus:outline-none border-none bg-green-500 px-2 py-1 text-center text-xs"
+                >
+                  <ion-icon
+                    class="text-[18px] text-white font-semibold"
+                    name="create-outline"
+                  ></ion-icon>
+                </label>
+                <label
+                  id="deleteGender"
+                  class="deleteButton btn btn-error rounded-full w-12 focus:outline-none border-none bg-red-500 px-2 py-1 text-center text-xs"
+                  for=""
+                >
+                  <ion-icon
+                    class="text-[18px] text-white font-semibold"
+                    name="trash-outline"
+                  ></ion-icon>
+                </label>
+              </div>
+
+              <div class="flex justify-end px-4 pt-4"></div>
+              <div class="flex flex-col items-center pb-10">
+                <ion-icon
+                  name="bag-handle-outline"
+                  class="w-24 h-24 mb-3 rounded-md dark:ring-gray-400 shadow-lg"
+                ></ion-icon>
+                <h5
+                  class="mb-1 text-xl font-medium text-gray-900 dark:text-white"
+                >
+                  
+                </h5>
+                <span class="text-xs text-gray-500 dark:text-gray-400"
+                  >Total Job (198)</span
+                >
+                <div class="flex mt-4 space-x-3 md:mt-6">
+                  <a
+                    href="#"
+                    class="activeButton inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                    >Active</a
+                  >
+                  <a
+                    href="#"
+                    class="inactiveButton inline-flex items-center px-4 py-2 text-sm font-medium text-center bg-red-600 border border-red-300 rounded-lg focus:ring-4 focus:outline-none focus:ring-red-200 text-white dark:border-red-600 hover:bg-red-800 dark:hover:border-red-700 dark:focus:ring-red-500"
+                    >Inactive</a
+                  >
+                </div>
+              </div>
+            </div>
+              
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<%-include('./partials/allModal.ejs') %>
+
+<!-- Custome Js  -->
+<script src="/js/navigationMenu.js"></script>
+<script src="/js/tab.js"></script>
+<script src="/js/dateRange.js"></script>
+<!-- <script src="/js/formFetch.js"></script> -->
+<script src="/js/activeInactiveCard.js"></script>
+<script src="/js/dateRange.js"></script>
+
+<!--  AJAX Request  -->
+<!-- Add new job post  -->
+<script type="module" src="/script/jobAdd.js"></script>
+<!-- Edit and Update job post  -->
+<script type="module" src="/script/editUpdate.js"></script> 
+<!-- Preview job post -->
+<script type="module" src="/script/previewJob.js"></script> 
+<!-- Main(Global) -->
+<script type="module" src="/script/main.js"></script> 
+
+
+
+<%-include('./partials/footer.ejs') %>

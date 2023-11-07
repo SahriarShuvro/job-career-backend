@@ -1,0 +1,44 @@
+<nav
+          class="navBar fixed z-10 top-0 m-4 lg:m-8 p-2 flex justify-between customeBackground w-full"
+        >
+          <div>
+            <p class="font-semibold text-lg">
+              All Job <span class="text-green-600">Rajshahi</span>
+            </p>
+          </div>
+
+          <!-- drawer init and show -->
+          <div class="flex space-x-1">
+            <div class="text-center lg:hidden">
+              <ion-icon
+                name="menu-outline"
+                id="asideButton"
+                class="text-2xl cursor-pointer hover:text-green-400 duration-200 active:text-gray-400 focus:text-green-400"
+              ></ion-icon>
+            </div>
+
+            <div class="text-center">
+              <a
+                href="./singIn.html"
+                class="tooltip text-[#213547] dark:text-gray-100 active:text-gray-400"
+                data-tip="Sing In"
+              >
+                <ion-icon
+                  name="person-circle-sharp"
+                  class="text-2xl cursor-pointer hover:text-green-400 duration-200 active:text-gray-400"
+                ></ion-icon>
+              </a>
+            </div>
+
+            <div
+              class="text-center tooltip"
+              data-tip="Notification"
+              id="notificatinButton"
+            >
+              <ion-icon
+                name="notifications-sharp"
+                class="text-2xl cursor-pointer hover:text-green-400 duration-200 active:text-gray-400"
+              ></ion-icon>
+            </div>
+          </div>
+        </nav>
