@@ -7,7 +7,7 @@ const JobCategoryAddSchema = new Schema(
       require: true,
       max: 30,
     },
-    color_code: {
+    category_color_code: {
       type: String,
       require: true,
     },
