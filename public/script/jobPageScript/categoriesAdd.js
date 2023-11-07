@@ -1,4 +1,4 @@
-const getJobCategory = async () => {
+export async function updateJobCategories() {
   //   return console.log("hi c c");
   try {
     const allCategories = await $.ajax({
@@ -35,6 +35,8 @@ const getJobCategory = async () => {
                         <div class="absolute top-3 right-3">
                             <label
                             for="editCategories"
+                            id="editCategorieButton"
+                            data-id="${categoryCard._id}"
                             class="editButton btn btn-success rounded-full w-12 focus:outline-none border-none bg-green-500 px-2 py-1 text-center text-xs"
                             >
                             <ion-icon
@@ -44,6 +46,7 @@ const getJobCategory = async () => {
                             </label>
                             <label
                             id="categoiresDelete"
+                            data-id="${categoryCard._id}"
                             class="deleteButton btn btn-error rounded-full w-12 focus:outline-none border-none bg-red-500 px-2 py-1 text-center text-xs"
                             for=""
                             >
@@ -91,16 +94,37 @@ const getJobCategory = async () => {
   } catch (error) {
     console.log(error);
   }
-};
+}
 
 $(document).on("click", "#category-button", async function () {
-  getJobCategory();
+  updateJobCategories();
 });
 
-{
-  /* <div
-              class=""
-            >
-              
-            </div> */
-}
+$(document).ready(function () {
+  updateJobCategories();
+
+  $("#categoryAddForm").submit(async function (event) {
+    event.preventDefault();
+
+    let categoryFormData = $(this).serialize();
+
+    try {
+      await $.ajax({
+        url: "/api/admin/job-categories",
+        type: "POST",
+        data: categoryFormData,
+      });
+
+      $("#categoryAddForm")[0].reset();
+
+      $(".categorySuccessAlart").addClass("alertActive");
+      setTimeout(function () {
+        $(".categorySuccessAlart").removeClass("alertActive");
+      }, 3000);
+
+      updateJobCategories();
+    } catch (error) {
+      console.log(`Could not fetch ${error}`);
+    }
+  });
+});

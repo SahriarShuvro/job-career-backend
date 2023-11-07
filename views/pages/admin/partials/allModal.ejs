@@ -642,7 +642,7 @@
         </div>
     </div>
     <div
-        class="alert alert-success shadow-lg fixed top-16 w-auto z-10 opacity-0 duration-500 overflow-hidden successAlartSection">
+        class="alert alert-success shadow-lg fixed top-16 w-auto z-10 opacity-0 duration-500 overflow-hidden categorySuccessAlart">
         <div>
             <span>Congratulations! Successfully added a new category.</span>
         </div>
@@ -652,12 +652,12 @@
             <h3 class="font-bold text-lg mb-4">Add New Categories!</h3>
             <div>
                 <div class="flex justify-between space-x-1">
-                    <form method="POST" action="/admin/jobpost" id="categoryformID" class="space-y-4 w-full">
+                    <form method="POST" action="/api/admin/job" id="categoryAddForm" class="space-y-4 w-full">
                         <div class="categoriesTitle">
                             <label for="categoriesTitle"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category
                                 Title</label>
-                            <input type="text" id="categoriesTitle" name="category_title"
+                            <input type="text" id="category_title" name="category_title"
                                 class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
                                 placeholder="example" required />
                         </div>
@@ -666,7 +666,7 @@
                                 Code</label>
                             <span class="text-xs text-red-500 font-semibold">Click the input filled and choose your
                                 color.</span>
-                            <input type="color" id="colorCode" name="category_color_code"
+                            <input type="color" id="category_color_code" name="category_color_code"
                                 class="formInput cursor-pointer h-12 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
                                 placeholder="example: #fffff, #000000, #ff0055" value="#" required />
                         </div>
@@ -693,9 +693,9 @@
         </div>
     </div>
     <div
-        class="alert alert-success shadow-lg fixed top-16 w-auto z-10 opacity-0 duration-500 overflow-hidden successAlartSection">
+        class="alert alert-success shadow-lg fixed top-16 w-auto z-10 opacity-0 duration-500 overflow-hidden updateSuccessAlart">
         <div>
-            <span>Congratulations! Successfully added a new category.</span>
+            <span>Congratulations! Successfully updated category.</span>
         </div>
     </div>
     <div class="modal-box h-auto flex flex-col justify-between scrollbar-hide">
@@ -703,7 +703,7 @@
             <h3 class="font-bold text-lg mb-4">Edit Categories!</h3>
             <div>
                 <div class="flex justify-between space-x-1">
-                    <form action="form" id="categoryformID" class="space-y-4 w-full">
+                    <form action="/api/admin/job" method="PATCH" id="categoryEditForm" class="space-y-4 w-full">
                         <div class="categoriesTitle">
                             <label for="categoriesTitle"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category
@@ -717,19 +717,19 @@
                                 Code</label>
                             <span class="text-xs text-red-500 font-semibold">Click the input filled and choose your
                                 color.</span>
-                            <input type="color" id="edit_color_code" name="category_color_code"
+                            <input type="color" id="edit_category_color_code" name="category_color_code"
                                 class="formInput cursor-pointer h-12 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
                                 placeholder="example: #fffff, #000000, #ff0055" value="#" required />
+                        </div>
+                        <div class="modal-action">
+                            <label for="editCategories" class="btn btn-error">Cancel</label>
+                            <button id="categorySubmitBTN" type="submit" class="btn btn-success focus:outline-none">
+                                Add
+                            </button>
                         </div>
                     </form>
                 </div>
             </div>
-        </div>
-        <div class="modal-action">
-            <label for="editCategories" class="btn btn-error">Cancel</label>
-            <button id="categorySubmitBTN" type="submit" class="btn btn-success focus:outline-none">
-                Add
-            </button>
         </div>
     </div>
 </div>

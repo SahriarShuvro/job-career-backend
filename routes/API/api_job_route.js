@@ -15,7 +15,6 @@ const {
   // Category ***
   api_category_get,
   api_category_post,
-  api_category_patch,
   //single category
   api_single_category_get,
   api_single_category_post,
@@ -26,7 +25,6 @@ const {
   // Employment Status ***
   api_employment_status_get,
   api_employment_status_post,
-  api_employment_status_patch,
   // Single
   api_single_employment_status_get,
   api_single_employment_status_post,
@@ -37,7 +35,6 @@ const {
   // Gender ***
   api_gender_get,
   api_gender_post,
-  api_gender_patch,
   // Single
   api_single_gender_get,
   api_single_gender_post,
@@ -48,7 +45,6 @@ const {
   // Industry ***
   api_industry_get,
   api_industry_post,
-  api_industry_patch,
   // Single
   api_single_industry_get,
   api_single_industry_post,
@@ -59,7 +55,6 @@ const {
   // Qualification ***
   api_qualification_get,
   api_qualification_post,
-  api_qualification_patch,
   // Single
   api_single_qualification_get,
   api_single_qualification_post,
@@ -77,11 +72,7 @@ router
   .delete(api_delete_job_post);
 
 // Job Category
-router
-  .route("/job-categories/")
-  .get(api_category_get)
-  .post(api_category_post)
-  .patch(api_category_patch);
+router.route("/job-categories/").get(api_category_get).post(api_category_post);
 // Single
 router
   .route("/job-categories/:id")
@@ -93,8 +84,7 @@ router
 router
   .route("/job-qualification/")
   .get(api_qualification_get)
-  .post(api_qualification_post)
-  .patch(api_qualification_patch);
+  .post(api_qualification_post);
 // Single
 router
   .route("/job-qualification/:id")
@@ -106,8 +96,7 @@ router
 router
   .route("/job-employment-status/")
   .get(api_employment_status_get)
-  .post(api_employment_status_post)
-  .patch(api_employment_status_patch);
+  .post(api_employment_status_post);
 // Single
 router
   .route("/job-employment-status/:id")
@@ -116,11 +105,7 @@ router
   .patch(api_single_employment_status_patch);
 
 //  Industry
-router
-  .route("/job-industry/")
-  .get(api_industry_get)
-  .post(api_industry_post)
-  .patch(api_industry_patch);
+router.route("/job-industry/").get(api_industry_get).post(api_industry_post);
 // Single
 router
   .route("/job-industry/:id")
@@ -129,11 +114,7 @@ router
   .patch(api_single_industry_patch);
 
 //  Gender
-router
-  .route("/job-gender/")
-  .get(api_gender_get)
-  .post(api_gender_post)
-  .patch(api_gender_patch);
+router.route("/job-gender/").get(api_gender_get).post(api_gender_post);
 // Single
 router
   .route("/job-gender/:id")

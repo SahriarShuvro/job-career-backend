@@ -57,7 +57,6 @@ const getEditDetails = async (jobId) => {
       $("#edit_gender").val(gender);
       $("#edit_job_details").val(job_details);
       $("#edit_skills_required").val(skills_required);
-      $("#employment_status").val(employment_status);
 
       // Handle the salary_negotiable radio inputs
       if (salary_negotiable === "yes") {
@@ -86,16 +85,18 @@ $(document).on("click", ".edit-button", function () {
       start_date: $("#edit_start_date").val(),
       end_date: $("#edit_end_date").val(),
       company: $("#edit_company").val(),
+      job_location: $("#edit_job_location").val(),
       qualification: $("#edit_qualification").val(),
+      employment_status: $("#edit_employment_status").val(),
       offered_salary: $("#edit_offered_salary").val(),
-      experience: $("#edit_experience").val(),
       category: $("#edit_category").val(),
-      vacancy_type: $("#edit_vacancy_type").val(),
+      vacancy: $("#edit_vacancy").val(),
       industry: $("#edit_industry").val(),
+      experience: $("#edit_experience").val(),
+      gender: $("#edit_gender").val(),
       job_details: $("#edit_job_details").val(),
       skills_required: $("#edit_skills_required").val(),
       employment_status: $("#edit_employment_status").val(),
-      // Add more properties as needed
     };
 
     // Determine whether "Yes" or "No" is selected for salary_negotiable and update the property
