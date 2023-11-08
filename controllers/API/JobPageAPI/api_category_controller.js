@@ -63,3 +63,20 @@ exports.api_single_category_patch = async (req, res, next) => {
     res.status(500).json({ error: `Something went wrong` });
   }
 };
+exports.api_single_category_delete = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const deletedJobPost = await JobCategoryAdd.findByIdAndRemove(
+      { _id: id },
+      req.body
+    );
+
+    if (!deletedJobPost) {
+      return res.status(404).json({ message: "Job post not found" });
+    }
+
+    res.json(deletedJobPost);
+  } catch (error) {
+    next(error);
+  }
+};

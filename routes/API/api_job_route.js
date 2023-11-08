@@ -19,6 +19,7 @@ const {
   api_single_category_get,
   api_single_category_post,
   api_single_category_patch,
+  api_single_category_delete,
 } = require("../../controllers/API/JobPageAPI/api_category_controller");
 
 const {
@@ -78,7 +79,8 @@ router
   .route("/job-categories/:id")
   .get(api_single_category_get)
   .post(api_single_category_post)
-  .patch(api_single_category_patch);
+  .patch(api_single_category_patch)
+  .delete(api_single_category_delete);
 
 // Qualification
 router

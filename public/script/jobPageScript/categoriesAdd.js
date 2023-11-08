@@ -19,16 +19,19 @@ export async function updateJobCategories() {
         div.html(`
                         <!-- Acive/Inactive BAGED -->
                         <div class="absolute top-3 left-3">
-                            <p
-                            class="cardStatusActive rounded-full bg-green-500 px-2 py-1 text-center text-xs hidden activeCard"
-                            >
-                            Active
-                            </p>
-                            <p
-                            class="cardStatusInactive rounded-full bg-red-500 px-2 py-1 text-center text-xs hidden"
-                            >
-                            Inactive
-                            </p>
+                        <p
+                          id=""
+                          data-id="${categoryCard._id}"
+                          class="activeInactiveBAGD cardStatusActive rounded-full ${
+                            categoryCard.active_status
+                              ? "bg-green-500"
+                              : "bg-red-600"
+                          } px-2 py-1 text-center text-xs hidden activeCard"
+                        >
+                          ${categoryCard.active_status ? "Active" : "Inactive"}
+                        </p>
+                        
+                            
                         </div>
 
                         <!-- Delete Edit Buttons -->
@@ -45,7 +48,7 @@ export async function updateJobCategories() {
                             ></ion-icon>
                             </label>
                             <label
-                            id="categoiresDelete"
+                            id="deleteCategoryButton"
                             data-id="${categoryCard._id}"
                             class="deleteButton btn btn-error rounded-full w-12 focus:outline-none border-none bg-red-500 px-2 py-1 text-center text-xs"
                             for=""
@@ -74,11 +77,15 @@ export async function updateJobCategories() {
                             <div class="flex mt-4 space-x-3 md:mt-6">
                             <a
                                 href="#"
+                                id="activeButton"
+                                data-id="${categoryCard._id}"
                                 class="activeButton inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
                                 >Active</a
                             >
                             <a
                                 href="#"
+                                id="inactiveButton"
+                                data-id="${categoryCard._id}"
                                 class="inactiveButton inline-flex items-center px-4 py-2 text-sm font-medium text-center bg-red-600 border border-red-300 rounded-lg focus:ring-4 focus:outline-none focus:ring-red-200 text-white dark:border-red-600 hover:bg-red-800 dark:hover:border-red-700 dark:focus:ring-red-500"
                                 >Inactive</a
                             >

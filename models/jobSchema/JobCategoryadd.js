@@ -11,6 +11,10 @@ const JobCategoryAddSchema = new Schema(
       type: String,
       require: true,
     },
+    active_status: {
+      type: Boolean,
+      default: true,
+    },
   },
   {
     timestamps: true,
