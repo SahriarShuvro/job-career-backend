@@ -3,10 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 // Import your API route modules
-const api_dashboard = require("./api_dashboard_route");
-const api_job = require("./api_job_route");
-const api_company = require("./api_company_route");
-const api_blog = require("./api_blog_route");
+const { api_dashboard, api_job, api_company, api_blog } = require(".");
 
 // Use the imported route modules
 router.use("/admin", api_dashboard);

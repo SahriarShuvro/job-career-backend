@@ -1,4 +1,4 @@
-const BlogCategoryAdd = require("../../../models/blogSchema/BlogCategoryAdd");
+const BlogCategoryAdd = require("../../models/blogSchema/BlogCategoryAdd");
 // Blog Category ** //
 
 exports.api_blog_c_get = async (req, res, next) => {

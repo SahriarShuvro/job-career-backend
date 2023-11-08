@@ -5,7 +5,7 @@ const {
   job_post_c_get,
   company_c_get,
   blog_c_get,
-} = require("../controllers/admin_controllers");
+} = require("../controllers/admin/");
 
 // Dashbord Router
 router.get("/", dashboard_c_get);

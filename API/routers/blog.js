@@ -9,7 +9,7 @@ const {
   api_single_blog_get,
   api_single_blog_post,
   api_single_blog_patch,
-} = require("../../controllers/API/BlogPageAPI/api_blog_controller");
+} = require("../controllers/blog/");
 
 const {
   // Categories
@@ -20,7 +20,7 @@ const {
   api_single_blog_c_get,
   api_single_blog_c_post,
   api_single_blog_c_patch,
-} = require("../../controllers/API/BlogPageAPI/api_categories_controller");
+} = require("../controllers/blog/categories");
 // Blog API *** //
 // Blog Post
 router

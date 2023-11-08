@@ -9,7 +9,7 @@ const {
   api_single_job_post,
   api_update_job_post,
   api_delete_job_post,
-} = require("../../controllers/API/JobPageAPI/api_job_controller");
+} = require("../controllers/job/");
 
 const {
   // Category ***
@@ -20,7 +20,7 @@ const {
   api_single_category_post,
   api_single_category_patch,
   api_single_category_delete,
-} = require("../../controllers/API/JobPageAPI/api_category_controller");
+} = require("../controllers/job/categories");
 
 const {
   // Employment Status ***
@@ -30,7 +30,7 @@ const {
   api_single_employment_status_get,
   api_single_employment_status_post,
   api_single_employment_status_patch,
-} = require("../../controllers/API/JobPageAPI/api_employment_status");
+} = require("../controllers/job/employmentStatus");
 
 const {
   // Gender ***
@@ -40,7 +40,7 @@ const {
   api_single_gender_get,
   api_single_gender_post,
   api_single_gender_patch,
-} = require("../../controllers/API/JobPageAPI/api_gender_controller");
+} = require("../controllers/job/gender");
 
 const {
   // Industry ***
@@ -50,7 +50,7 @@ const {
   api_single_industry_get,
   api_single_industry_post,
   api_single_industry_patch,
-} = require("../../controllers/API/JobPageAPI/api_industry_controller");
+} = require("../controllers/job/industry");
 
 const {
   // Qualification ***
@@ -60,7 +60,7 @@ const {
   api_single_qualification_get,
   api_single_qualification_post,
   api_single_qualification_patch,
-} = require("../../controllers/API/JobPageAPI/api_qualification_controller");
+} = require("../controllers/job/qualification");
 
 // Job Section API *** //
 // Job Post

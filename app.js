@@ -4,16 +4,20 @@ const app = express();
 var cors = require("cors");
 
 // Route
-const admin_route = require("./routes/admin_route");
+const admin_route = require("./routes/admin");
 
-// Api Routs
-const apiRoutes = require("./routes/API/api_all_routes");
+// Api Routes
+const apiRoutes = require("./API/routers/route");
 
 // Error middlewar
 const { error_middleware } = require("./middleware/error.middleware");
 
 // Error controller
 const { error_controller } = require("./controllers/error.controler");
+
+// Playground
+const playgournd = require("./playgournd");
+playgournd(app, mongoose);
 
 // Views Engine
 app.set("views", "views");

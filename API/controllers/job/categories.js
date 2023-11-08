@@ -1,4 +1,4 @@
-const JobCategoryAdd = require("../../../models/jobSchema/JobCategoryadd");
+const JobCategoryAdd = require("../../models/jobSchema/JobCategoryadd");
 // Job Category  ** //
 // Get
 exports.api_category_get = async (req, res, next) => {

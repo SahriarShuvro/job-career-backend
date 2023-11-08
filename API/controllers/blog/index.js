@@ -1,5 +1,4 @@
-const BlogAdd = require("../../../models/blogSchema/BlogAdd");
-const BlogCategoryAdd = require("../../../models/blogSchema/BlogCategoryAdd");
+const BlogAdd = require("../../models/blogSchema/BlogAdd");
 // *****  Blog page start ***** //
 // Blog Add ** //
 // Get

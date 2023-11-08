@@ -1,4 +1,4 @@
-const JobPost = require("../../../models/jobSchema/JobAdd");
+const JobPost = require("../../models/jobSchema/JobAdd");
 
 // *****  Job Post page start ***** //
 // Job Add ** //

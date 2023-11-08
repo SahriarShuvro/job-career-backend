@@ -10,7 +10,7 @@ const {
   api_single_company_get,
   api_single_company_post,
   api_single_company_patch,
-} = require("../../controllers/API/CompanyPageAPI/api_company_controller");
+} = require("../controllers/company/");
 
 const {
   // Category
@@ -21,7 +21,7 @@ const {
   api_single_company_c_get,
   api_single_company_c_post,
   api_single_company_c_patch,
-} = require("../../controllers/API/CompanyPageAPI/api_category_controller");
+} = require("../controllers/company/categories");
 
 // Company API *** //
 // Company Post

@@ -1,4 +1,4 @@
-const CompanyAdd = require("../../../models/companySchema/CompanyAdd");
+const CompanyAdd = require("../../models/companySchema/CompanyAdd");
 // *****  Copmany page start ***** //
 // Company Add ** //
 // Get

@@ -2,7 +2,7 @@
   "name": "alljobrajshahiap-main",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "nodemon app.js"
   },
@@ -13,6 +13,7 @@
     "cors": "^2.8.5",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
+    "express-validator": "^7.0.1",
     "mongodb": "^6.2.0",
     "mongoose": "^7.6.3"
   },
