@@ -2,12 +2,12 @@ const { Schema, model } = require("mongoose");
 
 const JobCategoryAddSchema = new Schema(
   {
-    category_title: {
+    title: {
       type: String,
       require: true,
       max: 30,
     },
-    category_color_code: {
+    color_code: {
       type: String,
       require: true,
     },

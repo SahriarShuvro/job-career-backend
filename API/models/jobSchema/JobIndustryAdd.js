@@ -2,14 +2,18 @@ const { Schema, model } = require("mongoose");
 
 const JobIndustryAddSchema = new Schema(
   {
-    industry_title: {
+    title: {
       type: String,
       require: true,
       max: 30,
     },
-    industry_color_code: {
+    color_code: {
       type: String,
       require: true,
+    },
+    active_status: {
+      type: Boolean,
+      default: true,
     },
   },
   {

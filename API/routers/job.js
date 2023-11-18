@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-
+// Controllers Import
 const {
   // Job post ***
   api_job_post_get,
@@ -8,6 +8,7 @@ const {
   // single job
   api_single_job_post,
   api_update_job_post,
+  api_single_job_activate_inactivate,
   api_delete_job_post,
 } = require("../controllers/job/");
 
@@ -18,39 +19,10 @@ const {
   //single category
   api_single_category_get,
   api_single_category_post,
-  api_single_category_patch,
+  api_single_category_edit,
+  api_single_category_activate_inactivate,
   api_single_category_delete,
 } = require("../controllers/job/categories");
-
-const {
-  // Employment Status ***
-  api_employment_status_get,
-  api_employment_status_post,
-  // Single
-  api_single_employment_status_get,
-  api_single_employment_status_post,
-  api_single_employment_status_patch,
-} = require("../controllers/job/employmentStatus");
-
-const {
-  // Gender ***
-  api_gender_get,
-  api_gender_post,
-  // Single
-  api_single_gender_get,
-  api_single_gender_post,
-  api_single_gender_patch,
-} = require("../controllers/job/gender");
-
-const {
-  // Industry ***
-  api_industry_get,
-  api_industry_post,
-  // Single
-  api_single_industry_get,
-  api_single_industry_post,
-  api_single_industry_patch,
-} = require("../controllers/job/industry");
 
 const {
   // Qualification ***
@@ -59,8 +31,37 @@ const {
   // Single
   api_single_qualification_get,
   api_single_qualification_post,
-  api_single_qualification_patch,
+  api_single_qualification_edit,
+  api_single_qualification_activate_inactivate,
+  api_single_qualification_delete,
 } = require("../controllers/job/qualification");
+
+const {
+  // Employment Status ***
+  api_employment_status_get,
+  api_employment_status_post,
+  // Single
+  api_single_employment_status_get,
+  api_single_employment_status_post,
+  api_single_employment_status_edit,
+  api_single_employment_status_activate_inactivate,
+  api_single_employment_status_delete,
+} = require("../controllers/job/employmentStatus");
+
+const {
+  // Industry ***
+  api_industry_get,
+  api_industry_post,
+  // Single
+  api_single_industry_get,
+  api_single_industry_post,
+  api_single_industry_edit,
+  api_single_industry_activate_inactivate,
+  api_single_industry_delete,
+} = require("../controllers/job/industry");
+
+// Middleware Import
+const validateJobCategory = require("../middleware/job/category");
 
 // Job Section API *** //
 // Job Post
@@ -70,59 +71,64 @@ router
   .route("/job/:id")
   .get(api_single_job_post)
   .patch(api_update_job_post)
+  .put(api_single_job_activate_inactivate)
   .delete(api_delete_job_post);
 
 // Job Category
-router.route("/job-categories/").get(api_category_get).post(api_category_post);
+router
+  .route("/job-categories/")
+  .get(api_category_get)
+  .post(validateJobCategory, api_category_post);
 // Single
 router
   .route("/job-categories/:id")
   .get(api_single_category_get)
   .post(api_single_category_post)
-  .patch(api_single_category_patch)
+  .patch(validateJobCategory, api_single_category_edit)
+  .put(api_single_category_activate_inactivate)
   .delete(api_single_category_delete);
 
 // Qualification
 router
   .route("/job-qualification/")
   .get(api_qualification_get)
-  .post(api_qualification_post);
+  .post(validateJobCategory, api_qualification_post);
 // Single
 router
   .route("/job-qualification/:id")
   .get(api_single_qualification_get)
   .post(api_single_qualification_post)
-  .patch(api_single_qualification_patch);
+  .patch(validateJobCategory, api_single_qualification_edit)
+  .put(api_single_qualification_activate_inactivate)
+  .delete(api_single_qualification_delete);
 
 //  Employment Status
 router
   .route("/job-employment-status/")
   .get(api_employment_status_get)
-  .post(api_employment_status_post);
+  .post(validateJobCategory, api_employment_status_post);
 // Single
 router
   .route("/job-employment-status/:id")
   .get(api_single_employment_status_get)
   .post(api_single_employment_status_post)
-  .patch(api_single_employment_status_patch);
+  .patch(validateJobCategory, api_single_employment_status_edit)
+  .put(api_single_employment_status_activate_inactivate)
+  .delete(api_single_employment_status_delete);
 
 //  Industry
-router.route("/job-industry/").get(api_industry_get).post(api_industry_post);
+router
+  .route("/job-industry/")
+  .get(api_industry_get)
+  .post(validateJobCategory, api_industry_post);
 // Single
 router
   .route("/job-industry/:id")
   .get(api_single_industry_get)
   .post(api_single_industry_post)
-  .patch(api_single_industry_patch);
-
-//  Gender
-router.route("/job-gender/").get(api_gender_get).post(api_gender_post);
-// Single
-router
-  .route("/job-gender/:id")
-  .get(api_single_gender_get)
-  .post(api_single_gender_post)
-  .patch(api_single_gender_patch);
+  .patch(validateJobCategory, api_single_industry_edit)
+  .put(api_single_industry_activate_inactivate)
+  .delete(api_single_industry_delete);
 
 // Job Section API End *** //
 

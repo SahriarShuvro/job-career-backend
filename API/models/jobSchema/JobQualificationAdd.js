@@ -2,14 +2,18 @@ const { Schema, model } = require("mongoose");
 
 const JobQualificationAddSchema = new Schema(
   {
-    qualification_title: {
+    title: {
       type: String,
       require: true,
       max: 30,
     },
-    qualification_color_code: {
+    color_code: {
       type: String,
       require: true,
+    },
+    active_status: {
+      type: Boolean,
+      default: true,
     },
   },
   {

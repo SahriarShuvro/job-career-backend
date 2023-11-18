@@ -4419,6 +4419,9 @@ input:checked + .toggle-bg {
 .rounded-full {
   border-radius: 9999px;
 }
+.rounded-xl {
+  border-radius: 1rem;
+}
 .rounded-lg {
   border-radius: 0.5rem;
 }

@@ -43,12 +43,6 @@
           id="industry-button"
           >Industry</a
         >
-        <a
-          class="tab tab-lifted tabButton border-none duration-200"
-          data-target="genderTab"
-          id="gender-button"
-          >Gender</a
-        >
       </div>
 
       <!-- Jobs Section  -->
@@ -161,6 +155,7 @@
             <div class="flex justify-center items-center m-2">
               <label
                 for="jobAddButton"
+                id="jobAddBTN"
                 class="btn text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 border-none"
                 >Add Job</label
               >
@@ -546,7 +541,7 @@
           <!-- Card Section  -->
           <div
             class="cardSection flex flex-wrap justify-center items-center"
-            id="categoryCardBody"
+            id="qualificationCardBody"
           >
            
             <div
@@ -668,7 +663,7 @@
           <!-- Card Section  -->
           <div
             class="cardSection flex flex-wrap justify-center items-center"
-            id="categoryCardBody"
+            id="employmentStatusCardBody"
           >
            
             <div
@@ -790,7 +785,7 @@
           <!-- Card Section  -->
           <div
             class="cardSection flex flex-wrap justify-center items-center"
-            id="categoryCardBody"
+            id="industryCardBody"
           >
            
             <div
@@ -867,128 +862,6 @@
         </div>
       </div>
 
-      <!-- Gender  -->
-      <div class="categoriesSection tabSection rounded-md" id="genderTab">
-        <div
-          class="relative overflow-x-auto shadow-md sm:rounded-lg scrollbar-hide m-4"
-        >
-          <!-- Top Section "Add Button", "Search Input" -->
-          <div class="flex items-center justify-between pb-4">
-            <div class="flex justify-center items-center m-2">
-              <label
-                for="addGender"
-                class="btn text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 border-none"
-                >Add Gender</label
-              >
-            </div>
-            <label for="table-search" class="sr-only">Search</label>
-            <div class="relative">
-              <div
-                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
-              >
-                <svg
-                  class="w-5 h-5 text-gray-500 dark:text-gray-400"
-                  aria-hidden="true"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-              </div>
-              <input
-                type="text"
-                id="table-search"
-                class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
-                placeholder="Search for items"
-              />
-            </div>
-          </div>
-
-          <!-- Card Section  -->
-          <div
-            class="cardSection flex flex-wrap justify-center items-center"
-            id="categoryCardBody"
-          >
-           
-            <div
-            style="border-color:"
-              class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative m-2 cardsAll"
-            >
-              <!-- Acive/Inactive BAGED -->
-              <div class="absolute top-3 left-3">
-                <p
-                  class="cardStatusActive rounded-full bg-green-500 px-2 py-1 text-center text-xs hidden activeCard"
-                >
-                  Active
-                </p>
-                <p
-                  class="cardStatusInactive rounded-full bg-red-500 px-2 py-1 text-center text-xs hidden"
-                >
-                  Inactive
-                </p>
-              </div>
-
-              <!-- Delete Edit Buttons -->
-              <div class="absolute top-3 right-3">
-                <label
-                  for="editGender"
-                  class="editButton btn btn-success rounded-full w-12 focus:outline-none border-none bg-green-500 px-2 py-1 text-center text-xs"
-                >
-                  <ion-icon
-                    class="text-[18px] text-white font-semibold"
-                    name="create-outline"
-                  ></ion-icon>
-                </label>
-                <label
-                  id="deleteGender"
-                  class="deleteButton btn btn-error rounded-full w-12 focus:outline-none border-none bg-red-500 px-2 py-1 text-center text-xs"
-                  for=""
-                >
-                  <ion-icon
-                    class="text-[18px] text-white font-semibold"
-                    name="trash-outline"
-                  ></ion-icon>
-                </label>
-              </div>
-
-              <div class="flex justify-end px-4 pt-4"></div>
-              <div class="flex flex-col items-center pb-10">
-                <ion-icon
-                  name="bag-handle-outline"
-                  class="w-24 h-24 mb-3 rounded-md dark:ring-gray-400 shadow-lg"
-                ></ion-icon>
-                <h5
-                  class="mb-1 text-xl font-medium text-gray-900 dark:text-white"
-                >
-                  
-                </h5>
-                <span class="text-xs text-gray-500 dark:text-gray-400"
-                  >Total Job (198)</span
-                >
-                <div class="flex mt-4 space-x-3 md:mt-6">
-                  <a
-                    href="#"
-                    class="activeButton inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-                    >Active</a
-                  >
-                  <a
-                    href="#"
-                    class="inactiveButton inline-flex items-center px-4 py-2 text-sm font-medium text-center bg-red-600 border border-red-300 rounded-lg focus:ring-4 focus:outline-none focus:ring-red-200 text-white dark:border-red-600 hover:bg-red-800 dark:hover:border-red-700 dark:focus:ring-red-500"
-                    >Inactive</a
-                  >
-                </div>
-              </div>
-            </div>
-              
-          </div>
-        </div>
-      </div>
-
     </div>
   </section>
 </div>
@@ -1015,6 +888,21 @@
 <script type="module" src="/script/jobPageScript/categoriesAdd.js"></script> 
 <!-- Edit and Update Category  -->
 <script type="module" src="/script/jobPageScript/editUpdateCategory.js"></script> 
+
+<!-- Job Qualification Get Script -->
+<script type="module" src="/script/jobPageScript/qualificationAdd.js"></script> 
+<!-- Edit and Update Qualification  -->
+<script type="module" src="/script/jobPageScript/editUpdateQualification.js"></script> 
+
+<!-- Job Employment Status Get Script -->
+<script type="module" src="/script/jobPageScript/employmentStatusAdd.js"></script> 
+<!-- Edit and Update Employment Status  -->
+<script type="module" src="/script/jobPageScript/editUpdateEmployment.js"></script> 
+
+<!-- Job Industry Get Script -->
+<script type="module" src="/script/jobPageScript/industryAdd.js"></script> 
+<!-- Edit and Update Industry  -->
+<script type="module" src="/script/jobPageScript/editUpdateIndustry.js"></script> 
 
 <!-- Main(Global) -->
 <script type="module" src="/script/main.js"></script> 

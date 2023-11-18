@@ -104,10 +104,46 @@ exports.api_update_job_post = async (req, res, next) => {
   }
 };
 
+exports.api_single_job_activate_inactivate = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { active_status } = req.body;
+
+    // Update the Job's active_status
+    const updatedJob = await JobPost.findOneAndUpdate(
+      { _id: id },
+      { active_status },
+      { new: true }
+    );
+
+    if (!updatedJob) {
+      return res.status(404).json({ error: "Job not found" });
+    }
+
+    res.json({ success: true, updatedJob });
+  } catch (error) {
+    console.error("Error in api_single_Job_activate_inactivate:", error);
+    res.status(500).json({ error: "Something went wrong" });
+  }
+};
+
 // Delete
 exports.api_delete_job_post = async (req, res, next) => {
-  res.send("Job Delete API");
-  next();
+  try {
+    const { id } = req.params;
+    const deletedJobPost = await JobPost.findByIdAndRemove(
+      { _id: id },
+      req.body
+    );
+
+    if (!deletedJobPost) {
+      return res.status(404).json({ message: "Job post not found" });
+    }
+
+    res.json(deletedJobPost);
+  } catch (error) {
+    next(error);
+  }
 };
 
 // *****  Job Post page end ***** //

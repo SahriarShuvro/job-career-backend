@@ -1,5 +1,6 @@
 import { updateJobList } from "./jobAdd.js";
 
+// Get details in edit input
 const getEditDetails = async (jobId) => {
   try {
     const response = await $.ajax({
@@ -72,6 +73,7 @@ const getEditDetails = async (jobId) => {
   }
 };
 
+// edit details
 $(document).on("click", ".edit-button", function () {
   const jobId = $(this).data("id");
   getEditDetails(jobId);
@@ -128,4 +130,94 @@ $(document).on("click", ".edit-button", function () {
       console.error("Error while updating job data:", error);
     }
   });
+});
+
+// active/inactive job post
+$(document).on("click", ".active-inactive-button", async function () {
+  const jobId = $(this).data("id");
+  const confirmToggle = confirm(
+    "Are you sure you want to toggle the active status of this POST?"
+  );
+  if (!confirmToggle) {
+    return;
+  }
+
+  try {
+    // Fetch the current status
+    const currentStatusResponse = await $.ajax({
+      url: `/api/admin/job/${jobId}`,
+      method: "GET",
+      dataType: "json",
+    });
+
+    if (!currentStatusResponse) {
+      console.error("Failed to fetch current status.");
+      return;
+    }
+
+    const currentStatus = currentStatusResponse.active_status;
+
+    // Toggle the status
+    const statusUpdate = { active_status: !currentStatus };
+
+    // Update the status
+    const response = await $.ajax({
+      url: `/api/admin/job/${jobId}`,
+      method: "PUT",
+      data: statusUpdate,
+      dataType: "json",
+    });
+
+    if (response && response.success) {
+      if (currentStatus === true) {
+        $(".post-alert").addClass("alertActive");
+        $(".main-alert").text("Inactivate").addClass(" text-white bg-red-500");
+        setTimeout(function () {
+          $(".post-alert").removeClass("alertActive");
+        }, 3000);
+      } else if (currentStatus === false) {
+        $(".post-alert").addClass("alertActive ");
+        $(".main-alert").removeClass("bg-red-500 text-white");
+        $(".main-alert")
+          .text(" Activate")
+          .addClass("bg-green-400 text-gray-900");
+        setTimeout(function () {
+          $(".post-alert").removeClass("alertActive");
+        }, 3000);
+      }
+      console.log("Category status toggled successfully");
+      updateJobList();
+    } else {
+      console.error("Failed to toggle category status.");
+    }
+  } catch (error) {
+    console.error("Error while toggling category status:", error);
+  }
+});
+
+// delete details
+$(document).on("click", ".delete-job-button", async function () {
+  const jobId = $(this).data("id");
+  // return console.log(jobId);
+
+  const confirmDelete = window.confirm(
+    "Are you sure you want to delete this Job?"
+  );
+
+  if (confirmDelete) {
+    try {
+      // Send an AJAX request to delete the job
+      const response = await $.ajax({
+        url: `/api/admin/job/${jobId}`,
+        method: "DELETE",
+      });
+      if (response) {
+        $(this).closest(".tr-row").remove();
+
+        updateJobList();
+      }
+    } catch (error) {
+      console.error("Failed to delete job:", error);
+    }
+  }
 });

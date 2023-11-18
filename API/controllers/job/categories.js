@@ -1,10 +1,23 @@
+// Schema ***
 const JobCategoryAdd = require("../../models/jobSchema/JobCategoryadd");
+const he = require("he");
 // Job Category  ** //
 // Get
+
 exports.api_category_get = async (req, res, next) => {
-  const allJobCategory = await JobCategoryAdd.find({}).exec();
   try {
-    res.send(allJobCategory);
+    const allJobCategory = await JobCategoryAdd.find({}).exec();
+
+    const decodedCategories = allJobCategory.map((category) => ({
+      _id: category._id,
+      title: he.decode(category.title),
+      color_code: he.decode(category.color_code),
+      active_status: category.active_status,
+      createdAt: category.createdAt,
+      updatedAt: category.updatedAt,
+    }));
+
+    res.send(decodedCategories);
   } catch (error) {
     console.log(error);
     next(error);
@@ -13,20 +26,36 @@ exports.api_category_get = async (req, res, next) => {
 
 // Post
 exports.api_category_post = async (req, res, next) => {
-  let { category_title, category_color_code } = req.body;
-  const category_add = new JobCategoryAdd({
-    category_title,
-    category_color_code,
-  });
-
-  category_add.save();
-
-  const allJobCategory = await JobCategoryAdd.find({}).exec();
   try {
+    let { title, color_code } = req.body;
+
+    const existingCategoryTitle = await JobCategoryAdd.findOne({
+      title,
+    }).exec();
+
+    if (existingCategoryTitle) {
+      return res.status(400).json({
+        errors: [
+          {
+            msg: "Category title already exists!",
+          },
+        ],
+      });
+    }
+
+    const category_add = new JobCategoryAdd({
+      title,
+      color_code,
+    });
+
+    await category_add.save();
+
+    const allJobCategory = await JobCategoryAdd.find({}).exec();
+
     res.send(allJobCategory);
   } catch (error) {
     console.log(error);
-    next();
+    res.status(500).json({ error: "Something went wrong" });
   }
 };
 
@@ -38,44 +67,98 @@ exports.api_single_category_get = async (req, res, next) => {
 
     if (!singleCategory) {
       res.status(404).json({ message: "Category Not Found" });
+      return;
     }
 
-    res.json(singleCategory);
+    const decodedCategory = {
+      _id: singleCategory._id,
+      title: he.decode(singleCategory.title),
+      color_code: he.decode(singleCategory.color_code),
+      active_status: singleCategory.active_status,
+      createdAt: singleCategory.createdAt,
+      updatedAt: singleCategory.updatedAt,
+    };
+
+    res.json(decodedCategory);
   } catch (error) {
     console.log(error);
+    res.status(500).json({ error: "Something went wrong" });
   }
 };
+
 exports.api_single_category_post = async (req, res, next) => {
   res.send("hi");
 };
-exports.api_single_category_patch = async (req, res, next) => {
+
+exports.api_single_category_edit = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const updateSingleCategory = await JobCategoryAdd.findOneAndUpdate(
+    const { title, color_code } = req.body;
+
+    const existingCategoryTitle = await JobCategoryAdd.findOne({
+      title,
+    }).exec();
+
+    if (existingCategoryTitle) {
+      return res
+        .status(400)
+        .json({ errors: [{ msg: "Category title already exists!" }] });
+    }
+
+    // Update the category
+    const updatedCategory = await JobCategoryAdd.findOneAndUpdate(
       { _id: id },
-      req.body,
+      { title, color_code },
       { new: true }
     );
 
-    res.json({ updateSingleCategory });
+    if (!updatedCategory) {
+      return res.status(404).json({ error: "Category not found" });
+    }
+
+    res.json({ success: true, updatedCategory });
   } catch (error) {
-    console.log(error.message);
-    res.status(500).json({ error: `Something went wrong` });
+    console.error("Error in api_single_category_edit:", error);
+    res.status(500).json({ error: "Something went wrong" });
   }
 };
+
+exports.api_single_category_activate_inactivate = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { active_status } = req.body;
+
+    // Update the category's active_status
+    const updatedCategory = await JobCategoryAdd.findOneAndUpdate(
+      { _id: id },
+      { active_status },
+      { new: true }
+    );
+
+    if (!updatedCategory) {
+      return res.status(404).json({ error: "Category not found" });
+    }
+
+    res.json({ success: true, updatedCategory });
+  } catch (error) {
+    console.error("Error in api_single_category_activate_inactivate:", error);
+    res.status(500).json({ error: "Something went wrong" });
+  }
+};
+
 exports.api_single_category_delete = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const deletedJobPost = await JobCategoryAdd.findByIdAndRemove(
+    const deletedJobCategory = await JobCategoryAdd.findByIdAndRemove(
       { _id: id },
       req.body
     );
 
-    if (!deletedJobPost) {
+    if (!deletedJobCategory) {
       return res.status(404).json({ message: "Job post not found" });
     }
 
-    res.json(deletedJobPost);
+    res.json(deletedJobCategory);
   } catch (error) {
     next(error);
   }

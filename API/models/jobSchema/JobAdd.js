@@ -79,6 +79,10 @@ const JobAddSchema = new Schema(
       required: true,
       max: 999,
     },
+    active_status: {
+      type: Boolean,
+      default: true,
+    },
   },
   {
     timestamps: true,

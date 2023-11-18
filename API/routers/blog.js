@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+// Controller Import
 const {
   // Blogs
   api_blog_get,
@@ -21,6 +22,10 @@ const {
   api_single_blog_c_post,
   api_single_blog_c_patch,
 } = require("../controllers/blog/categories");
+
+// Middleware Import
+// Middleware **
+// const validateJobCategory = require("../middleware/job/category");
 // Blog API *** //
 // Blog Post
 router
