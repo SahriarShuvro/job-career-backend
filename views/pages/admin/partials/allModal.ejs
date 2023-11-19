@@ -293,18 +293,15 @@
 
                         <div class="qualification-employ-statu flex justify-between">
                             <div class="category w-[48%]">
-                                <label for="qualification"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Qualification</label>
-                                <input type="text" id="edit_qualification" name="qualification"
-                                    class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
-                                    placeholder="Bachelor Degree" required="" />
+                                <label for="qualification" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Qualification</label>
+                                <select name="qualification" id="edit_qualification_drop" class="formInput w-full text-sm rounded-lg dark:bg-gray-700 text-gray-700 dark:text-gray-200 outline-none cursor-pointer focus:ring-green-500 bg-gray-50 border-gray-200"><option value="">--Select Qualification--</option><option value="SSC/HSC">SSC/HSC</option><option value="JSC">JSC</option><option value="PSC">PSC</option><option value="HSC">HSC</option><option value="Diploma In Agriculture">Diploma In Agriculture</option><option value="BBA">BBA</option><option value="BSc">BSc</option><option value="MSc">MSc</option></select>
                             </div>
 
                             <div class="employment-status w-[48%]">
                                 <label for="employment_status-status"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Employment
                                     Status</label>
-                                <select name="employment_status" id="edit_employment_status"
+                                <select name="employment_status" id="edit_employment_status_drop"
                                     class="formInput w-full text-sm rounded-lg dark:bg-gray-700 text-gray-700 dark:text-gray-200 outline-none cursor-pointer focus:ring-green-500 bg-gray-50 border-gray-200">
                                     <option value="">--Select Employment Status--</option>
                                     <option value="Full Time">Full Time</option>
@@ -350,7 +347,7 @@
                             <div class="category w-[48%]">
                                 <label for="category"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
-                                <select name="category" id="edit_category"
+                                <select name="category" id="edit_category_drop"
                                     class="formInput w-full text-sm rounded-lg dark:bg-gray-700 text-gray-700 dark:text-gray-200 outline-none cursor-pointer focus:ring-green-500 bg-gray-50 border-gray-200">
                                     <option value="">--Select Category--</option>
                                     <option value="Maneger">Maneger</option>
@@ -371,7 +368,7 @@
                             <div class="industry w-[48%]">
                                 <label for="industry"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Industry</label>
-                                <select name="industry" id="edit_industry"
+                                <select name="industry" id="edit_industry_drop"
                                     class="formInput w-full text-sm rounded-lg dark:bg-gray-700 text-gray-700 dark:text-gray-200 outline-none cursor-pointer focus:ring-green-500 bg-gray-50 border-gray-200">
                                     <option value="SelectCategory">--Select Industry--</option>
                                     <option value="Agriculture">Agriculture</option>

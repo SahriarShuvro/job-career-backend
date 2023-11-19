@@ -96,11 +96,11 @@ export async function updateJobCategories() {
     console.log(error);
   }
 }
-
+// click to update
 $(document).on("click", "#category-button", async function () {
   updateJobCategories();
 });
-
+// add category
 $(document).ready(function () {
   updateJobCategories();
 
@@ -126,14 +126,11 @@ $(document).ready(function () {
       updateJobCategories();
     } catch (error) {
       if (error.responseJSON && error.responseJSON.errors) {
-        // If there are validation errors, display them in a toast or alert
         const errors = error.responseJSON.errors;
         const errorMessage = errors.map((error) => error.msg).join("<br>");
 
-        // Show an error toast or alert
         $(".errAlartSection").addClass("alertActive");
         $(".errAlartSection").text(errorMessage, error.msg);
-        // $(".categoryErrorAlert .toast-body").html(errorMessage);
 
         setTimeout(function () {
           $(".errAlartSection").removeClass("alertActive");

@@ -83,7 +83,7 @@ export async function updateJobList() {
                       <ion-icon name="trash-outline" class="text-xl text-red-500"></ion-icon>
                       </label>
                   </td>                    
-              `);
+                  `);
 
       jobList.append(row);
     });
@@ -119,7 +119,19 @@ $(document).ready(function () {
       // Update the job list with the new data
       updateJobList();
     } catch (error) {
-      console.error("Error while adding a new job:", error);
+      if (error.responseJSON && error.responseJSON.errors) {
+        const errors = error.responseJSON.errors;
+        const errorMessage = errors.map((error) => error.msg).join("<br>");
+
+        $(".errAlartSection").addClass("alertActive");
+        $(".errAlartSection").text(errorMessage, error.msg);
+
+        setTimeout(function () {
+          $(".errAlartSection").removeClass("alertActive");
+        }, 5000);
+      } else {
+        console.log(`Could not fetch ${error}`);
+      }
     }
   });
 });

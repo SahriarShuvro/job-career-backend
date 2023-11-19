@@ -50,7 +50,7 @@ const JobAddSchema = new Schema(
       max: 30,
     },
     vacancy: {
-      type: String,
+      type: Number,
       required: true,
       max: 30,
     },

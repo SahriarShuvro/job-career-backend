@@ -42,18 +42,17 @@ const getEditDetails = async (jobId) => {
         skills_required,
       } = jobPostData;
 
-      // Now you have variables for each property, and you can set the values as needed
       $("#edit_job_title").val(job_title);
       $("#edit_start_date").val(formatted_s_date);
       $("#edit_end_date").val(formatted_e_date);
       $("#edit_company").val(company);
       $("#edit_job_location").val(job_location);
-      $("#edit_qualification").val(qualification);
-      $("#edit_employment_status").val(employment_status);
+      $("#edit_qualification_drop").val(qualification);
+      $("#edit_employment_status_drop").val(employment_status);
       $("#edit_offerd_salary").val(offerd_salary);
-      $("#edit_category").val(category);
+      $("#edit_category_drop").val(category);
       $("#edit_vacancy").val(vacancy);
-      $("#edit_industry").val(industry);
+      $("#edit_industry_drop").val(industry);
       $("#edit_experience").val(experience);
       $("#edit_gender").val(gender);
       $("#edit_job_details").val(job_details);
@@ -73,63 +72,135 @@ const getEditDetails = async (jobId) => {
   }
 };
 
+// Fetch categories, qualification, employment, industry function
+async function populateDropdown(url, dropdownId, placeholder) {
+  try {
+    const response = await $.ajax({
+      url: url,
+      method: "GET",
+      dataType: "json",
+    });
+
+    if (response) {
+      const dropdown = $(dropdownId);
+      dropdown.empty();
+
+      const optionS = $("<option>");
+      optionS.val("");
+      optionS.text(placeholder);
+      dropdown.append(optionS);
+
+      $.each(response, function (index, item) {
+        const option = $("<option>");
+        if (item.active_status === true) {
+          option.val(item.title);
+          option.text(item.title);
+          dropdown.append(option);
+        }
+      });
+    } else {
+      console.log(`Failed to fetch data from ${url}!`);
+    }
+  } catch (error) {
+    console.log(`Can't fetch data from ${url}: ${error}`);
+  }
+}
+
+// Call categories, qualification, employment, industry function
+$(document).on("click", ".edit-button", async function () {
+  await populateDropdown(
+    `/api/admin/job-categories`,
+    "#edit_category_drop",
+    "--Select Category--"
+  );
+  await populateDropdown(
+    `/api/admin/job-qualification`,
+    "#edit_qualification_drop",
+    "--Select Qualification--"
+  );
+  await populateDropdown(
+    `/api/admin/job-employment-status`,
+    "#edit_employment_status_drop",
+    "--Select Employment--"
+  );
+  await populateDropdown(
+    `/api/admin/job-industry`,
+    "#edit_industry_drop",
+    "--Select Industry--"
+  );
+});
+
 // edit details
 $(document).on("click", ".edit-button", function () {
   const jobId = $(this).data("id");
   getEditDetails(jobId);
 
-  $("#edit-job-form").on("submit", async function (event) {
-    event.preventDefault();
+  $("#edit-job-form")
+    .off()
+    .on("submit", async function (event) {
+      event.preventDefault();
 
-    // Create an object to hold the updated data
-    const updatedData = {
-      job_title: $("#edit_job_title").val(),
-      start_date: $("#edit_start_date").val(),
-      end_date: $("#edit_end_date").val(),
-      company: $("#edit_company").val(),
-      job_location: $("#edit_job_location").val(),
-      qualification: $("#edit_qualification").val(),
-      employment_status: $("#edit_employment_status").val(),
-      offered_salary: $("#edit_offered_salary").val(),
-      category: $("#edit_category").val(),
-      vacancy: $("#edit_vacancy").val(),
-      industry: $("#edit_industry").val(),
-      experience: $("#edit_experience").val(),
-      gender: $("#edit_gender").val(),
-      job_details: $("#edit_job_details").val(),
-      skills_required: $("#edit_skills_required").val(),
-      employment_status: $("#edit_employment_status").val(),
-    };
+      const updatedData = {
+        job_title: $("#edit_job_title").val(),
+        start_date: $("#edit_start_date").val(),
+        end_date: $("#edit_end_date").val(),
+        company: $("#edit_company").val(),
+        job_location: $("#edit_job_location").val(),
+        qualification: $("#edit_qualification_drop").val(),
+        employment_status: $("#edit_employment_status_drop").val(),
+        offered_salary: $("#edit_offerd_salary").val(),
+        category: $("#edit_category_drop").val(),
+        vacancy: $("#edit_vacancy").val(),
+        industry: $("#edit_industry_drop").val(),
+        experience: $("#edit_experience").val(),
+        gender: $("#edit_gender").val(),
+        job_details: $("#edit_job_details").val(),
+        skills_required: $("#edit_skills_required").val(),
+      };
 
-    // Determine whether "Yes" or "No" is selected for salary_negotiable and update the property
-    updatedData.salary_negotiable = $("#edit_salary_negotiable_yes").is(
-      ":checked"
-    )
-      ? "yes"
-      : "no";
+      // Determine whether "Yes" or "No" is selected for salary_negotiable and update the property
+      updatedData.salary_negotiable = $("#edit_salary_negotiable_yes").is(
+        ":checked"
+      )
+        ? "yes"
+        : "no";
 
-    try {
-      const response = await $.ajax({
-        url: `/api/admin/job/${jobId}`,
-        method: "PATCH",
-        data: updatedData,
-        dataType: "json",
-      });
+      console.log(updatedData);
+      try {
+        const response = await $.ajax({
+          url: `/api/admin/job/${jobId}`,
+          method: "PATCH",
+          data: updatedData,
+          dataType: "json",
+        });
 
-      if (response) {
-        $(".editSuccessAlartSection").addClass("alertActive");
-        setTimeout(function () {
-          $(".editSuccessAlartSection").removeClass("alertActive");
-        }, 3000);
+        if (response) {
+          $(".editSuccessAlartSection").addClass("alertActive");
+          setTimeout(function () {
+            $(".editSuccessAlartSection").removeClass("alertActive");
+          }, 3000);
 
-        updateJobList(); // Assuming updateJobList exists and works correctly
-      } else {
-        console.error("Failed to update job data");
+          updateJobList();
+        } else {
+          console.error("Failed to update job data");
+        }
+      } catch (error) {
+        if (error.responseJSON && error.responseJSON.errors) {
+          console.log(error.responseJSON);
+          const errors = error.responseJSON.errors;
+          const errorMessage = errors.map((error) => error.msg).join("<br>");
+
+          $(".errAlartSection").addClass("alertActive");
+          $(".errAlartSection").html(errorMessage);
+
+          setTimeout(function () {
+            $(".errAlartSection").removeClass("alertActive");
+          }, 3000);
+        } else {
+          console.error(`Could catch error ${error.message}`);
+        }
       }
-    } catch (error) {
-      console.error("Error while updating job data:", error);
-    }
-  });
+    });
 });
 
 // active/inactive job post
