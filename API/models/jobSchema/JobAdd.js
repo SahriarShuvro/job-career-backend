@@ -38,6 +38,8 @@ const JobAddSchema = new Schema(
     offerd_salary: {
       type: Number,
       required: true,
+      max: 999999,
+      min: 0,
     },
     salary_negotiable: {
       type: String,
@@ -52,7 +54,8 @@ const JobAddSchema = new Schema(
     vacancy: {
       type: Number,
       required: true,
-      max: 30,
+      max: 99999,
+      min: 0,
     },
     industry: {
       type: String,

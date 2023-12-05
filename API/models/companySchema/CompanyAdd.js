@@ -2,25 +2,29 @@ const { Schema, model } = require("mongoose");
 
 const CompanyAddSchema = new Schema(
   {
-    c_name: {
+    name: {
       type: String,
       required: true,
       max: 99,
     },
-    c_phone: {
+    phone: {
       type: String,
       required: true,
       max: 15,
     },
-    c_email: {
+    email: {
       type: String,
       required: true,
       max: 80,
     },
-    c_address: {
+    address: {
       type: String,
       required: true,
       max: 300,
+    },
+    active_status: {
+      type: Boolean,
+      default: true,
     },
   },
   {

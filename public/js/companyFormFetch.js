@@ -1,5 +1,5 @@
 {
-  let companyFormID = document.getElementById('companyformID')
+  let companyFormID = document.getElementById("companyformID");
   let companyFormInput = companyFormID.querySelectorAll(".formInput");
   let companySubmitBTN = document.getElementById("companySubmitBTN");
   let companyCardBody = document.querySelector("#companyCardBody");
@@ -33,8 +33,7 @@
                   </label>
                 </div>
 
-                <div class="flex justify-end px-4 pt-4">
-                </div>
+                <div class="flex justify-end px-4 pt-4"></div>
                 <div class="flex flex-col items-center pb-10">
                   <img src="${value.imageLink}"
                     class="w-24 h-24 mb-3 rounded-full  dark:ring-gray-400 shadow-lg object-cover bg-cover bg-center" />
@@ -77,12 +76,14 @@
         allInputsFilled = false;
       }
     });
-    let companyAddModal = document.querySelector('.companyAddModal')
+    let companyAddModal = document.querySelector(".companyAddModal");
     if (allInputsFilled) {
       let key = Date.now().toString();
       localStorage.setItem(key, JSON.stringify(formData));
       fetchCompanyData();
-      let forSuccessAlart = companyAddModal.querySelector(".successAlartSection");
+      let forSuccessAlart = companyAddModal.querySelector(
+        ".successAlartSection"
+      );
       forSuccessAlart.classList.add("alertActive");
 
       setTimeout(function () {
@@ -109,5 +110,3 @@
     saveCompanyData(formData);
   });
 }
-
-

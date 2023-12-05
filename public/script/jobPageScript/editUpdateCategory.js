@@ -57,7 +57,6 @@ $(document).on("click", "#editCategorieButton", function () {
         }
       } catch (error) {
         if (error.responseJSON && error.responseJSON.errors) {
-          console.log(error.responseJSON);
           const errors = error.responseJSON.errors;
           const errorMessage = errors.map((error) => error.msg).join("<br>");
 

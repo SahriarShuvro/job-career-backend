@@ -1,37 +1,20 @@
 const JobPost = require("../../models/jobSchema/JobAdd");
+const he = require("he");
+const getAllJobs = require("../../lib/getAllJobs");
 
 // *****  Job Post page start ***** //
 // Job Add ** //
 // Get
 exports.api_job_post_get = async (req, res, next) => {
   try {
-    const allJobPost = await JobPost.find({}).exec();
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
 
-    const decodedJobPost = allJobPost.map((eachJobPost) => ({
-      _id: eachJobPost._id,
-      job_title: eachJobPost.job_title,
-      start_date: eachJobPost.start_date,
-      end_date: eachJobPost.end_date,
-      company: eachJobPost.company,
-      job_location: eachJobPost.job_location,
-      qualification: eachJobPost.qualification,
-      employment_status: eachJobPost.employment_status,
-      offerd_salary: eachJobPost.offerd_salary,
-      salary_negotiable: eachJobPost.salary_negotiable,
-      category: eachJobPost.category,
-      vacancy: eachJobPost.vacancy,
-      industry: eachJobPost.industry,
-      experience: eachJobPost.experience,
-      gender: eachJobPost.gender,
-      job_details: eachJobPost.job_details,
-      skills_required: eachJobPost.skills_required,
-      active_status: eachJobPost.active_status,
-    }));
-
-    res.send(decodedJobPost);
+    const alljobs = await getAllJobs(JobPost, page, limit);
+    res.json(alljobs);
   } catch (error) {
     console.log(error);
-    next();
+    next(error);
   }
 };
 
@@ -57,6 +40,14 @@ exports.api_job_post_post = async (req, res, next) => {
       skills_required,
     } = req.body;
 
+    // Validate numeric values for offerd_salary and vacancy
+    if (isNaN(offerd_salary) || isNaN(vacancy)) {
+      return res.status(400).json({
+        success: false,
+        error: "offerd_salary and vacancy must be numeric values.",
+      });
+    }
+
     // Create a new job post instance
     const newJob = new JobPost({
       job_title,
@@ -80,6 +71,7 @@ exports.api_job_post_post = async (req, res, next) => {
     // Save the new job post to the database
     const savedJob = await newJob.save();
 
+    console.log(savedJob);
     // Send a success response
     res.status(201).json({
       success: true,
@@ -105,23 +97,25 @@ exports.api_single_job_post = async (req, res, next) => {
     }
     const decodedJobPost = {
       _id: singleJobPost._id,
-      job_title: singleJobPost.job_title,
+      job_title: String(he.decode(singleJobPost.job_title)),
       start_date: singleJobPost.start_date,
       end_date: singleJobPost.end_date,
-      company: singleJobPost.company,
-      job_location: singleJobPost.job_location,
-      qualification: singleJobPost.qualification,
-      employment_status: singleJobPost.employment_status,
-      offerd_salary: singleJobPost.offerd_salary,
+      company: String(he.decode(singleJobPost.company)),
+      job_location: String(he.decode(singleJobPost.job_location)),
+      qualification: String(he.decode(singleJobPost.qualification)),
+      employment_status: String(he.decode(singleJobPost.employment_status)),
+      offerd_salary: Number(singleJobPost.offerd_salary),
       salary_negotiable: singleJobPost.salary_negotiable,
-      category: singleJobPost.category,
-      vacancy: singleJobPost.vacancy,
-      industry: singleJobPost.industry,
-      experience: singleJobPost.experience,
-      gender: singleJobPost.gender,
-      job_details: singleJobPost.job_details,
-      skills_required: singleJobPost.skills_required,
+      category: String(he.decode(singleJobPost.category)),
+      vacancy: Number(singleJobPost.vacancy),
+      industry: String(he.decode(singleJobPost.industry)),
+      experience: String(he.decode(singleJobPost.experience)),
+      gender: String(he.decode(singleJobPost.gender)),
+      job_details: String(he.decode(singleJobPost.job_details)),
+      skills_required: String(he.decode(singleJobPost.skills_required)),
       active_status: singleJobPost.active_status,
+      createdAt: singleJobPost.createdAt,
+      updatedAt: singleJobPost.updatedAt,
     };
     res.json(decodedJobPost);
   } catch (error) {

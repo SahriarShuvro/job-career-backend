@@ -61,7 +61,7 @@ const {
 } = require("../controllers/job/industry");
 
 // Middleware Import
-const validateJob = require("../middleware/job/");
+const { validateJob, validateEditJob } = require("../middleware/job/");
 const validateJobCategory = require("../middleware/job/category");
 
 // Job Section API *** //
@@ -71,7 +71,7 @@ router.route("/job").get(api_job_post_get).post(validateJob, api_job_post_post);
 router
   .route("/job/:id")
   .get(api_single_job_post)
-  .patch(validateJob, api_update_job_post)
+  .patch(validateEditJob, api_update_job_post)
   .put(api_single_job_activate_inactivate)
   .delete(api_delete_job_post);
 
