@@ -64,12 +64,15 @@ const getAllJobs = async (model, page, limit) => {
     // Count total number of inactive items
     const totalInactiveItems = totalItems - totalActiveItems;
 
+    let allPost = results.results.map(decodeJobPost);
+
     return {
       totalItems,
       totalPages,
+      page,
       totalActiveItems,
       totalInactiveItems,
-      results,
+      allPost,
     };
   } catch (error) {
     console.error(error);

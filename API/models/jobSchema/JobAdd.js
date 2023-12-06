@@ -38,7 +38,7 @@ const JobAddSchema = new Schema(
     offerd_salary: {
       type: Number,
       required: true,
-      max: 999999,
+      max: 99999,
       min: 0,
     },
     salary_negotiable: {

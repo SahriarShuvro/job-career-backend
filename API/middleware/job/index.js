@@ -158,10 +158,7 @@ exports.validateEditJob = [
     .escape()
     .withMessage("Job employment status is required!"),
 
-  check("offerd_salary")
-    .isEmpty()
-    .escape()
-    .withMessage("Job offerd_salary is required!"),
+  check("offerd_salary").notEmpty().withMessage("Job Offerd is required!"),
 
   check("salary_negotiable")
     .not()
