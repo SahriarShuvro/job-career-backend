@@ -1,491 +1,404 @@
 <%- include('./partials/header.ejs') %>
-<div class="flex justify-between w-full">
-  <!-- Aside Section  -->
-  <%- include('./partials/asidebar.ejs') %>
-  <script>
-    document.getElementById("companies").classList.add("hover");
-  </script>
-  <!-- Right or main section  -->
-  <section class="relative w-full lg:w-[80%]">
-    <!-- Nav bar section  -->
-    <%- include('./partials/navbar.ejs') %>
+  <!-- Image Preview For Company Page -->
+  <link href="/src/imagePreview.css" rel="stylesheet" />
+  <div class="flex justify-between w-full">
+    <!-- Aside Section  -->
+    <%- include('./partials/asidebar.ejs') %>
+      <script>
+        document.getElementById("companies").classList.add("hover");
+      </script>
+      <!-- Right or main section  -->
+      <section class="relative w-full lg:w-[80%]">
+        <!-- Nav bar section  -->
+        <%- include('./partials/navbar.ejs') %>
 
-    <!-- DashBbord Section  -->
-    <div class="m-8 mt-28 relative">
-      <!-- tab buttons  -->
-      <div class="tabs">
-        <a
-          class="tab tab-lifted tabButton border-none duration-200 tab-active"
-          data-target="company"
-          >Company</a
-        >
-        <a
-          class="tab tab-lifted tabButton border-none duration-200"
-          data-target="category"
-          >Categories</a
-        >
-      </div>
-
-      <!-- Company Section  -->
-      <div
-        class="companySection tabSection rounded-tr-md rounded-b-md tab-section-active"
-        id="company"
-      >
-        <div
-          class="relative overflow-x-auto shadow-md sm:rounded-lg scrollbar-hide m-4"
-        >
-          <div class="flex items-center justify-between pb-4">
-            <div class="flex justify-center items-center m-2">
-              <label
-                for="addCompany"
-                class="btn text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 border-none"
-                >Add Company</label
-              >
+          <!-- DashBbord Section  -->
+          <div class="m-8 mt-28 relative">
+            <!-- tab buttons  -->
+            <div class="tabs">
+              <a class="tab tab-lifted tabButton border-none duration-200 tab-active" data-target="company">Company</a>
+              <a class="tab tab-lifted tabButton border-none duration-200" data-target="category">Categories</a>
             </div>
-            <label for="table-search" class="sr-only">Search</label>
-            <div class="relative">
-              <div
-                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
-              >
-                <svg
-                  class="w-5 h-5 text-gray-500 dark:text-gray-400"
-                  aria-hidden="true"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
+
+            <!-- Company Section  -->
+            <div class="companySection tabSection rounded-tr-md rounded-b-md tab-section-active" id="company">
+              <div class="relative overflow-x-auto shadow-md sm:rounded-lg scrollbar-hide m-4">
+                <div
+                  class="overViewCardSection flex flex-wrap justify-between items-center space-y-8 md:space-y-4 xl:space-x-1 m-4 my-7">
+                  <div
+                    class="cardOne relative cardBackground bg-white dark:bg-slate-700 w-full md:w-[48%] xl:w-[24%] min-h-[6rem] mt-4">
+                    <ion-icon name="bag-outline"
+                      class="absolute -top-4 h-8 w-8 hadow-md p-4 backdrop-blur-md shadow-lg shadow-green-300 rounded-lg bg-gradient-to-tr from-green-500 to-green-400 text-white text-sm md hydrated"
+                      role="img" aria-label="bag outline"></ion-icon>
+                    <div class="topSection">
+                      <div class="flex flex-col justify-end items-end">
+                        <p class="text-sm">
+                          Total <span class="text-green-400"> Company</span>
+                        </p>
+                        <p id="total_jcompany" class="font-semibold text-xl">1.8k</p>
+                      </div>
+                    </div>
+                    <hr class="my-3" />
+                    <div>
+                      <span><span class="text-green-500">+55%</span> than last week</span>
+                    </div>
+                  </div>
+                  <div
+                    class="cardOne relative cardBackground bg-white dark:bg-slate-700 w-full md:w-[48%] xl:w-[24%] min-h-[6rem]">
+                    <ion-icon name="ban-outline"
+                      class="absolute -top-4 h-8 w-8 hadow-md p-4 backdrop-blur-md shadow-lg shadow-red-300 rounded-lg bg-gradient-to-tr from-red-500 to-red-400 text-white text-sm md hydrated"
+                      role="img" aria-label="people outline"></ion-icon>
+                    <div class="topSection">
+                      <div class="flex flex-col justify-end items-end">
+                        <p class="text-sm">
+                          Inactive <span class="text-green-400">Company</span>
+                        </p>
+                        <p id="total_inactive_company" class="font-semibold text-xl">1.5k</p>
+                      </div>
+                    </div>
+                    <hr class="my-3" />
+                    <div>
+                      <span><span class="text-green-500">+55%</span> than last week</span>
+                    </div>
+                  </div>
+                  <div
+                    class="cardOne relative cardBackground bg-white dark:bg-slate-700 w-full md:w-[48%] xl:w-[24%] min-h-[6rem]">
+                    <ion-icon name="checkmark-done-circle-outline"
+                      class="absolute -top-4 h-8 w-8 hadow-md p-4 backdrop-blur-md shadow-lg shadow-blue-400 rounded-lg bg-gradient-to-tr from-blue-600 to-blue-500 text-white text-sm md hydrated"
+                      role="img" aria-label="checkmark-done-circle-outline"></ion-icon>
+                    <div class="topSection">
+                      <div class="flex flex-col justify-end items-end">
+                        <p class="text-sm">
+                          Active <span class="text-green-400"> Company</span>
+                        </p>
+                        <p id="total_active_company" class="font-semibold text-xl">1.1k</p>
+                      </div>
+                    </div>
+                    <hr class="my-3" />
+                    <div>
+                      <span><span class="text-green-500">+55%</span> than last week</span>
+                    </div>
+                  </div>
+                  <div
+                    class="cardOne relative cardBackground bg-white dark:bg-slate-700 w-full md:w-[48%] xl:w-[24%] min-h-[6rem]">
+                    <ion-icon name="earth-outline"
+                      class="absolute -top-4 h-8 w-8 hadow-md p-4 backdrop-blur-md shadow-lg shadow-purple-400 rounded-lg bg-gradient-to-tr from-purple-600 to-purple-500 text-white text-sm md hydrated"
+                      role="img" aria-label="earth outline"></ion-icon>
+                    <div class="topSection">
+                      <div class="flex flex-col justify-end items-end">
+                        <p class="text-sm">
+                          Total <span class="text-green-400"> Visit</span>
+                        </p>
+                        <p class="font-semibold text-xl">0.9k</p>
+                      </div>
+                    </div>
+                    <hr class="my-3" />
+                    <div>
+                      <span><span class="text-green-500">+55%</span> than last week</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex items-center justify-between pb-4">
+                  <div class="flex justify-center items-center m-2">
+                    <label for="addCompany"
+                      class="btn text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 border-none">Add
+                      Company</label>
+                  </div>
+                  <label for="table-search" class="sr-only">Search</label>
+                  <div class="relative">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                      <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor"
+                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                          d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                    </div>
+                    <input type="text" id="table-search"
+                      class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                      placeholder="Search for items" />
+                  </div>
+                </div>
+
+                <!-- Card Section  -->
+                <div class="cardSection flex flex-wrap justify-center items-center" id="companyCardBody">
+                  <div
+                    class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative m-2 cardsAll">
+                    <!-- Acive/Inactive BAGED -->
+                    <div class="absolute top-3 left-3">
+                      <p
+                        class="cardStatusActive rounded-full bg-green-500 px-2 py-1 text-center text-xs hidden activeCard">
+                        Active
+                      </p>
+                      <p class="cardStatusInactive rounded-full bg-red-500 px-2 py-1 text-center text-xs hidden">
+                        Inactive
+                      </p>
+                    </div>
+
+                    <!-- Delete Edit Buttons -->
+                    <div class="absolute top-3 right-3">
+                      <label for="editCompany" id="edit-compnay"
+                        class="editButton btn btn-success rounded-full w-12 focus:outline-none border-none bg-green-500 px-2 py-1 text-center text-xs">
+                        <ion-icon class="text-[18px] text-white font-semibold" name="create-outline"></ion-icon>
+                      </label>
+                      <label
+                        class="deleteButton btn btn-error rounded-full w-12 focus:outline-none border-none bg-red-500 px-2 py-1 text-center text-xs">
+                        <ion-icon class="text-[18px] text-white font-semibold" name="trash-outline"></ion-icon>
+                      </label>
+                    </div>
+
+                    <div class="flex justify-end px-4 pt-4"></div>
+                    <div class="flex flex-col items-center pb-10">
+                      <img src="https://foodshahibd.com/foodshahi_ci/assets/media/restaurants/logo/1552416111_logo.png"
+                        class="w-24 h-24 mb-3 rounded-full dark:ring-gray-400 shadow-lg object-cover bg-cover bg-center" />
+                      <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+                        FoodShahiBD
+                      </h5>
+                      <span
+                        class="flex justify-center items-center text-center text-xs text-gray-500 dark:text-gray-400"><ion-icon
+                          class="mr-1" name="call-outline"></ion-icon>01728723881</span>
+                      <span
+                        class="flex justify-center items-center text-center text-xs text-gray-500 dark:text-gray-400"><ion-icon
+                          class="mr-1" name="mail-outline"></ion-icon>example@male.com</span>
+                      <span
+                        class="flex justify-center items-center text-center flex-wrap text-xs text-gray-500 dark:text-gray-400"><ion-icon
+                          class="mr-1" name="location-outline"></ion-icon>Roshulpur Kumedpur, Kakon Hat, Godagari,
+                        Rajshahi</span>
+                      <div class="flex mt-4 space-x-3 md:mt-6">
+                        <a href="#"
+                          class="activeButton inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Active</a>
+                        <a href="#"
+                          class="inactiveButton inline-flex items-center px-4 py-2 text-sm font-medium text-center bg-red-600 border border-red-300 rounded-lg focus:ring-4 focus:outline-none focus:ring-red-200 text-white dark:border-red-600 hover:bg-red-800 dark:hover:border-red-700 dark:focus:ring-red-500">Inactive</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Pagination  -->
+                <div aria-label="Page navigation example " class="flex justify-end items-center mr-4 mb-4 mt-4">
+                  <ul id="_pagination" class="inline-flex items-center -space-x-px">
+                    <li>
+                      <a href="#" id="prevButton"
+                        class=" block px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                        <span class="sr-only">Previous</span>
+                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd"
+                            d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                            clip-rule="evenodd"></path>
+                        </svg>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#"
+                        class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
+                    </li>
+                    <li>
+                      <a href="#"
+                        class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
+                    </li>
+                    <li>
+                      <a href="#" aria-current="page"
+                        class="z-10 px-3 py-2 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
+                    </li>
+                    <li>
+                      <a href="#"
+                        class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">4</a>
+                    </li>
+                    <li>
+                      <a href="#"
+                        class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">5</a>
+                    </li>
+                    <li>
+                      <a href="#" id="nextButton"
+                        class="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                        <span class="sr-only">Next</span>
+                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd"
+                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                            clip-rule="evenodd"></path>
+                        </svg>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </div>
-              <input
-                type="text"
-                id="table-search"
-                class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
-                placeholder="Search for items"
-              />
+            </div>
+
+            <!-- Categories Section  -->
+            <div class="categoriesSection rounded-md tabSection" id="category">
+              <h1 class="flex justify-center items-center text-center min-h-screen">
+                This tab is under construction....
+              </h1>
             </div>
           </div>
+      </section>
+  </div>
 
-          <!-- Card Section  -->
-          <div
-            class="cardSection flex flex-wrap justify-center items-center"
-            id="companyCardBody"
-          >
-            <div
-              class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative m-2 cardsAll"
-            >
-              <!-- Acive/Inactive BAGED -->
-              <div class="absolute top-3 left-3">
-                <p
-                  class="cardStatusActive rounded-full bg-green-500 px-2 py-1 text-center text-xs hidden activeCard"
-                >
-                  Active
-                </p>
-                <p
-                  class="cardStatusInactive rounded-full bg-red-500 px-2 py-1 text-center text-xs hidden"
-                >
-                  Inactive
-                </p>
-              </div>
-
-              <!-- Delete Edit Buttons -->
-              <div class="absolute top-3 right-3">
-                <label
-                  for="editCompany"
-                  class="editButton btn btn-success rounded-full w-12 focus:outline-none border-none bg-green-500 px-2 py-1 text-center text-xs"
-                >
-                  <ion-icon
-                    class="text-[18px] text-white font-semibold"
-                    name="create-outline"
-                  ></ion-icon>
-                </label>
-                <label
-                  class="deleteButton btn btn-error rounded-full w-12 focus:outline-none border-none bg-red-500 px-2 py-1 text-center text-xs"
-                >
-                  <ion-icon
-                    class="text-[18px] text-white font-semibold"
-                    name="trash-outline"
-                  ></ion-icon>
-                </label>
-              </div>
-
-              <div class="flex justify-end px-4 pt-4"></div>
-              <div class="flex flex-col items-center pb-10">
-                <img
-                  src="https://foodshahibd.com/foodshahi_ci/assets/media/restaurants/logo/1552416111_logo.png"
-                  class="w-24 h-24 mb-3 rounded-full dark:ring-gray-400 shadow-lg object-cover bg-cover bg-center"
-                />
-                <h5
-                  class="mb-1 text-xl font-medium text-gray-900 dark:text-white"
-                >
-                  FoodShahiBD
-                </h5>
-                <span
-                  class="flex justify-center items-center text-center text-xs text-gray-500 dark:text-gray-400"
-                  ><ion-icon class="mr-1" name="call-outline"></ion-icon
-                  >01728723881</span
-                >
-                <span
-                  class="flex justify-center items-center text-center text-xs text-gray-500 dark:text-gray-400"
-                  ><ion-icon class="mr-1" name="mail-outline"></ion-icon
-                  >example@male.com</span
-                >
-                <span
-                  class="flex justify-center items-center text-center flex-wrap text-xs text-gray-500 dark:text-gray-400"
-                  ><ion-icon class="mr-1" name="location-outline"></ion-icon
-                  >Roshulpur Kumedpur, Kakon Hat, Godagari, Rajshahi</span
-                >
-                <div class="flex mt-4 space-x-3 md:mt-6">
-                  <a
-                    href="#"
-                    class="activeButton inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-                    >Active</a
-                  >
-                  <a
-                    href="#"
-                    class="inactiveButton inline-flex items-center px-4 py-2 text-sm font-medium text-center bg-red-600 border border-red-300 rounded-lg focus:ring-4 focus:outline-none focus:ring-red-200 text-white dark:border-red-600 hover:bg-red-800 dark:hover:border-red-700 dark:focus:ring-red-500"
-                    >Inactive</a
-                  >
+  <!-- Company Add Modal  -->
+  <input type="checkbox" id="addCompany" class="modal-toggle" />
+  <div class="modal modal-bottom sm:modal-middle companyAddModal">
+    <div
+      class="alert alert-error shadow-lg fixed top-16 w-auto z-10 opacity-0 duration-500 overflow-hidden errAlartSection">
+      <div>
+        <span>Sorry! Please fill in all the form inputs.</span>
+      </div>
+    </div>
+    <div
+      class="alert alert-success shadow-lg fixed top-16 w-auto z-10 opacity-0 duration-500 overflow-hidden successAlartSection">
+      <div>
+        <span>Congratulations! Successfully added a new category.</span>
+      </div>
+    </div>
+    <div class="modal-box h-auto flex flex-col justify-between scrollbar-hide">
+      <div>
+        <h3 class="font-bold text-lg mb-4">Add New Company!</h3>
+        <div>
+          <div class="flex justify-between space-x-1">
+            <form method="POST" action="/api/admin/company/allcompany" id="companyAddForm" class="space-y-4 w-full">
+              <div class="logoPreview">
+                <div class="container">
+                  <input type="file" id="file" accept="image/*" hidden="">
+                  <div class="img-area" data-img="">
+                    <i class="bx bxs-cloud-upload icon"></i>
+                    <h3>Upload Image</h3>
+                    <p>Image size must be less than <span>2MB</span></p>
+                  </div>
+                  <button type="button" class="select-image btn btn-success text-black">Select Image</button>
                 </div>
               </div>
-            </div>
+              <div class="companyName">
+                <label for="companyName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Company
+                  Name</label>
+                <input type="text" id="edit_name" name="name"
+                  class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                  placeholder="FoodShahiBD" required />
+              </div>
+
+              <div class="companyPhone">
+                <label for="companyPhone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Company
+                  Phone</label>
+                <input type="tel" id="edit_phone" name="phone"
+                  class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                  placeholder="+8801728XXXXXX" required />
+              </div>
+
+              <div class="companyEmail">
+                <label for="companyEmail" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Company
+                  Email</label>
+                <input type="email" id="edit_email" name="email"
+                  class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                  placeholder="example@email.com" required />
+              </div>
+
+              <div class="companyAddress">
+                <label for="companyAddress" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Company
+                  Address</label>
+                <textarea type="address" id="edit_address" name="address" rows="3"
+                  class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                  placeholder="Enter your address here..."></textarea>
+              </div>
+              <div class="modal-action">
+                <label for="addCompany" class="btn btn-error">Cancel</label>
+                <button id="companySubmitBTN" type="submit" class="btn btn-success focus:outline-none">
+                  Add
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
+    </div>
+  </div>
 
-      <!-- Categories Section  -->
-      <div class="categoriesSection rounded-md tabSection" id="category">
-        <h1 class="flex justify-center items-center text-center min-h-screen">
-          This tab is under construction....
-        </h1>
+  <!-- Company Edit Modal  -->
+  <input type="checkbox" id="editCompany" class="modal-toggle" />
+  <div class="modal modal-bottom sm:modal-middle companyEditModal">
+    <div
+      class="alert alert-error shadow-lg fixed top-16 w-auto z-10 opacity-0 duration-500 overflow-hidden errAlartSection">
+      <div>
+        <span>Sorry! Please fill in all the form inputs.</span>
       </div>
     </div>
-  </section>
-</div>
-
-<!-- Company Add Modal  -->
-<input type="checkbox" id="addCompany" class="modal-toggle" />
-<div class="modal modal-bottom sm:modal-middle companyAddModal">
-  <div
-    class="alert alert-error shadow-lg fixed top-16 w-auto z-10 opacity-0 duration-500 overflow-hidden errAlartSection"
-  >
-    <div>
-      <span>Sorry! Please fill in all the form inputs.</span>
-    </div>
-  </div>
-  <div
-    class="alert alert-success shadow-lg fixed top-16 w-auto z-10 opacity-0 duration-500 overflow-hidden successAlartSection"
-  >
-    <div>
-      <span>Congratulations! Successfully added a new category.</span>
-    </div>
-  </div>
-  <div class="modal-box h-auto flex flex-col justify-between scrollbar-hide">
-    <div>
-      <h3 class="font-bold text-lg mb-4">Add New Company!</h3>
+    <div
+      class="alert alert-success shadow-lg fixed top-16 w-auto z-10 opacity-0 duration-500 overflow-hidden successAlartSection">
       <div>
-        <div class="flex justify-between space-x-1">
-          <form method="POST" action="/api/admin/company/allcompany" id="companyformID" class="space-y-4 w-full">
-            <div class="logoPreview">
-              <div
-                x-data="{photoName: null, photoPreview: null}"
-                class="col-span-6 ml-2 sm:col-span-4 md:mr-3"
-              >
-                <!-- Photo File Input -->
-                <input
-                  type="file"
-                  class="hidden"
-                  x-ref="photo"
-                  x-on:change="
-                photoName = $refs.photo.files[0].name;
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    photoPreview = e.target.result;
-                };
-                reader.readAsDataURL($refs.photo.files[0]);"
-                />
-
-                <div class="text-center flex flex-col">
-                  <!-- Current Profile Photo -->
-                  <div class="mt-2" x-show="! photoPreview">
-                    <img
-                      name="imageLink"
-                      src="https://images.unsplash.com/photo-1531316282956-d38457be0993?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80"
-                      class="w-20 h-20 m-0 rounded-full shadow"
-                    />
+        <span>Congratulations! Successfully added a new category.</span>
+      </div>
+    </div>
+    <div class="modal-box h-auto flex flex-col justify-between scrollbar-hide">
+      <div>
+        <h3 class="font-bold text-lg mb-4">Edit Company!</h3>
+        <div>
+          <div class="flex justify-between space-x-1">
+            <form action="form" id="edit-company-form" class="space-y-4 w-full">
+              <div class="logoPreview">
+                <div class="container">
+                  <input type="file" name="avatar" id="file" accept="image/*" hidden="">
+                  <div class="img-area" data-img="">
+                    <i class="bx bxs-cloud-upload icon"></i>
+                    <h3>Upload Image</h3>
+                    <p>Image size must be less than <span>2MB</span></p>
                   </div>
-                  <!-- New Profile Photo Preview -->
-                  <div class="mt-2" x-show="photoPreview" style="display: none">
-                    <span
-                      class="block w-20 h-20 rounded-full m-0 shadow"
-                      x-bind:style="'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' + photoPreview + '\');'"
-                      style="
-                        background-size: cover;
-                        background-repeat: no-repeat;
-                        background-position: center center;
-                        background-image: url('null');
-                      "
-                    >
-                    </span>
-                  </div>
-                  <button
-                    type="button"
-                    class="inline-flex px-4 py-2 bg-white dark:bg-gray-700 border border-gray-300 rounded-md font-semibold text-xs text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:text-green-400 dark:hover:text-green-400 focus:outline-none focus:border-green-400 focus:shadow-outline-green active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150 mt-2 w-40 flex justify-center items-center hover:border-green-400"
-                    x-on:click.prevent="$refs.photo.click()"
-                  >
-                    Upload Logo
-                  </button>
+                  <button type="button" class="select-image btn btn-success text-black">Select Image</button>
                 </div>
               </div>
-            </div>
-            <div class="companyName">
-              <label
-                for="companyName"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >Company Name</label
-              >
-              <input
-                type="text"
-                id="companyName"
-                name="c_name"
-                class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
-                placeholder="FoodShahiBD"
-                required
-              />
-            </div>
 
-            <div class="companyPhone">
-              <label
-                for="companyPhone"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >Company Phone</label
-              >
-              <input
-                type="tel"
-                id="companyPhone"
-                name="c_phone"
-                class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
-                placeholder="+8801728XXXXXX"
-                required
-              />
-            </div>
-
-            <div class="companyEmail">
-              <label
-                for="companyEmail"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >Company Email</label
-              >
-              <input
-                type="email"
-                id="companyEmail"
-                name="c_email"
-                class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
-                placeholder="example@email.com"
-                required
-              />
-            </div>
-
-            <div class="companyAddress">
-              <label
-                for="companyAddress"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >Company Address</label
-              >
-              <textarea
-                type="address"
-                id="companyAddress"
-                name="c_address"
-                rows="3"
-                class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
-                placeholder="Enter your address here..."
-              ></textarea>
-            </div>
-            <div class="modal-action">
-              <label for="addCompany" class="btn btn-error">Cancel</label>
-              <button
-                id="companySubmitBTN"
-                type="submit"
-                class="btn btn-success focus:outline-none"
-              >
-                Add
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Company Edit Modal  -->
-<input type="checkbox" id="editCompany" class="modal-toggle" />
-<div class="modal modal-bottom sm:modal-middle companyEditModal">
-  <div
-    class="alert alert-error shadow-lg fixed top-16 w-auto z-10 opacity-0 duration-500 overflow-hidden errAlartSection"
-  >
-    <div>
-      <span>Sorry! Please fill in all the form inputs.</span>
-    </div>
-  </div>
-  <div
-    class="alert alert-success shadow-lg fixed top-16 w-auto z-10 opacity-0 duration-500 overflow-hidden successAlartSection"
-  >
-    <div>
-      <span>Congratulations! Successfully added a new category.</span>
-    </div>
-  </div>
-  <div class="modal-box h-auto flex flex-col justify-between scrollbar-hide">
-    <div>
-      <h3 class="font-bold text-lg mb-4">Edit Company!</h3>
-      <div>
-        <div class="flex justify-between space-x-1">
-          <form action="form" id="companyformEditID" class="space-y-4 w-full">
-            <div class="logoPreview">
-              <div
-                x-data="{photoName: null, photoPreview: null}"
-                class="col-span-6 ml-2 sm:col-span-4 md:mr-3"
-              >
-                <!-- Photo File Input -->
-                <input
-                  type="file"
-                  class="hidden"
-                  x-ref="photo"
-                  x-on:change="
-                                                      photoName = $refs.photo.files[0].name;
-                                                      const reader = new FileReader();
-                                                      reader.onload = (e) => {
-                                                          photoPreview = e.target.result;
-                                                      };
-                                                      reader.readAsDataURL($refs.photo.files[0]);
-                                  "
-                />
-
-                <!-- <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2 text-start" for="photo">
-                                    Logo <span class="text-red-600"> </span> 
-                                  </label> -->
-
-                <div class="text-center flex flex-col">
-                  <!-- Current Profile Photo -->
-                  <div class="mt-2" x-show="! photoPreview">
-                    <img
-                      name="imageLink"
-                      src="https://images.unsplash.com/photo-1531316282956-d38457be0993?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80"
-                      class="w-20 h-20 m-0 rounded-full shadow"
-                    />
-                  </div>
-                  <!-- New Profile Photo Preview -->
-                  <div class="mt-2" x-show="photoPreview" style="display: none">
-                    <span
-                      class="block w-20 h-20 rounded-full m-0 shadow"
-                      x-bind:style="'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' + photoPreview + '\');'"
-                      style="
-                        background-size: cover;
-                        background-repeat: no-repeat;
-                        background-position: center center;
-                        background-image: url('null');
-                      "
-                    >
-                    </span>
-                  </div>
-                  <button
-                    type="button"
-                    class="inline-flex px-4 py-2 bg-white dark:bg-gray-700 border border-gray-300 rounded-md font-semibold text-xs text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:text-green-400 dark:hover:text-green-400 focus:outline-none focus:border-green-400 focus:shadow-outline-green active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150 mt-2 w-40 flex justify-center items-center hover:border-green-400"
-                    x-on:click.prevent="$refs.photo.click()"
-                  >
-                    Upload Logo
-                  </button>
-                </div>
+              <div class="companyName">
+                <label for="companyName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Company
+                  Name</label>
+                <input type="text" id="companyName" name="companyName"
+                  class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                  placeholder="FoodShahiBD" required />
               </div>
-            </div>
 
-            <div class="companyName">
-              <label
-                for="companyName"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >Company Name</label
-              >
-              <input
-                type="text"
-                id="companyName"
-                name="companyName"
-                class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
-                placeholder="FoodShahiBD"
-                required
-              />
-            </div>
+              <div class="companyPhone">
+                <label for="companyPhone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Company
+                  Phone</label>
+                <input type="tel" id="companyPhone" name="companyPhone"
+                  class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                  placeholder="+8801728XXXXXX" required />
+              </div>
 
-            <div class="companyPhone">
-              <label
-                for="companyPhone"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >Company Phone</label
-              >
-              <input
-                type="tel"
-                id="companyPhone"
-                name="companyPhone"
-                class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
-                placeholder="+8801728XXXXXX"
-                required
-              />
-            </div>
+              <div class="companyEmail">
+                <label for="companyEmail" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Company
+                  Email</label>
+                <input type="email" id="companyEmail" name="companyEmail"
+                  class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                  placeholder="example@email.com" required />
+              </div>
 
-            <div class="companyEmail">
-              <label
-                for="companyEmail"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >Company Email</label
-              >
-              <input
-                type="email"
-                id="companyEmail"
-                name="companyEmail"
-                class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
-                placeholder="example@email.com"
-                required
-              />
-            </div>
-
-            <div class="companyAddress">
-              <label
-                for="companyAddress"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >Company Address</label
-              >
-              <textarea
-                type="address"
-                id="companyAddress"
-                name="companyAddress"
-                rows="3"
-                class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
-                placeholder="Enter your address here..."
-              ></textarea>
-            </div>
-          </form>
+              <div class="companyAddress">
+                <label for="companyAddress" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Company
+                  Address</label>
+                <textarea type="address" id="companyAddress" name="companyAddress" rows="3"
+                  class="formInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                  placeholder="Enter your address here..."></textarea>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="modal-action">
-      <label for="editCompany" class="btn btn-error">Cancel</label>
-      <button
-        id="companySubmitBTN"
-        type="submit"
-        class="btn btn-success focus:outline-none"
-      >
-        Add
-      </button>
+      <div class="modal-action">
+        <label for="editCompany" class="btn btn-error">Cancel</label>
+        <button id="companySubmitBTN" type="submit" class="btn btn-success focus:outline-none">
+          Add
+        </button>
+      </div>
     </div>
   </div>
-</div>
-<!-- Custome Js  -->
-<script src="/js/navigationMenu.js"></script>
-<script src="/js/notificationBar.js"></script>
-<script src="/js/tab.js"></script>
-<script src="/js/companyFormFetch.js"></script>
-<script src="/js/activeInactiveCard.js"></script>
-<%- include('./partials/footer.ejs') %>
+  <!-- Custome Js  -->
+  <script src="/js/navigationMenu.js"></script>
+  <script src="/js/notificationBar.js"></script>
+  <script src="/js/tab.js"></script>
+  <script src="/js/activeInactiveCard.js"></script>
+  <script src="/js/imgPreview.js"></script>
+
+
+  <!--  AJAX Request  -->
+  <!-- Job Post Add, Update, Delete  -->
+  <script type="module" src="/script/companyScript/companyAddUpdateDelete.js"></script>
+
+  <%- include('./partials/footer.ejs') %>

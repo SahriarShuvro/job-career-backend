@@ -1,8 +1,9 @@
-export function fetchAllJobData() {
+console.log("hi");
+export function fetchAllCompanyData() {
   return new Promise((resolve, reject) => {
     $.ajax({
       type: "GET",
-      url: `/api/admin/job`,
+      url: `/api/admin/companies`,
       dataType: "json",
       success: function (response) {
         resolve(response);
@@ -14,11 +15,11 @@ export function fetchAllJobData() {
   });
 }
 
-// Fetch job data from the server
-export function fetchJobData(page, limit) {
+// Fetch Company data from the server
+export function fetchCompanyData(page, limit) {
   return $.ajax({
     type: "GET",
-    url: `/api/admin/job?page=${page}&limit=${limit}`,
+    url: `/api/admin/company?page=${page}&limit=${limit}`,
     dataType: "json",
   });
 }
@@ -35,65 +36,99 @@ export async function updateUI(
   total_pages,
   page
 ) {
-  $("#total_job").text(total_item);
-  $("#total_active_job").text(active_item);
-  $("#total_inactive_job").text(inactive_item);
+  $("#total_company").text(total_item);
+  $("#total_active_company").text(active_item);
+  $("#total_inactive_company").text(inactive_item);
 
-  // Render Job list
-  const jobList = $("#all-job-list");
-  jobList.empty();
+  // Render Company list
+  const companyCards = $("#companyCardBody");
+  companyCards.empty();
 
-  $.each(data, function (index, eachJobList) {
-    const {
-      _id,
-      avatar,
-      active_status,
-      createdAt,
-      company,
-      job_title,
-      industry,
-      qualification,
-    } = eachJobList;
+  $.each(data, function (index, eachCompanyCard) {
+    const { _id, avatar, name, phone, email, address, active_status } =
+      eachCompanyCard;
 
-    const formattedDate = new Date(createdAt).toLocaleDateString();
-    const formattedTime = new Date(createdAt).toLocaleTimeString();
-
-    const row = $("<tr>").addClass(
-      "tr-row bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+    const card = $("<div>").addClass(
+      "w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative m-2 cardsAll"
     );
 
-    row.html(`
-                <td class="w-4 p-2">
-                  <div class="relative">
-                    <img class="w-10 h-10 rounded-full" src="${avatar}" alt="" />
-                    <span data-tip="${
-                      active_status ? "Active" : "Inactive"
-                    }" class="tooltip top-0 left-7 absolute w-3.5 h-3.5 ${active_status ? "bg-green-400" : "bg-red-500"} border-2 border-white dark:border-gray-800 rounded-full"></span>
-                  </div>
-                </td>
-                <th scope="row" data-tip="Job added: ${formattedDate} | ${formattedTime}" class="text-left px-6 w-full py-4 tooltip font-medium text-gray-900 whitespace-nowrap dark:text-white">${company}</th>
-                <td class="px-6 py-4">${job_title}</td>
-                <td class="px-6 py-4">${industry}</td>
-                <td class="px-6 py-4">${qualification}</td>
-                <td class="px-6 py-4">
-                  <label for="job-edit-modal" id="edit-button" data-id="${_id}" data-tip="Edit" class="tooltip cursor-pointer font-medium text-green-600 dark:text-green-500 ">
-                    <ion-icon class="text-xl text-green-600 tooltip" data-tip="Edit" name="create-outline"></ion-icon>
-                  </label>
-                  <label for="job-preview-modal" data-id="${_id}" data-tip="Preview" class="tooltip preview-button cursor-pointer font-medium text-green-600 dark:text-green-500 ">
-                    <ion-icon class="text-xl text-green-600" name="eye-outline"></ion-icon>
-                  </label>
-                  <label for="activeInactive" data-id="${_id}" data-tip="${active_status ? "Active" : "Inactive"}" class="tooltip active-inactive-button cursor-pointer font-medium text-green-600 dark:text-green-500 ">
-                    <ion-icon name="toggle-outline" class="text-xl ${
-                      active_status ? "text-green-500" : "text-red-500"
-                    }"></ion-icon>
-                  </label>
-                  <label for="delete" data-id="${_id}" data-tip="Delete" class="tooltip delete-job-button cursor-pointer font-medium text-green-600 dark:text-green-500 ">
-                    <ion-icon name="trash-outline" class="text-xl text-red-500"></ion-icon>
-                  </label>
-                </td>
+    card.html(`
+              <!-- Acive/Inactive BAGED -->
+              <div class="absolute top-3 left-3">
+                <p
+                  class="active-inactive-button cardStatusActive rounded-full bg-green-500 px-2 py-1 text-center text-xs hidden activeCard ${
+                    active_status ? "bg-green-500" : "bg-red-600"
+                  } "
+                >
+                ${active_status ? "Active" : "Inactive"}
+                </p>
+              </div>
+
+              <!-- Delete Edit Buttons -->
+              <div class="absolute top-3 right-3">
+                <label
+                  for="editCompany"
+                  data-id="${_id}"
+                  class="editButton btn btn-success rounded-full w-12 focus:outline-none border-none bg-green-500 px-2 py-1 text-center text-xs"
+                >
+                  <ion-icon
+                    class="text-[18px] text-white font-semibold"
+                    name="create-outline"
+                  ></ion-icon>
+                </label>
+                <label
+                data-id="${_id}"
+                for="deleteCompany"
+                  class="delete-company-button btn btn-error rounded-full w-12 focus:outline-none border-none bg-red-500 px-2 py-1 text-center text-xs"
+                >
+                  <ion-icon
+                    class="text-[18px] text-white font-semibold"
+                    name="trash-outline"
+                  ></ion-icon>
+                </label>
+              </div>
+
+              <div class="flex justify-end px-4 pt-4"></div>
+              <div class="flex flex-col items-center pb-10">
+                <img
+                  src="${avatar}"
+                  class="w-24 h-24 mb-3 rounded-full dark:ring-gray-400 shadow-lg object-cover bg-cover bg-center"
+                />
+                <h5
+                  class="mb-1 text-xl font-medium text-gray-900 dark:text-white"
+                >
+                  ${name}
+                </h5>
+                <span
+                  class="flex justify-center items-center text-center text-xs text-gray-500 dark:text-gray-400"
+                  ><ion-icon class="mr-1" name="call-outline"></ion-icon
+                  > ${phone}</span
+                >
+                <span
+                  class="flex justify-center items-center text-center text-xs text-gray-500 dark:text-gray-400"
+                  ><ion-icon class="mr-1" name="mail-outline"></ion-icon
+                  > ${email}</span
+                >
+                <span
+                  class="flex justify-center items-center text-center flex-wrap text-xs text-gray-500 dark:text-gray-400"
+                  ><ion-icon class="mr-1" name="location-outline"></ion-icon
+                  > ${address}</span
+                >
+                <div class="flex mt-4 space-x-3 md:mt-6">
+                  <a
+                    href="#"
+                    class=" ${
+                      active_status === false
+                        ? "activeButton inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                        : "inactiveButton inline-flex items-center px-4 py-2 text-sm font-medium text-center bg-red-600 border border-red-300 rounded-lg focus:ring-4 focus:outline-none focus:ring-red-200 text-white dark:border-red-600 hover:bg-red-800 dark:hover:border-red-700 dark:focus:ring-red-500"
+                    }"
+                    >${active_status === false ? "Active" : "Inactive"}</a
+                  >
+                </div>
+              </div>
               `);
 
-    jobList.append(row);
+    companyCards.append(card);
   });
 
   // Render Page numbers *** *** ***
@@ -199,16 +234,17 @@ export async function updateUI(
 }
 
 export async function fetchDataAndUpdateUI(page) {
-  fetchJobData(page, itemsPerPage)
+  fetchCompanyData(page, itemsPerPage)
     .then((response) => {
-      updateUI(
-        response.allPost,
-        response.totalItems,
-        response.totalActiveItems,
-        response.totalInactiveItems,
-        response.totalPages,
-        response.page
-      );
+      // updateUI(
+      //   response.allPost,
+      //   response.totalItems,
+      //   response.totalActiveItems,
+      //   response.totalInactiveItems,
+      //   response.totalPages,
+      //   response.page
+      // );
+      console.log(response);
     })
     .catch((error) => {
       console.error(error);
@@ -218,24 +254,24 @@ export async function fetchDataAndUpdateUI(page) {
 // Initial data fetch and UI update
 fetchDataAndUpdateUI(currentPage);
 
-// Add Job
+// Add Company
 $(document).ready(function () {
   fetchDataAndUpdateUI(currentPage);
 
-  $("#jobAddForm").submit(async function (event) {
+  $("#companyAddForm").submit(async function (event) {
     event.preventDefault();
 
     let formData = $(this).serialize();
 
     try {
       await $.ajax({
-        url: "/api/admin/job",
+        url: "/api/admin/companies",
         type: "POST",
         data: formData,
       });
 
       // Clear the form fields after submission
-      $("#jobAddForm")[0].reset();
+      $("#companyAddForm")[0].reset();
 
       $(".successAlartSection").addClass("alertActive");
       setTimeout(function () {
@@ -262,135 +298,32 @@ $(document).ready(function () {
   });
 });
 
-// Fetch categories, qualification, employment, industry function
-async function populateDropdown(url, dropdownId, placeholder) {
-  try {
-    const response = await $.ajax({
-      url: url,
-      method: "GET",
-      dataType: "json",
-    });
-
-    if (response) {
-      const dropdown = $(dropdownId);
-      dropdown.empty();
-
-      const optionS = $("<option>");
-      optionS.val("");
-      optionS.text(placeholder);
-      dropdown.append(optionS);
-
-      $.each(response, function (index, item) {
-        const option = $("<option>");
-        if (item.active_status === true) {
-          option.val(item.title);
-          option.text(item.title);
-          dropdown.append(option);
-        }
-      });
-    } else {
-      console.log(`Failed to fetch data from ${url}!`);
-    }
-  } catch (error) {
-    console.log(`Can't fetch data from ${url}: ${error}`);
-  }
-}
-
-// Call categories, qualification, employment, industry function
-$(document).on("click", "#jobAddBTN", async function () {
-  await populateDropdown(
-    `/api/admin/job-categories`,
-    "#add_category_drop",
-    "--Select Category--"
-  );
-  await populateDropdown(
-    `/api/admin/job-qualification`,
-    "#add_qualification_drop",
-    "--Select Qualification--"
-  );
-  await populateDropdown(
-    `/api/admin/job-employment-status`,
-    "#add_employment_status_drop",
-    "--Select Employment--"
-  );
-  await populateDropdown(
-    `/api/admin/job-industry`,
-    "#add_industry_drop",
-    "--Select Industry--"
-  );
-});
-
-///////////////////////// Edit and update /////////////////////////////////
+///////////////////////// Edit and update /////////////////////////
 
 // Get details in edit input
-const getEditDetails = async (jobId) => {
+const getEditDetails = async (companyId) => {
   try {
     const response = await $.ajax({
-      url: `/api/admin/job/${jobId}`,
+      url: `/api/admin/companies/${companyId}`,
       method: "GET",
       dataType: "json",
     });
 
     if (response) {
-      const jobPostData = response;
+      const companyPostData = response;
 
-      const {
-        job_title,
-        start_date,
-        end_date,
-        company,
-        job_location,
-        qualification,
-        employment_status,
-        offerd_salary,
-        salary_negotiable,
-        category,
-        vacancy,
-        industry,
-        experience,
-        gender,
-        job_details,
-        skills_required,
-      } = jobPostData;
-      //   start date
-      const original_s_d = jobPostData.start_date;
-      const formatted_s_date = new Date(original_s_d)
-        .toISOString()
-        .split("T")[0];
+      const { avatar, name, phone, email, address } = companyPostData;
 
-      // end date
-      const original_e_d = jobPostData.end_date;
-      const formatted_e_date = new Date(original_e_d)
-        .toISOString()
-        .split("T")[0];
-
-      $("#edit_job_title").val(job_title);
-      $("#edit_start_date").val(formatted_s_date);
-      $("#edit_end_date").val(formatted_e_date);
-      $("#edit_company").val(company);
-      $("#edit_job_location").val(job_location);
-      $("#edit_qualification_drop").val(qualification);
-      $("#edit_employment_status_drop").val(employment_status);
-      $("#edit_offerd_salary").val(offerd_salary);
-      $("#edit_category_drop").val(category);
-      $("#edit_vacancy").val(vacancy);
-      $("#edit_industry_drop").val(industry);
-      $("#edit_experience").val(experience);
-      $("#edit_gender").val(gender);
-      $("#edit_job_details").val(job_details);
-      $("#edit_skills_required").val(skills_required);
-
-      // Handle the salary_negotiable radio inputs
-      if (salary_negotiable === "yes") {
-        $("#edit_salary_negotiable_yes").prop("checked", true);
-      } else {
-        $("#edit_salary_negotiable_no").prop("checked", true);
-      }
+      $("#edit_avatar").val(avatar);
+      $("#edit_name").val(name);
+      $("#edit_phone").val(phone);
+      $("#edit_email").val(email);
+      $("#edit_address").val(address);
     } else {
-      console.error("Failed to fetch job post data");
+      console.error("Failed to fetch company post data");
     }
   } catch (error) {
-    console.error("Error while fetching job post data:", error);
+    console.error("Error while fetching company post data:", error);
   }
 };
 
@@ -398,43 +331,13 @@ const getEditDetails = async (jobId) => {
 function validateForm() {
   // Check if required fields are filled
   if (
-    $("#edit_job_title").val() === "" ||
-    $("#edit_start_date").val() === "" ||
-    $("#edit_end_date").val() === "" ||
-    $("#edit_company").val() === "" ||
-    $("#edit_job_location").val() === "" ||
-    $("#edit_qualification_drop").val() === "" ||
-    $("#edit_employment_status_drop").val() === "" ||
-    $("#edit_offerd_salary").val() === "" ||
-    $("#edit_category_drop").val() === "" ||
-    $("#edit_vacancy").val() === "" ||
-    $("#edit_industry_drop").val() === "" ||
-    $("#edit_experience").val() === "" ||
-    $("#edit_gender").val() === "" ||
-    $("#edit_job_details").val() === "" ||
-    $("#edit_skills_required").val() === ""
+    $("#edit_avatar").val() === "" ||
+    $("#edit_name").val() === "" ||
+    $("#edit_phone").val() === "" ||
+    $("#edit_email").val() === "" ||
+    $("#edit_address").val() === ""
   ) {
     alert("Please fill in all required fields.");
-    return false;
-  }
-
-  // Validate date format for start_date and end_date
-  const dateFormatRegex = /^\d{4}-\d{2}-\d{2}$/;
-  if (
-    !dateFormatRegex.test($("#edit_start_date").val()) ||
-    !dateFormatRegex.test($("#edit_end_date").val())
-  ) {
-    alert("Invalid date format. Please use YYYY-MM-DD.");
-    return false;
-  }
-
-  // Validate numeric fields
-  const numericRegex = /^\d+$/;
-  const salary = $("#edit_offerd_salary").val();
-  const vacancy = $("#edit_vacancy").val();
-
-  if (!numericRegex.test(salary) || !numericRegex.test(vacancy)) {
-    alert("Salary and vacancy must be numeric values.");
     return false;
   }
 
@@ -442,36 +345,15 @@ function validateForm() {
 }
 
 // Edit
-$(document).on("click", "#edit-button", async function () {
-  const jobId = $(this).data("id");
-  console.log(jobId);
+$(document).on("click", "#edit-compnay", async function () {
+  const companyId = $(this).data("id");
 
-  await populateDropdown(
-    `/api/admin/job-categories`,
-    "#edit_category_drop",
-    "--Select Category--"
-  );
-  await populateDropdown(
-    `/api/admin/job-qualification`,
-    "#edit_qualification_drop",
-    "--Select Qualification--"
-  );
-  await populateDropdown(
-    `/api/admin/job-employment-status`,
-    "#edit_employment_status_drop",
-    "--Select Employment--"
-  );
-  await populateDropdown(
-    `/api/admin/job-industry`,
-    "#edit_industry_drop",
-    "--Select Industry--"
-  );
-  getEditDetails(jobId);
+  getEditDetails(companyId);
 
   // Event delegation for form submission
   $(document)
     .off("submit")
-    .on("submit", "#edit-job-form", async function (event) {
+    .on("submit", "#edit-company-form", async function (event) {
       event.preventDefault();
 
       // Client-side form validation
@@ -480,29 +362,15 @@ $(document).on("click", "#edit-button", async function () {
       }
 
       const updatedData = {
-        job_title: $("#edit_job_title").val(),
-        start_date: $("#edit_start_date").val(),
-        end_date: $("#edit_end_date").val(),
-        company: $("#edit_company").val(),
-        job_location: $("#edit_job_location").val(),
-        qualification: $("#edit_qualification_drop").val(),
-        employment_status: $("#edit_employment_status_drop").val(),
-        offered_salary: parseInt($("#edit_offerd_salary").val(), 10),
-        category: $("#edit_category_drop").val(),
-        vacancy: parseInt($("#edit_vacancy").val(), 10),
-        industry: $("#edit_industry_drop").val(),
-        experience: $("#edit_experience").val(),
-        gender: $("#edit_gender").val(),
-        job_details: $("#edit_job_details").val(),
-        skills_required: $("#edit_skills_required").val(),
-
-        salary_negotiable: $("#edit_salary_negotiable_yes").is(":checked")
-          ? "yes"
-          : "no",
+        avatar: $("#edit_avatar").val(avatar),
+        name: $("#edit_name").val(name),
+        phone: $("#edit_phone").val(phone),
+        email: $("#edit_email").val(email),
+        address: $("#edit_address").val(address),
       };
       try {
         const response = await $.ajax({
-          url: `/api/admin/job/${jobId}`,
+          url: `/api/admin/companies/${companyId}`,
           method: "PATCH",
           data: updatedData,
           dataType: "json",
@@ -539,7 +407,7 @@ $(document).on("click", "#edit-button", async function () {
 
 // Active/inactive job post
 $(document).on("click", ".active-inactive-button", async function () {
-  const jobId = $(this).data("id");
+  const companyId = $(this).data("id");
   const confirmToggle = confirm(
     "Are you sure you want to toggle the active status of this POST?"
   );
@@ -550,7 +418,7 @@ $(document).on("click", ".active-inactive-button", async function () {
   try {
     // Fetch the current status
     const currentStatusResponse = await $.ajax({
-      url: `/api/admin/job/${jobId}`,
+      url: `/api/admin/companies/${companyId}`,
       method: "GET",
       dataType: "json",
     });
@@ -567,7 +435,7 @@ $(document).on("click", ".active-inactive-button", async function () {
 
     // Update the status
     const response = await $.ajax({
-      url: `/api/admin/job/${jobId}`,
+      url: `/api/admin/companies/${companyId}`,
       method: "PUT",
       data: statusUpdate,
       dataType: "json",
@@ -590,20 +458,20 @@ $(document).on("click", ".active-inactive-button", async function () {
           $(".post-alert").removeClass("alertActive");
         }, 3000);
       }
-      console.log("Category status toggled successfully");
+      console.log("Company status toggled successfully");
       fetchDataAndUpdateUI(currentPage);
     } else {
-      console.error("Failed to toggle category status.");
+      console.error("Failed to toggle Company status.");
     }
   } catch (error) {
-    console.error("Error while toggling category status:", error);
+    console.error("Error while toggling Company status:", error);
   }
 });
 
 // Delete Details
-$(document).on("click", ".delete-job-button", async function () {
-  const jobId = $(this).data("id");
-  // return console.log(jobId);
+$(document).on("click", ".delete-company-button", async function () {
+  const companyId = $(this).data("id");
+  // return console.log(companyId);
 
   const confirmDelete = window.confirm(
     "Are you sure you want to delete this Job?"
@@ -613,7 +481,7 @@ $(document).on("click", ".delete-job-button", async function () {
     try {
       // Send an AJAX request to delete the job
       const response = await $.ajax({
-        url: `/api/admin/job/${jobId}`,
+        url: `/api/admin/job/${companyId}`,
         method: "DELETE",
       });
       if (response) {
@@ -630,13 +498,13 @@ $(document).on("click", ".delete-job-button", async function () {
 // Preview Details
 
 $(document).on("click", ".preview-button", async function () {
-  const jobId = $(this).data("id");
-  console.log(jobId);
+  const companyId = $(this).data("id");
+  console.log(companyId);
 
   try {
     // Send an AJAX request to fetch job post data
     const response = await $.ajax({
-      url: `/api/admin/job/${jobId}`,
+      url: `/api/admin/job/${companyId}`,
       method: "GET",
       dataType: "json",
     });

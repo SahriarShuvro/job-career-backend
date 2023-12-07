@@ -1,30 +1,4 @@
-const he = require("he");
-const JobPost = require("../models/jobSchema/JobAdd");
-
-const decodeJobPost = (jobPost) => ({
-  _id: jobPost._id,
-  job_title: String(he.decode(jobPost.job_title)),
-  start_date: jobPost.start_date,
-  end_date: jobPost.end_date,
-  company: String(he.decode(jobPost.company)),
-  job_location: String(he.decode(jobPost.job_location)),
-  qualification: String(he.decode(jobPost.qualification)),
-  employment_status: String(he.decode(jobPost.employment_status)),
-  offerd_salary: Number(jobPost.offerd_salary),
-  salary_negotiable: jobPost.salary_negotiable,
-  category: String(he.decode(jobPost.category)),
-  vacancy: Number(jobPost.vacancy),
-  industry: String(he.decode(jobPost.industry)),
-  experience: String(he.decode(jobPost.experience)),
-  gender: String(he.decode(jobPost.gender)),
-  job_details: String(he.decode(jobPost.job_details)),
-  skills_required: String(he.decode(jobPost.skills_required)),
-  active_status: jobPost.active_status,
-  createdAt: jobPost.createdAt,
-  updatedAt: jobPost.updatedAt,
-});
-
-const getAllJobs = async (model, page, limit) => {
+const getAllJobs = async (model, page, limit, decodeData) => {
   try {
     const startIndex = (page - 1) * limit;
     const endIndex = page * limit;
@@ -64,7 +38,7 @@ const getAllJobs = async (model, page, limit) => {
     // Count total number of inactive items
     const totalInactiveItems = totalItems - totalActiveItems;
 
-    let allPost = results.results.map(decodeJobPost);
+    let allPost = results.results.map(decodeData);
 
     return {
       totalItems,

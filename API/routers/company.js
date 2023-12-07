@@ -4,12 +4,12 @@ const router = express.Router();
 // Controllers Import
 const {
   api_company_get,
-  api_company_post,
+  api_create_company,
   // single
   api_single_company_get,
-  api_company_edit,
+  api_update_company,
   api_company_active_inactive,
-  api_company_delete,
+  api_delete_company,
 } = require("../controllers/company/");
 
 const {
@@ -35,14 +35,14 @@ const {
 router
   .route("/companies")
   .get(api_company_get)
-  .post(validateCompany, api_company_post);
+  .post(validateCompany, api_create_company);
 // Single
 router
   .route("/companies/:id")
-  .get(api_company_edit)
-  .patch(validateEditCompany, api_company_edit)
+  .get(api_single_company_get)
+  .patch(validateEditCompany, api_update_company)
   .put(api_company_active_inactive)
-  .delete(api_company_delete);
+  .delete(api_delete_company);
 
 // Company Category
 router

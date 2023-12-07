@@ -2,6 +2,11 @@ const { Schema, model } = require("mongoose");
 
 const CompanyAddSchema = new Schema(
   {
+    avatar: {
+      type: String,
+      required: true,
+      max: 999999,
+    },
     name: {
       type: String,
       required: true,

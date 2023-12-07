@@ -1,6 +1,12 @@
 const { check, validationResult } = require("express-validator");
 
 exports.validateCompany = [
+  check("avatar")
+    .not()
+    .isEmpty()
+    .escape()
+    .withMessage("Company Logo is required!"),
+
   check("name")
     .not()
     .isEmpty()
@@ -44,6 +50,12 @@ exports.validateCompany = [
 ];
 
 exports.validateEditCompany = [
+  check("avatar")
+    .not()
+    .isEmpty()
+    .escape()
+    .withMessage("Company Logo is required!"),
+
   check("name")
     .not()
     .isEmpty()

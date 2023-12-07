@@ -1,6 +1,6 @@
 const JobPost = require("../../models/jobSchema/JobAdd");
 const he = require("he");
-const getAllJobs = require("../../lib/getAllJobs");
+const getAllJobs = require("../../lib/getAllPost");
 
 // *****  Job Post page start ***** //
 // Job Add ** //
@@ -10,7 +10,29 @@ exports.api_job_post_get = async (req, res, next) => {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
 
-    const alljobs = await getAllJobs(JobPost, page, limit);
+    const decodeJobPost = (jobPost) => ({
+      _id: jobPost._id,
+      job_title: String(he.decode(jobPost.job_title)),
+      start_date: jobPost.start_date,
+      end_date: jobPost.end_date,
+      company: String(he.decode(jobPost.company)),
+      job_location: String(he.decode(jobPost.job_location)),
+      qualification: String(he.decode(jobPost.qualification)),
+      employment_status: String(he.decode(jobPost.employment_status)),
+      offerd_salary: Number(jobPost.offerd_salary),
+      salary_negotiable: jobPost.salary_negotiable,
+      category: String(he.decode(jobPost.category)),
+      vacancy: Number(jobPost.vacancy),
+      industry: String(he.decode(jobPost.industry)),
+      experience: String(he.decode(jobPost.experience)),
+      gender: String(he.decode(jobPost.gender)),
+      job_details: String(he.decode(jobPost.job_details)),
+      skills_required: String(he.decode(jobPost.skills_required)),
+      active_status: jobPost.active_status,
+      createdAt: jobPost.createdAt,
+      updatedAt: jobPost.updatedAt,
+    });
+    const alljobs = await getAllJobs(JobPost, page, limit, decodeJobPost);
     res.json(alljobs);
   } catch (error) {
     console.log(error);
@@ -66,13 +88,12 @@ exports.api_job_post_post = async (req, res, next) => {
       gender,
       job_details,
       skills_required,
+      active_status,
     });
 
     // Save the new job post to the database
     const savedJob = await newJob.save();
 
-    console.log(savedJob);
-    // Send a success response
     res.status(201).json({
       success: true,
       jobPost: savedJob,
@@ -178,7 +199,7 @@ exports.api_update_job_post = async (req, res, next) => {
     res.status(500).json({ error: "Something went wrong" });
   }
 };
-
+// Active inactive
 exports.api_single_job_activate_inactivate = async (req, res, next) => {
   try {
     const { id } = req.params;
