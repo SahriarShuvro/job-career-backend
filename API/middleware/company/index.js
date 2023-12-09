@@ -1,36 +1,19 @@
 const { check, validationResult } = require("express-validator");
 
 exports.validateCompany = [
-  check("avatar")
-    .not()
-    .isEmpty()
-    .escape()
-    .withMessage("Company Logo is required!"),
+  check("avatar").isEmpty().escape().withMessage("Company Logo is required!"),
 
-  check("title")
-    .not()
-    .isEmpty()
-    .escape()
-    .withMessage("Company Name is required!"),
+  check("title").isEmpty().escape().withMessage("Company Name is required!"),
 
   check("phone")
     .not()
-    .isEmpty()
-    .escape()
-    .withMessage("Company Phone is required!")
     .isMobilePhone()
-    .withMessage("Company Phone a phone number"),
-
-  check("email")
-    .not()
-    .isEmpty()
     .escape()
-    .withMessage("Company Email is required!")
-    .isEmail()
-    .withMessage("Company Email Should be mail type. ex: example@email.com"),
+    .withMessage("Invalid phone number"),
+
+  check("email").not().isEmail().escape().withMessage("Invalid email address"),
 
   check("address")
-    .not()
     .isEmpty()
     .escape()
     .withMessage("Company Address is required!"),

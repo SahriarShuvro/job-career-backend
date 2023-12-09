@@ -38,7 +38,7 @@ const { upload } = require("../middleware/global/fileUploade");
 router
   .route("/companies")
   .get(api_company_get)
-  .post(upload.single("avatar"), api_create_company);
+  .post(validateCompany, upload.single("avatar"), api_create_company);
 // Single
 router
   .route("/companies/:id")

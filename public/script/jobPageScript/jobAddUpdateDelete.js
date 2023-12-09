@@ -284,8 +284,8 @@ async function populateDropdown(url, dropdownId, placeholder) {
       $.each(response.allPost, function (index, item) {
         const option = $("<option>");
         if (item.active_status === true) {
-          option.val(item.c_name);
-          option.text(item.c_name);
+          option.val(item.title);
+          option.text(item.title);
           dropdown.append(option);
         }
       });

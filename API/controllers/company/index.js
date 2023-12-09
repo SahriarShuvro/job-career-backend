@@ -10,7 +10,7 @@ const {
 exports.api_company_get = async (req, res, next) => {
   try {
     const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 3;
+    const limit = parseInt(req.query.limit) || 9;
 
     const decodedCompany = (companiesPost) => ({
       _id: companiesPost._id,
@@ -56,8 +56,6 @@ exports.api_create_company = async (req, res, next) => {
 
     // Save the new Company post to the database
     const savedCompany = await newCompany.save();
-    console.log(savedCompany);
-    console.log(req.file);
 
     res.status(201).json({
       success: true,

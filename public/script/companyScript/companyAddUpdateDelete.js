@@ -25,7 +25,7 @@ export function fetchCompanyData(page, limit) {
 
 // Example usage
 let currentPage = 1;
-const itemsPerPage = 3;
+const itemsPerPage = 9;
 
 export async function updateUI(
   data,
