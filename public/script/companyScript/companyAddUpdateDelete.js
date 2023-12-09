@@ -1,4 +1,3 @@
-console.log("hi");
 export function fetchAllCompanyData() {
   return new Promise((resolve, reject) => {
     $.ajax({
@@ -19,14 +18,14 @@ export function fetchAllCompanyData() {
 export function fetchCompanyData(page, limit) {
   return $.ajax({
     type: "GET",
-    url: `/api/admin/company?page=${page}&limit=${limit}`,
+    url: `/api/admin/companies?page=${page}&limit=${limit}`,
     dataType: "json",
   });
 }
 
 // Example usage
 let currentPage = 1;
-const itemsPerPage = 10;
+const itemsPerPage = 3;
 
 export async function updateUI(
   data,
@@ -45,7 +44,7 @@ export async function updateUI(
   companyCards.empty();
 
   $.each(data, function (index, eachCompanyCard) {
-    const { _id, avatar, name, phone, email, address, active_status } =
+    const { _id, avatar, c_name, phone, email, address, active_status } =
       eachCompanyCard;
 
     const card = $("<div>").addClass(
@@ -97,7 +96,7 @@ export async function updateUI(
                 <h5
                   class="mb-1 text-xl font-medium text-gray-900 dark:text-white"
                 >
-                  ${name}
+                  ${c_name}
                 </h5>
                 <span
                   class="flex justify-center items-center text-center text-xs text-gray-500 dark:text-gray-400"
@@ -236,15 +235,14 @@ export async function updateUI(
 export async function fetchDataAndUpdateUI(page) {
   fetchCompanyData(page, itemsPerPage)
     .then((response) => {
-      // updateUI(
-      //   response.allPost,
-      //   response.totalItems,
-      //   response.totalActiveItems,
-      //   response.totalInactiveItems,
-      //   response.totalPages,
-      //   response.page
-      // );
-      console.log(response);
+      updateUI(
+        response.allPost,
+        response.totalItems,
+        response.totalActiveItems,
+        response.totalInactiveItems,
+        response.totalPages,
+        response.page
+      );
     })
     .catch((error) => {
       console.error(error);
@@ -261,42 +259,94 @@ $(document).ready(function () {
   $("#companyAddForm").submit(async function (event) {
     event.preventDefault();
 
-    let formData = $(this).serialize();
-
     try {
+      // Create a FormData object to handle both form fields and files
+      const formData = new FormData(this);
+
       await $.ajax({
         url: "/api/admin/companies",
         type: "POST",
         data: formData,
+        contentType: false, // Required for file uploads
+        processData: false, // Required for file uploads
+        success: function (response) {
+          // Clear the form fields after submission
+          $("#companyAddForm")[0].reset();
+
+          $(".successAlartSection")
+            .addClass("alertActive")
+            .text("Company added successfully!");
+
+          setTimeout(function () {
+            $(".successAlartSection").removeClass("alertActive");
+          }, 3000);
+
+          // Update the job list with the new data
+          fetchDataAndUpdateUI(currentPage);
+        },
+        error: function (error) {
+          if (error.responseJSON && error.responseJSON.errors) {
+            const errors = error.responseJSON.errors;
+            const errorMessage = errors.map((error) => error.msg).join("<br>");
+
+            $(".errAlartSection").addClass("alertActive").html(errorMessage);
+
+            setTimeout(function () {
+              $(".errAlartSection").removeClass("alertActive");
+            }, 5000);
+          } else {
+            console.log(error);
+          }
+        },
       });
-
-      // Clear the form fields after submission
-      $("#companyAddForm")[0].reset();
-
-      $(".successAlartSection").addClass("alertActive");
-      setTimeout(function () {
-        $(".successAlartSection").removeClass("alertActive");
-      }, 3000);
-
-      // Update the job list with the new data
-      fetchDataAndUpdateUI(currentPage);
     } catch (error) {
-      if (error.responseJSON && error.responseJSON.errors) {
-        const errors = error.responseJSON.errors;
-        const errorMessage = errors.map((error) => error.msg).join("<br>");
-
-        $(".errAlartSection").addClass("alertActive");
-        $(".errAlartSection").text(errorMessage, error.msg);
-
-        setTimeout(function () {
-          $(".errAlartSection").removeClass("alertActive");
-        }, 5000);
-      } else {
-        console.log(`Could not fetch ${error}`);
-      }
+      console.log(error);
     }
   });
 });
+
+// $(document).ready(function () {
+//   fetchDataAndUpdateUI(currentPage);
+//   $("#companyAddForm").submit(async function (event) {
+//     event.preventDefault();
+
+//     let formData = $(this).serialize();
+
+//     try {
+//       await $.ajax({
+//         url: "/api/admin/companies",
+//         type: "POST",
+//         data: formData,
+//         success: function (response) {
+//           // Clear the form fields after successful submission
+//           $("#companyAddForm")[0].reset();
+
+//           // Display a success message or perform any other actions
+//           console.log("Company added successfully:", response);
+
+//           // Update the company list with the new data
+//           fetchDataAndUpdateUI(currentPage);
+//         },
+//         error: function (error) {
+//           // Handle errors, display an error message, or log the error
+//           console.error("Error adding company:", error);
+//         },
+//       });
+//     } catch (error) {
+//       const errors = error.responseJSON.errors;
+//       const errorMessage = errors.map((error) => error.msg).join("<br>");
+
+//       $(".errAlartSection").addClass("alertActive");
+//       $(".errAlartSection").text(errorMessage, error.msg);
+
+//       setTimeout(function () {
+//         $(".errAlartSection").removeClass("alertActive");
+//       }, 5000);
+//       // Handle any additional errors that might occur during the AJAX call
+//       console.error("Additional error:", error);
+//     }
+//   });
+// });
 
 ///////////////////////// Edit and update /////////////////////////
 
@@ -312,10 +362,10 @@ const getEditDetails = async (companyId) => {
     if (response) {
       const companyPostData = response;
 
-      const { avatar, name, phone, email, address } = companyPostData;
+      const { avatar, c_name, phone, email, address } = companyPostData;
 
       $("#edit_avatar").val(avatar);
-      $("#edit_name").val(name);
+      $("#edit_name").val(c_name);
       $("#edit_phone").val(phone);
       $("#edit_email").val(email);
       $("#edit_address").val(address);
@@ -363,7 +413,7 @@ $(document).on("click", "#edit-compnay", async function () {
 
       const updatedData = {
         avatar: $("#edit_avatar").val(avatar),
-        name: $("#edit_name").val(name),
+        c_name: $("#edit_name").val(c_name),
         phone: $("#edit_phone").val(phone),
         email: $("#edit_email").val(email),
         address: $("#edit_address").val(address),
@@ -471,26 +521,35 @@ $(document).on("click", ".active-inactive-button", async function () {
 // Delete Details
 $(document).on("click", ".delete-company-button", async function () {
   const companyId = $(this).data("id");
-  // return console.log(companyId);
+  console.log(companyId);
 
   const confirmDelete = window.confirm(
-    "Are you sure you want to delete this Job?"
+    "Are you sure you want to delete this Company?"
   );
 
   if (confirmDelete) {
     try {
-      // Send an AJAX request to delete the job
+      // Show loading spinner while waiting for the response
+      $(this).closest(".tr-row").addClass("deleting");
+
+      // Send an AJAX request to delete the company
       const response = await $.ajax({
-        url: `/api/admin/job/${companyId}`,
+        url: `/api/admin/companies/${companyId}`,
         method: "DELETE",
       });
+
       if (response) {
+        // Remove the company row from the UI
         $(this).closest(".tr-row").remove();
 
+        // Update UI or perform other actions
         fetchDataAndUpdateUI(currentPage);
       }
     } catch (error) {
-      console.error("Failed to delete job:", error);
+      console.error("Failed to delete company:", error);
+    } finally {
+      // Remove the loading spinner regardless of success or failure
+      $(this).closest(".tr-row").removeClass("deleting");
     }
   }
 });

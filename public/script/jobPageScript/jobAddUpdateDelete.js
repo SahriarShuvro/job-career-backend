@@ -226,6 +226,7 @@ $(document).ready(function () {
     event.preventDefault();
 
     let formData = $(this).serialize();
+    console.log(formData);
 
     try {
       await $.ajax({

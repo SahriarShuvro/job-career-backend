@@ -30,17 +30,20 @@ const {
 } = require("../middleware/company/");
 // const validateCompanyCategory = require("../middleware/company/category");
 
+// file Uploade middleware
+const { upload } = require("../middleware/global/fileUploade");
+
 // Company API *** //
 // Company Post
 router
   .route("/companies")
   .get(api_company_get)
-  .post(validateCompany, api_create_company);
+  .post(upload.single("avatar"), api_create_company);
 // Single
 router
   .route("/companies/:id")
   .get(api_single_company_get)
-  .patch(validateEditCompany, api_update_company)
+  .patch(api_update_company)
   .put(api_company_active_inactive)
   .delete(api_delete_company);
 

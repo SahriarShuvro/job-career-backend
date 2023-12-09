@@ -7,7 +7,7 @@ exports.validateCompany = [
     .escape()
     .withMessage("Company Logo is required!"),
 
-  check("name")
+  check("c_name")
     .not()
     .isEmpty()
     .escape()
@@ -18,8 +18,8 @@ exports.validateCompany = [
     .isEmpty()
     .escape()
     .withMessage("Company Phone is required!")
-    .isNumeric()
-    .withMessage("Company Phone should be Numaric"),
+    .isMobilePhone()
+    .withMessage("Company Phone a phone number"),
 
   check("email")
     .not()

@@ -8,7 +8,6 @@ selectImage.addEventListener("click", function () {
 
 inputFile.addEventListener("change", function () {
   const image = this.files[0];
-  console.log(image);
 
   const reader = new FileReader();
 

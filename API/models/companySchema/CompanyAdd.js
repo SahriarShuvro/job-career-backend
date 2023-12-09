@@ -7,7 +7,7 @@ const CompanyAddSchema = new Schema(
       required: true,
       max: 999999,
     },
-    name: {
+    c_name: {
       type: String,
       required: true,
       max: 99,

@@ -1,18 +1,21 @@
 const CompanyAdd = require("../../models/companySchema/CompanyAdd");
 const he = require("he");
 const getAllCompanies = require("../../lib/getAllPost");
+const {
+  generateUploadsFolder,
+} = require("../../middleware/global/fileUploade");
 // *****  Copmany page start ***** //
 // Company Add ** //
 // Get
 exports.api_company_get = async (req, res, next) => {
   try {
     const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 9;
+    const limit = parseInt(req.query.limit) || 3;
 
     const decodedCompany = (companiesPost) => ({
       _id: companiesPost._id,
       avatar: companiesPost.avatar,
-      name: String(he.decode(companiesPost.name)),
+      c_name: String(he.decode(companiesPost.c_name)),
       phone: String(he.decode(companiesPost.phone)),
       email: String(he.decode(companiesPost.email)),
       address: String(he.decode(companiesPost.address)),
@@ -27,6 +30,7 @@ exports.api_company_get = async (req, res, next) => {
       limit,
       decodedCompany
     );
+
     res.json(allCompanies);
   } catch (error) {
     console.log(error);
@@ -36,12 +40,14 @@ exports.api_company_get = async (req, res, next) => {
 // Post
 exports.api_create_company = async (req, res, next) => {
   try {
-    const { avatar, name, phone, email, address, active_status } = req.body;
+    generateUploadsFolder("companies");
+    const { c_name, phone, email, address, active_status } = req.body;
+    const avatar = req.file ? req.file.path.split("public").join("") : null;
 
     // Create a new company post instance
     const newCompany = new CompanyAdd({
       avatar,
-      name,
+      c_name,
       phone,
       email,
       address,
@@ -50,6 +56,8 @@ exports.api_create_company = async (req, res, next) => {
 
     // Save the new Company post to the database
     const savedCompany = await newCompany.save();
+    console.log(savedCompany);
+    console.log(req.file);
 
     res.status(201).json({
       success: true,
@@ -76,7 +84,7 @@ exports.api_single_company_get = async (req, res, next) => {
     const decodedCompany = {
       _id: singleCompany._id,
       avatar: String(he.decode(singleCompany.avatar)),
-      name: String(he.decode(singleCompany.name)),
+      c_name: String(he.decode(singleCompany.c_name)),
       phone: String(he.decode(singleCompany.phone)),
       email: String(he.decode(singleCompany.email)),
       address: String(he.decode(singleCompany.address)),
@@ -95,11 +103,11 @@ exports.api_single_company_get = async (req, res, next) => {
 exports.api_update_company = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { avatar, name, phone, email, address, active_status } = req.body;
+    const { avatar, c_name, phone, email, address, active_status } = req.body;
 
     const updateCompany = await CompanyAdd.findOneAndUpdate(
       { _id: id },
-      { avatar, name, phone, email, address, active_status },
+      { avatar, c_name, phone, email, address, active_status },
       { new: true }
     );
     if (!updateCompany) {
