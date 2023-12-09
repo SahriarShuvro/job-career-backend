@@ -7,7 +7,7 @@ exports.validateCompany = [
     .escape()
     .withMessage("Company Logo is required!"),
 
-  check("c_name")
+  check("title")
     .not()
     .isEmpty()
     .escape()
@@ -56,7 +56,7 @@ exports.validateEditCompany = [
     .escape()
     .withMessage("Company Logo is required!"),
 
-  check("name")
+  check("title")
     .not()
     .isEmpty()
     .escape()

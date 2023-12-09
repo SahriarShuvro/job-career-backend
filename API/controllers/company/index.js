@@ -15,7 +15,7 @@ exports.api_company_get = async (req, res, next) => {
     const decodedCompany = (companiesPost) => ({
       _id: companiesPost._id,
       avatar: companiesPost.avatar,
-      c_name: String(he.decode(companiesPost.c_name)),
+      title: String(he.decode(companiesPost.title)),
       phone: String(he.decode(companiesPost.phone)),
       email: String(he.decode(companiesPost.email)),
       address: String(he.decode(companiesPost.address)),
@@ -41,13 +41,13 @@ exports.api_company_get = async (req, res, next) => {
 exports.api_create_company = async (req, res, next) => {
   try {
     generateUploadsFolder("companies");
-    const { c_name, phone, email, address, active_status } = req.body;
+    const { title, phone, email, address, active_status } = req.body;
     const avatar = req.file ? req.file.path.split("public").join("") : null;
 
     // Create a new company post instance
     const newCompany = new CompanyAdd({
       avatar,
-      c_name,
+      title,
       phone,
       email,
       address,
@@ -84,7 +84,7 @@ exports.api_single_company_get = async (req, res, next) => {
     const decodedCompany = {
       _id: singleCompany._id,
       avatar: String(he.decode(singleCompany.avatar)),
-      c_name: String(he.decode(singleCompany.c_name)),
+      title: String(he.decode(singleCompany.title)),
       phone: String(he.decode(singleCompany.phone)),
       email: String(he.decode(singleCompany.email)),
       address: String(he.decode(singleCompany.address)),
@@ -103,11 +103,11 @@ exports.api_single_company_get = async (req, res, next) => {
 exports.api_update_company = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { avatar, c_name, phone, email, address, active_status } = req.body;
+    const { avatar, title, phone, email, address, active_status } = req.body;
 
     const updateCompany = await CompanyAdd.findOneAndUpdate(
       { _id: id },
-      { avatar, c_name, phone, email, address, active_status },
+      { avatar, title, phone, email, address, active_status },
       { new: true }
     );
     if (!updateCompany) {

@@ -281,11 +281,11 @@ async function populateDropdown(url, dropdownId, placeholder) {
       optionS.text(placeholder);
       dropdown.append(optionS);
 
-      $.each(response, function (index, item) {
+      $.each(response.allPost, function (index, item) {
         const option = $("<option>");
         if (item.active_status === true) {
-          option.val(item.title);
-          option.text(item.title);
+          option.val(item.c_name);
+          option.text(item.c_name);
           dropdown.append(option);
         }
       });
@@ -318,6 +318,11 @@ $(document).on("click", "#jobAddBTN", async function () {
     `/api/admin/job-industry`,
     "#add_industry_drop",
     "--Select Industry--"
+  );
+  await populateDropdown(
+    `/api/admin/companies`,
+    "#add_companies_drop",
+    "--Select Company--"
   );
 });
 

@@ -44,7 +44,7 @@ export async function updateUI(
   companyCards.empty();
 
   $.each(data, function (index, eachCompanyCard) {
-    const { _id, avatar, c_name, phone, email, address, active_status } =
+    const { _id, avatar, title, phone, email, address, active_status } =
       eachCompanyCard;
 
     const card = $("<div>").addClass(
@@ -96,7 +96,7 @@ export async function updateUI(
                 <h5
                   class="mb-1 text-xl font-medium text-gray-900 dark:text-white"
                 >
-                  ${c_name}
+                  ${title}
                 </h5>
                 <span
                   class="flex justify-center items-center text-center text-xs text-gray-500 dark:text-gray-400"
@@ -362,10 +362,10 @@ const getEditDetails = async (companyId) => {
     if (response) {
       const companyPostData = response;
 
-      const { avatar, c_name, phone, email, address } = companyPostData;
+      const { avatar, title, phone, email, address } = companyPostData;
 
       $("#edit_avatar").val(avatar);
-      $("#edit_name").val(c_name);
+      $("#edit_name").val(title);
       $("#edit_phone").val(phone);
       $("#edit_email").val(email);
       $("#edit_address").val(address);
@@ -413,7 +413,7 @@ $(document).on("click", "#edit-compnay", async function () {
 
       const updatedData = {
         avatar: $("#edit_avatar").val(avatar),
-        c_name: $("#edit_name").val(c_name),
+        title: $("#edit_name").val(title),
         phone: $("#edit_phone").val(phone),
         email: $("#edit_email").val(email),
         address: $("#edit_address").val(address),
