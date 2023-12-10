@@ -40,7 +40,6 @@ exports.api_company_get = async (req, res, next) => {
 // Post
 exports.api_create_company = async (req, res, next) => {
   try {
-    generateUploadsFolder("companies");
     const { title, phone, email, address, active_status } = req.body;
     const avatar = req.file ? req.file.path.split("public").join("") : null;
 
