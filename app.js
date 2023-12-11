@@ -42,9 +42,9 @@ app.all("*", error_controller, error_middleware);
 
 // Database Connection
 const PORT = 8080;
-const URL = "mongodb://127.0.0.1:27017/admin";
-// const URL =
-//   "mongodb+srv://allJobBDuser:ub8SBYPREpEMg20a@alljobdbname.ff1flso.mongodb.net/test?retryWrites=true&w=majority";
+// const URL = "mongodb://127.0.0.1:27017/admin";
+const URL =
+  "mongodb+srv://allJobBDuser:ub8SBYPREpEMg20a@alljobdbname.ff1flso.mongodb.net/test?retryWrites=true&w=majority";
 
 mongoose
   .connect(URL, { useNewUrlParser: true, useUnifiedTopology: true })
