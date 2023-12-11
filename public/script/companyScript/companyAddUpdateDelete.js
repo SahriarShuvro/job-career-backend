@@ -68,6 +68,7 @@ export async function updateUI(
                 <label
                   for="editCompany"
                   data-id="${_id}"
+                  id="edit-compnay"
                   class="editButton btn btn-success rounded-full w-12 focus:outline-none border-none bg-green-500 px-2 py-1 text-center text-xs"
                 >
                   <ion-icon
@@ -77,6 +78,7 @@ export async function updateUI(
                 </label>
                 <label
                 data-id="${_id}"
+                id="delete-compnay"
                 for="deleteCompany"
                   class="delete-company-button btn btn-error rounded-full w-12 focus:outline-none border-none bg-red-500 px-2 py-1 text-center text-xs"
                 >
@@ -267,8 +269,8 @@ $(document).ready(function () {
         url: "/api/admin/companies",
         type: "POST",
         data: formData,
-        contentType: false, // Required for file uploads
-        processData: false, // Required for file uploads
+        contentType: false,
+        processData: false,
         success: function (response) {
           // Clear the form fields after submission
           $("#companyAddForm")[0].reset();
@@ -305,52 +307,7 @@ $(document).ready(function () {
   });
 });
 
-// $(document).ready(function () {
-//   fetchDataAndUpdateUI(currentPage);
-//   $("#companyAddForm").submit(async function (event) {
-//     event.preventDefault();
-
-//     let formData = $(this).serialize();
-
-//     try {
-//       await $.ajax({
-//         url: "/api/admin/companies",
-//         type: "POST",
-//         data: formData,
-//         success: function (response) {
-//           // Clear the form fields after successful submission
-//           $("#companyAddForm")[0].reset();
-
-//           // Display a success message or perform any other actions
-//           console.log("Company added successfully:", response);
-
-//           // Update the company list with the new data
-//           fetchDataAndUpdateUI(currentPage);
-//         },
-//         error: function (error) {
-//           // Handle errors, display an error message, or log the error
-//           console.error("Error adding company:", error);
-//         },
-//       });
-//     } catch (error) {
-//       const errors = error.responseJSON.errors;
-//       const errorMessage = errors.map((error) => error.msg).join("<br>");
-
-//       $(".errAlartSection").addClass("alertActive");
-//       $(".errAlartSection").text(errorMessage, error.msg);
-
-//       setTimeout(function () {
-//         $(".errAlartSection").removeClass("alertActive");
-//       }, 5000);
-//       // Handle any additional errors that might occur during the AJAX call
-//       console.error("Additional error:", error);
-//     }
-//   });
-// });
-
-///////////////////////// Edit and update /////////////////////////
-
-// Get details in edit input
+// Get Details for edit
 const getEditDetails = async (companyId) => {
   try {
     const response = await $.ajax({
@@ -361,14 +318,40 @@ const getEditDetails = async (companyId) => {
 
     if (response) {
       const companyPostData = response;
-
       const { avatar, title, phone, email, address } = companyPostData;
 
-      $("#edit_avatar").val(avatar);
+      const img = document.createElement("img");
+      img.id = "img-p";
+      img.src = avatar;
+      // const fileName = avatar.split(`uploads`)[1].split(`default`)[1];
+      // const match = fileName.match(/\\([^\\]+)$/);
+
+      // if (match) {
+      //   const fileName = match[1];
+      //   // Fetch the blob data
+      //   const blob = await fetch(avatar).then((response) => response.blob());
+
+      //   // Create a new File object
+      //   const file = new File([blob], fileName);
+
+      //   // Create a new FileList
+      //   const fileList = new DataTransfer();
+      //   fileList.items.add(file);
+
+      //   // Set the files property of the input element
+      //   $("#edit_avatar")[0].files = fileList.files;
+      //   // Trigger a change event on the file input
+      //   $("#edit_avatar").trigger("change");
+      //   console.log($("#edit_avatar")[0].files);
+      // } else {
+      //   console.error("Failed to extract filename");
+      // }
+
       $("#edit_name").val(title);
       $("#edit_phone").val(phone);
       $("#edit_email").val(email);
       $("#edit_address").val(address);
+      $(".img-area").append(img);
     } else {
       console.error("Failed to fetch company post data");
     }
@@ -381,7 +364,7 @@ const getEditDetails = async (companyId) => {
 function validateForm() {
   // Check if required fields are filled
   if (
-    $("#edit_avatar").val() === "" ||
+    // $("#edit_avatar").val() === "" ||
     $("#edit_name").val() === "" ||
     $("#edit_phone").val() === "" ||
     $("#edit_email").val() === "" ||
@@ -411,31 +394,47 @@ $(document).on("click", "#edit-compnay", async function () {
         return;
       }
 
-      const updatedData = {
-        avatar: $("#edit_avatar").val(avatar),
-        title: $("#edit_name").val(title),
-        phone: $("#edit_phone").val(phone),
-        email: $("#edit_email").val(email),
-        address: $("#edit_address").val(address),
-      };
       try {
-        const response = await $.ajax({
+        const formData = new FormData();
+        formData.append("avatar", $("#edit_avatar")[0].files[0]);
+        formData.append("title", $("#edit_name").val());
+        formData.append("phone", $("#edit_phone").val());
+        formData.append("email", $("#edit_email").val());
+        formData.append("address", $("#edit_address").val());
+
+        await $.ajax({
           url: `/api/admin/companies/${companyId}`,
           method: "PATCH",
-          data: updatedData,
+          data: formData,
           dataType: "json",
+          contentType: false,
+          processData: false,
+          success: function (response) {
+            if (response) {
+              $(".editSuccessAlartSection").addClass("alertActive");
+              setTimeout(function () {
+                $(".editSuccessAlartSection").removeClass("alertActive");
+              }, 2000);
+              fetchDataAndUpdateUI(currentPage);
+
+              $("#edit-company-form")[0].reset();
+              $("#img-p").remove();
+              let isClicked = false;
+
+              $("#cancelButton").on("click", function () {
+                isClicked = true;
+              });
+
+              setTimeout(function () {
+                if (!isClicked) {
+                  $("#cancelButton").click();
+                }
+              }, 2000);
+            } else {
+              console.error("Failed to update company data");
+            }
+          },
         });
-
-        if (response) {
-          $(".editSuccessAlartSection").addClass("alertActive");
-          setTimeout(function () {
-            $(".editSuccessAlartSection").removeClass("alertActive");
-          }, 3000);
-
-          fetchDataAndUpdateUI(currentPage);
-        } else {
-          console.error("Failed to update job data");
-        }
       } catch (error) {
         if (error.responseJSON && error.responseJSON.errors) {
           console.log(error.responseJSON);
@@ -519,7 +518,7 @@ $(document).on("click", ".active-inactive-button", async function () {
 });
 
 // Delete Details
-$(document).on("click", ".delete-company-button", async function () {
+$(document).on("click", "#delete-company", async function () {
   const companyId = $(this).data("id");
   console.log(companyId);
 

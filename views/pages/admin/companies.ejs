@@ -211,7 +211,7 @@
             <form method="POST" action="/api/admin/company/allcompany" id="companyAddForm" class="space-y-4 w-full">
               <div class="logoPreview">
                 <div class="container">
-                  <input type="file" name="avatar" id="file" accept="image/*" hidden="">
+                  <input type="file" name="avatar" id="avatar" accept="image/*" hidden="">
                   <div class="img-area" data-img="">
                     <i class="bx bxs-cloud-upload icon"></i>
                     <h3>Upload Image</h3>
@@ -274,9 +274,9 @@
       </div>
     </div>
     <div
-      class="alert alert-success shadow-lg fixed top-16 w-auto z-10 opacity-0 duration-500 overflow-hidden successAlartSection">
+      class="alert alert-success shadow-lg fixed top-16 w-auto z-10 opacity-0 duration-500 overflow-hidden editSuccessAlartSection">
       <div>
-        <span>Congratulations! Successfully added a new category.</span>
+        <span>Updated Successfully!</span>
       </div>
     </div>
     <div class="modal-box h-auto flex flex-col justify-between scrollbar-hide">
@@ -287,7 +287,7 @@
             <form action="form" id="edit-company-form" enctype="multipart/form-data" class="space-y-4 w-full">
               <div class="logoPreview">
                 <div class="container">
-                  <input type="file" name="avatar" id="file" accept="image/*" hidden="">
+                  <input type="file" name="avatar" id="edit_avatar" data-target="" accept="image/*" hidden="">
                   <div class="img-area" data-img="">
                     <i class="bx bxs-cloud-upload icon"></i>
                     <h3>Upload Image</h3>
@@ -329,7 +329,7 @@
                   placeholder="Enter your address here..."></textarea>
               </div>
               <div class="modal-action">
-                <label for="editCompany" class="btn btn-error">Cancel</label>
+                <label for="editCompany" id="cancelButton" class="btn btn-error">Cancel</label>
                 <button id="companySubmitBTN" type="submit" class="btn btn-success focus:outline-none">
                   Add
                 </button>

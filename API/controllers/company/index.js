@@ -1,5 +1,6 @@
 const CompanyAdd = require("../../models/companySchema/CompanyAdd");
 const he = require("he");
+const fs = require("fs").promises;
 const getAllCompanies = require("../../lib/getAllPost");
 const {
   generateUploadsFolder,
@@ -100,16 +101,49 @@ exports.api_single_company_get = async (req, res, next) => {
 exports.api_update_company = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { avatar, title, phone, email, address, active_status } = req.body;
+    const { title, phone, email, address, active_status } = req.body;
+    const newAvatar = req.file ? req.file.path.split("public").join("") : null;
 
+    console.log("Top New: " + newAvatar);
+
+    const companyToUpdate = await CompanyAdd.findById(id);
+    if (!companyToUpdate) {
+      return res.status(400).json({ error: "Company is not found!" });
+    }
+
+    if (newAvatar && companyToUpdate.avatar) {
+      // Delete the old avatar
+      await fs.unlink(`public/${companyToUpdate.avatar}`);
+    } else if (newAvatar === null) {
+      const oldAvatar = companyToUpdate.avatar;
+
+      console.log("old Avatar:" + oldAvatar);
+      // Update without changing the avatar
+      const updateCompany = await CompanyAdd.findOneAndUpdate(
+        { _id: id },
+        { title, phone, email, address, active_status },
+        { new: true }
+      );
+
+      if (!updateCompany) {
+        return res.status(404).json({ error: "Company is not found" });
+      }
+
+      return res.json({ success: true, updateCompany });
+    }
+
+    console.log("New avatar:" + newAvatar);
+    // Update with the new avatar
     const updateCompany = await CompanyAdd.findOneAndUpdate(
       { _id: id },
-      { avatar, title, phone, email, address, active_status },
+      { avatar: newAvatar, title, phone, email, address, active_status },
       { new: true }
     );
+
     if (!updateCompany) {
       return res.status(404).json({ error: "Company is not found" });
     }
+
     res.json({ success: true, updateCompany });
   } catch (error) {
     console.error("Error in api_update_company:", error);
