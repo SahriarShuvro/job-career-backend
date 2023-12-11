@@ -7,11 +7,13 @@ exports.validateCompany = [
 
   check("phone")
     .not()
-    .isMobilePhone()
-    .escape()
+    .matches(/^\d{11,13}$/)
     .withMessage("Invalid phone number"),
 
-  check("email").not().isEmail().escape().withMessage("Invalid email address"),
+  check("email")
+    .not()
+    .matches(/^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/)
+    .withMessage("Invalid email address"),
 
   check("address")
     .isEmpty()
@@ -31,46 +33,25 @@ exports.validateCompany = [
     next();
   },
 ];
-
 exports.validateEditCompany = [
-  check("avatar")
-    .not()
-    .isEmpty()
-    .escape()
-    .withMessage("Company Logo is required!"),
+  check("avatar").isEmpty().escape().withMessage("Company Logo is required!"),
 
-  check("title")
-    .not()
-    .isEmpty()
-    .escape()
-    .withMessage("Company Name is required!"),
+  check("title").isEmpty().escape().withMessage("Company Name is required!"),
 
   check("phone")
     .not()
-    .isEmpty()
-    .escape()
-    .withMessage("Company Phone is required!")
-    .isNumeric()
-    .withMessage("Company Phone should be Numaric"),
+    .matches(/^\d{11,13}$/)
+    .withMessage("Invalid phone number"),
 
   check("email")
     .not()
-    .isEmpty()
-    .escape()
-    .withMessage("Company Email is required!")
-    .isEmail()
-    .withMessage("Company Email Should be mail type. ex: example@email.com"),
+    .matches(/^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/)
+    .withMessage("Invalid email address"),
 
   check("address")
-    .not()
     .isEmpty()
     .escape()
     .withMessage("Company Address is required!"),
-
-  check("active_status")
-    .optional()
-    .isBoolean()
-    .withMessage("Active status must be a boolean value!"),
 
   (req, res, next) => {
     const errors = validationResult(req);

@@ -43,7 +43,7 @@ router
 router
   .route("/companies/:id")
   .get(api_single_company_get)
-  .patch(upload.single("avatar"), api_update_company)
+  .patch(validateEditCompany, upload.single("avatar"), api_update_company)
   .put(api_company_active_inactive)
   .delete(api_delete_company);
 

@@ -2,9 +2,7 @@ const CompanyAdd = require("../../models/companySchema/CompanyAdd");
 const he = require("he");
 const fs = require("fs").promises;
 const getAllCompanies = require("../../lib/getAllPost");
-const {
-  generateUploadsFolder,
-} = require("../../middleware/global/fileUploade");
+
 // *****  Copmany page start ***** //
 // Company Add ** //
 // Get
@@ -104,8 +102,6 @@ exports.api_update_company = async (req, res, next) => {
     const { title, phone, email, address, active_status } = req.body;
     const newAvatar = req.file ? req.file.path.split("public").join("") : null;
 
-    console.log("Top New: " + newAvatar);
-
     const companyToUpdate = await CompanyAdd.findById(id);
     if (!companyToUpdate) {
       return res.status(400).json({ error: "Company is not found!" });
@@ -115,9 +111,6 @@ exports.api_update_company = async (req, res, next) => {
       // Delete the old avatar
       await fs.unlink(`public/${companyToUpdate.avatar}`);
     } else if (newAvatar === null) {
-      const oldAvatar = companyToUpdate.avatar;
-
-      console.log("old Avatar:" + oldAvatar);
       // Update without changing the avatar
       const updateCompany = await CompanyAdd.findOneAndUpdate(
         { _id: id },
@@ -132,7 +125,6 @@ exports.api_update_company = async (req, res, next) => {
       return res.json({ success: true, updateCompany });
     }
 
-    console.log("New avatar:" + newAvatar);
     // Update with the new avatar
     const updateCompany = await CompanyAdd.findOneAndUpdate(
       { _id: id },

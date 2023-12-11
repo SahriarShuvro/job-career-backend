@@ -55,7 +55,7 @@ export async function updateUI(
               <!-- Acive/Inactive BAGED -->
               <div class="absolute top-3 left-3">
                 <p
-                  class="active-inactive-button cardStatusActive rounded-full bg-green-500 px-2 py-1 text-center text-xs hidden activeCard ${
+                  class="cardStatusActive rounded-full bg-green-500 px-2 py-1 text-center text-xs hidden activeCard ${
                     active_status ? "bg-green-500" : "bg-red-600"
                   } "
                 >
@@ -118,9 +118,11 @@ export async function updateUI(
                 <div class="flex mt-4 space-x-3 md:mt-6">
                   <a
                     href="#"
+                    id="active-inactive-button"
+                    data-id="${_id}"
                     class=" ${
                       active_status === false
-                        ? "activeButton inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                        ? "activeButton inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none foc  us:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
                         : "inactiveButton inline-flex items-center px-4 py-2 text-sm font-medium text-center bg-red-600 border border-red-300 rounded-lg focus:ring-4 focus:outline-none focus:ring-red-200 text-white dark:border-red-600 hover:bg-red-800 dark:hover:border-red-700 dark:focus:ring-red-500"
                     }"
                     >${active_status === false ? "Active" : "Inactive"}</a
@@ -455,7 +457,8 @@ $(document).on("click", "#edit-compnay", async function () {
 });
 
 // Active/inactive job post
-$(document).on("click", ".active-inactive-button", async function () {
+$(document).on("click", "#active-inactive-button", async function (e) {
+  e.preventDefault();
   const companyId = $(this).data("id");
   const confirmToggle = confirm(
     "Are you sure you want to toggle the active status of this POST?"
@@ -518,7 +521,7 @@ $(document).on("click", ".active-inactive-button", async function () {
 });
 
 // Delete Details
-$(document).on("click", "#delete-company", async function () {
+$(document).on("click", "#delete-compnay", async function () {
   const companyId = $(this).data("id");
   console.log(companyId);
 
