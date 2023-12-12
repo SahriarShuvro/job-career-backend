@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+require("dotenv").config();
 const app = express();
 var cors = require("cors");
 
@@ -41,10 +42,9 @@ app.use("/api", apiRoutes);
 app.all("*", error_controller, error_middleware);
 
 // Database Connection
-const PORT = 8080;
+const PORT = process.env.PROT || 8080;
 // const URL = "mongodb://127.0.0.1:27017/admin";
-const URL =
-  "mongodb+srv://allJobBDuser:ub8SBYPREpEMg20a@alljobdbname.ff1flso.mongodb.net/jobdataname?retryWrites=true&w=majority";
+const URL = process.env.MONGODB_LOCAL;
 
 mongoose
   .connect(URL, { useNewUrlParser: true, useUnifiedTopology: true })
