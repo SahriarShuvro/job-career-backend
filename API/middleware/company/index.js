@@ -1,24 +1,24 @@
-const { check, validationResult } = require("express-validator");
+const { check, validationResult, body } = require("express-validator");
 
 exports.validateCompany = [
   // Validate avatar field
   // check("avatar").notEmpty().withMessage("Avatar is required"),
 
   // Validate title field
-  check("title").not().isEmpty().withMessage("Title is required"),
+  check("title").isEmpty().withMessage("Title is required"),
 
   // Validate phone field
-  check("phone").not().isEmpty().withMessage("Phone is required"),
+  check("phone").isEmpty().withMessage("Phone is required"),
 
   // Validate email field
-  check("email").not().isEmail().withMessage("Invalid email address"),
+  check("email").isEmail().withMessage("Invalid email address"),
 
   // Validate address field
-  check("address").not().isEmpty().withMessage("Address is required"),
+  check("address").isEmpty().withMessage("Address is required"),
 
   (req, res, next) => {
     const errors = validationResult(req);
-    if (errors.isEmpty()) {
+    if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
     next();

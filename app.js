@@ -2,15 +2,23 @@ const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
 const app = express();
-var cors = require("cors");
+const cors = require("cors");
+const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
+const { authenticateJWT } = require("./API/middleware/global/auth.middleware");
 
-// Route
+// Auth Route
+const auth_route = require("./routes/auth");
+// Auth api Route
+const auth_api_route = require("./API/routers/auth");
+
+// Admin Route
 const admin_route = require("./routes/admin");
 
 // Api Routes
 const apiRoutes = require("./API/routers/route");
 
-// Error middlewar
+// Middlewars
 const { error_middleware } = require("./middleware/error.middleware");
 
 // Error controller
@@ -30,13 +38,18 @@ const middleware = [
   express.urlencoded({ extended: false }),
   express.json(),
 ];
-
+app.use(cookieParser());
 app.use(cors());
+
 app.use(middleware);
+// Auth
+app.use("/auth", auth_route);
 // Admin Route
-app.use("/admin", admin_route);
+app.use("/admin", authenticateJWT, admin_route);
+
 // API routes
-app.use("/api", apiRoutes);
+app.use("/api/auth", auth_api_route);
+app.use("/api", authenticateJWT, apiRoutes);
 
 // Global Error Route
 app.all("*", error_controller, error_middleware);
