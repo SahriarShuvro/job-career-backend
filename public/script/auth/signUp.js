@@ -7,7 +7,7 @@ $(document).ready(function () {
     try {
       // Send an asynchronous POST request to the "/api/auth/signup" endpoint
       await $.ajax({
-        url: "/api/auth/signup",
+        url: "/auth/signup",
         type: "POST",
         data: userData,
         success: function () {

@@ -5,13 +5,10 @@ const app = express();
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
-const { authenticateJWT } = require("./API/middleware/global/auth.middleware");
+const passport = require("passport");
 
 // Auth Route
 const auth_route = require("./routes/auth");
-// Auth api Route
-const auth_api_route = require("./API/routers/auth");
-
 // Admin Route
 const admin_route = require("./routes/admin");
 
@@ -20,6 +17,7 @@ const apiRoutes = require("./API/routers/route");
 
 // Middlewars
 const { error_middleware } = require("./middleware/error.middleware");
+const authenticate = require("./middleware/auth.middleware");
 
 // Error controller
 const { error_controller } = require("./controllers/error.controler");
@@ -41,15 +39,18 @@ const middleware = [
 app.use(cookieParser());
 app.use(cors());
 
+// Initialize Passport middleware
+app.use(passport.initialize());
+
 app.use(middleware);
-// Auth
+
+// Auth Route
 app.use("/auth", auth_route);
 // Admin Route
-app.use("/admin", authenticateJWT, admin_route);
+app.use("/admin", authenticate, admin_route);
 
 // API routes
-app.use("/api/auth", auth_api_route);
-app.use("/api", authenticateJWT, apiRoutes);
+app.use("/api", apiRoutes);
 
 // Global Error Route
 app.all("*", error_controller, error_middleware);
