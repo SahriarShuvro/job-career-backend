@@ -5,7 +5,7 @@ const app = express();
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
-const passport = require("passport");
+const passport = require("./config/passport");
 
 // Auth Route
 const auth_route = require("./routes/auth");
