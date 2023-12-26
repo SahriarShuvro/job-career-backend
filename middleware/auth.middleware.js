@@ -24,9 +24,9 @@ const jwtStrategy = new JwtStrategy(jwtOptions, (jwtPayload, done) => {
     }
   });
 });
-
-passport.use(jwtStrategy);
-
+passport.use(jwtStrategy)
+module.exports = passport ;
+//middilware
 const authenticate = (req, res, next) => {
   passport.authenticate("jwt", { session: false }, (err, user, info) => {
     console.log("Entering authentication middleware");
